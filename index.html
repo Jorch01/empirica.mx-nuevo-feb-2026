@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empírica Legal Lab — Asesoría Legal para Emprendedores</title>
-    <meta name="description" content="Empírica Legal Lab: soluciones legales diseñadas para emprendedores. Registro de marca, contratos, sociedades, litigio, amparo y más. Agenda tu consulta.">
-    <meta name="keywords" content="despacho jurídico, abogados, emprendedores, registro de marca, contratos, sociedad jurídica, amparo, litigio, México">
+    <title>Empírica Legal Lab — Asesoría Legal para Emprendedores en México</title>
+    <meta name="description" content="Empírica Legal Lab: soluciones legales diseñadas para emprendedores en México. Registro de marca, contratos, sociedades jurídicas, litigio, amparo, derechos de autor y más. Agenda tu consulta personalizada.">
+    <meta name="keywords" content="despacho jurídico México, abogados emprendedores, registro de marca IMPI, contratos personalizados, sociedad jurídica, juicio de amparo, litigio México, derechos de autor INDAUTOR, aviso de privacidad, consultoría legal, Empírica Legal Lab, corresponsalías legales, legal english real estate">
     <meta name="author" content="Empírica Legal Lab">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://empirica.mx/">
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:title" content="Empírica Legal Lab — Asesoría Legal para Emprendedores">
-    <meta property="og:description" content="Soluciones legales diseñadas para emprendedores y empresas en crecimiento. Agenda tu consulta personalizada.">
+    <meta property="og:description" content="Soluciones legales diseñadas para emprendedores y empresas en crecimiento. Registro de marca, contratos, sociedades, litigio y más.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://empirica.mx">
     <meta property="og:image" content="https://empirica.mx/assets/images/logo/og-image.png">
     <meta property="og:locale" content="es_MX">
+    <meta property="og:site_name" content="Empírica Legal Lab">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Empírica Legal Lab — Asesoría Legal para Emprendedores">
+    <meta name="twitter:description" content="Soluciones legales diseñadas para emprendedores y empresas en crecimiento.">
+    <meta name="twitter:image" content="https://empirica.mx/assets/images/logo/og-image.png">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/logo/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/logo/apple-touch-icon.png">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,6 +40,41 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LegalService",
+        "name": "Empírica Legal Lab",
+        "description": "Despacho jurídico enfocado en emprendedores. Registro de marca, contratos, sociedades jurídicas, litigio, amparo, derechos de autor y más.",
+        "url": "https://empirica.mx",
+        "logo": "https://empirica.mx/assets/images/logo/logo.png",
+        "email": "frida@empirica.mx",
+        "telephone": "+529982570828",
+        "sameAs": [
+            "https://instagram.com/empiricalegalab"
+        ],
+        "priceRange": "$$",
+        "areaServed": {
+            "@type": "Country",
+            "name": "México"
+        },
+        "serviceType": [
+            "Registro de Marca",
+            "Contratos Personalizados",
+            "Creación de Sociedades Jurídicas",
+            "Litigio y Juicio de Amparo",
+            "Derechos de Autor",
+            "Aviso de Privacidad",
+            "Consulta Legal Personalizada",
+            "Corresponsalías",
+            "Transcripciones Legales",
+            "Legal English for Real Estate"
+        ],
+        "knowsLanguage": ["es", "en"]
+    }
+    </script>
 </head>
 <body>
 
@@ -82,7 +128,7 @@
                 </a>
             </div>
             <div class="hero-social">
-                <a href="mailto:contacto@empirica.mx" title="Email" aria-label="Enviar email">
+                <a href="mailto:frida@empirica.mx" title="Email" aria-label="Enviar email">
                     <i class="fas fa-envelope"></i>
                 </a>
                 <a href="https://instagram.com/empiricalegalab" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
@@ -108,8 +154,10 @@
             <div class="services-grid">
 
                 <!-- Servicio 1 -->
-                <div class="service-card" data-service="legal-english">
+                <article class="service-card" data-service="legal-english" role="button" tabindex="0">
                     <div class="service-card-visual">
+                        <img src="assets/images/services/1.jpg" alt="Legal English for Real Estate" class="service-img"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="service-icon-bg">
                             <i class="fas fa-language"></i>
                         </div>
@@ -117,16 +165,18 @@
                     </div>
                     <div class="service-card-body">
                         <h3>Legal English for Real Estate</h3>
-                        <p class="service-price">$499 <span>MXN</span></p>
-                        <a href="#" class="btn btn-gold" data-stripe-link="STRIPE_LINK_LEGAL_ENGLISH">
-                            Comprar Ahora <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <p class="service-desc">Material educativo sobre terminología legal en inglés para transacciones inmobiliarias.</p>
+                        <button class="btn btn-gold btn-service-detail">
+                            Más Información <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
 
                 <!-- Servicio 2 -->
-                <div class="service-card" data-service="transcripciones">
+                <article class="service-card" data-service="transcripciones" role="button" tabindex="0">
                     <div class="service-card-visual">
+                        <img src="assets/images/services/2.jpg" alt="Transcripciones de Audio y Audiencias" class="service-img"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="service-icon-bg">
                             <i class="fas fa-microphone-lines"></i>
                         </div>
@@ -134,67 +184,75 @@
                     </div>
                     <div class="service-card-body">
                         <h3>Transcripciones de Audio &amp; Audiencias</h3>
-                        <p class="service-price">$100 <span>MXN</span></p>
-                        <a href="#" class="btn btn-gold" data-stripe-link="STRIPE_LINK_TRANSCRIPCIONES">
-                            Comprar Ahora <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <p class="service-desc">Servicio profesional de transcripción de audiencias judiciales y grabaciones de audio legal.</p>
+                        <button class="btn btn-gold btn-service-detail">
+                            Más Información <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
 
                 <!-- Servicio 3 -->
-                <div class="service-card" data-service="corresponsalias">
+                <article class="service-card" data-service="corresponsalias" role="button" tabindex="0">
                     <div class="service-card-visual">
+                        <img src="assets/images/services/3.jpg" alt="Corresponsalías" class="service-img"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="service-icon-bg">
                             <i class="fas fa-handshake"></i>
                         </div>
-                        <span class="service-badge badge-subscription">Suscripción</span>
+                        <span class="service-badge badge-subscription">Suscripción Mensual</span>
                     </div>
                     <div class="service-card-body">
                         <h3>Corresponsalías</h3>
-                        <p class="service-price">$2,500 <span>MXN/mes</span></p>
-                        <a href="#" class="btn btn-gold" data-stripe-link="STRIPE_LINK_CORRESPONSALIAS">
-                            Suscribirse <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <p class="service-desc">Representación legal en diferentes estados de la República Mexicana.</p>
+                        <button class="btn btn-gold btn-service-detail">
+                            Más Información <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
 
                 <!-- Servicio 4 -->
-                <div class="service-card" data-service="litigio">
+                <article class="service-card" data-service="litigio" role="button" tabindex="0">
                     <div class="service-card-visual">
+                        <img src="assets/images/services/4.jpg" alt="Litigio y Juicio de Amparo" class="service-img"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="service-icon-bg">
                             <i class="fas fa-gavel"></i>
                         </div>
-                        <span class="service-badge badge-service">Servicio</span>
+                        <span class="service-badge badge-service">Servicio Legal</span>
                     </div>
                     <div class="service-card-body">
                         <h3>Litigio / Juicio de Amparo</h3>
-                        <p class="service-price">$7,000 <span>MXN</span></p>
-                        <a href="#" class="btn btn-gold" data-stripe-link="STRIPE_LINK_LITIGIO">
-                            Contratar <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <p class="service-desc">Defensa y representación legal especializada en juicios de amparo y litigio.</p>
+                        <button class="btn btn-gold btn-service-detail">
+                            Más Información <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
 
                 <!-- Servicio 5 -->
-                <div class="service-card" data-service="aviso-privacidad">
+                <article class="service-card" data-service="aviso-privacidad" role="button" tabindex="0">
                     <div class="service-card-visual">
+                        <img src="assets/images/services/5.jpg" alt="Aviso de Privacidad" class="service-img"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="service-icon-bg">
                             <i class="fas fa-shield-halved"></i>
                         </div>
-                        <span class="service-badge badge-service">Servicio</span>
+                        <span class="service-badge badge-service">Servicio Legal</span>
                     </div>
                     <div class="service-card-body">
                         <h3>Aviso de Privacidad</h3>
-                        <p class="service-price">$2,000 <span>MXN</span></p>
-                        <a href="#" class="btn btn-gold" data-stripe-link="STRIPE_LINK_PRIVACIDAD">
-                            Contratar <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <p class="service-desc">Elaboración de avisos de privacidad conforme a la Ley Federal de Protección de Datos Personales.</p>
+                        <button class="btn btn-gold btn-service-detail">
+                            Más Información <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
 
                 <!-- Servicio 6 -->
-                <div class="service-card service-card-featured" data-service="consulta">
+                <article class="service-card service-card-featured" data-service="consulta" role="button" tabindex="0">
                     <div class="service-card-visual">
+                        <img src="assets/images/services/6.jpg" alt="Consulta Personalizada" class="service-img"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="service-icon-bg">
                             <i class="fas fa-comments"></i>
                         </div>
@@ -202,80 +260,88 @@
                     </div>
                     <div class="service-card-body">
                         <h3>Consulta Personalizada</h3>
-                        <p class="service-price">$1,000 <span>MXN</span></p>
-                        <a href="#consulta" class="btn btn-gold">
-                            Reservar <i class="fas fa-calendar-check"></i>
-                        </a>
+                        <p class="service-desc">Sesión de 60 minutos donde analizamos tu caso y definimos la mejor estrategia legal.</p>
+                        <button class="btn btn-gold btn-service-detail">
+                            Más Información <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
 
                 <!-- Servicio 7 -->
-                <div class="service-card" data-service="registro-marca">
+                <article class="service-card" data-service="registro-marca" role="button" tabindex="0">
                     <div class="service-card-visual">
+                        <img src="assets/images/services/7.jpg" alt="Registro de Marca" class="service-img"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="service-icon-bg">
                             <i class="fas fa-registered"></i>
                         </div>
-                        <span class="service-badge badge-service">Servicio</span>
+                        <span class="service-badge badge-service">Servicio Legal</span>
                     </div>
                     <div class="service-card-body">
                         <h3>Registro de Marca</h3>
-                        <p class="service-price">$4,000 <span>MXN</span></p>
-                        <a href="#" class="btn btn-gold" data-stripe-link="STRIPE_LINK_MARCA">
-                            Contratar <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <p class="service-desc">Protege tu identidad de marca ante el IMPI con búsqueda de disponibilidad y seguimiento.</p>
+                        <button class="btn btn-gold btn-service-detail">
+                            Más Información <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
 
                 <!-- Servicio 8 -->
-                <div class="service-card" data-service="sociedad-juridica">
+                <article class="service-card" data-service="sociedad-juridica" role="button" tabindex="0">
                     <div class="service-card-visual">
+                        <img src="assets/images/services/8.jpg" alt="Creación de Sociedad Jurídica Express" class="service-img"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="service-icon-bg">
                             <i class="fas fa-building-columns"></i>
                         </div>
-                        <span class="service-badge badge-service">Servicio</span>
+                        <span class="service-badge badge-service">Servicio Legal</span>
                     </div>
                     <div class="service-card-body">
                         <h3>Creación de Sociedad Jurídica Express</h3>
-                        <p class="service-price">$4,000 <span>MXN</span></p>
-                        <a href="#" class="btn btn-gold" data-stripe-link="STRIPE_LINK_SOCIEDAD">
-                            Contratar <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <p class="service-desc">Constitución rápida de tu sociedad mercantil con acta constitutiva y trámites incluidos.</p>
+                        <button class="btn btn-gold btn-service-detail">
+                            Más Información <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
 
                 <!-- Servicio 9 -->
-                <div class="service-card" data-service="derechos-autor">
+                <article class="service-card" data-service="derechos-autor" role="button" tabindex="0">
                     <div class="service-card-visual">
+                        <img src="assets/images/services/9.jpg" alt="Derechos de Autor" class="service-img"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="service-icon-bg">
                             <i class="fas fa-copyright"></i>
                         </div>
-                        <span class="service-badge badge-service">Servicio</span>
+                        <span class="service-badge badge-service">Servicio Legal</span>
                     </div>
                     <div class="service-card-body">
                         <h3>Derechos de Autor</h3>
-                        <p class="service-price">$2,000 <span>MXN</span></p>
-                        <a href="#" class="btn btn-gold" data-stripe-link="STRIPE_LINK_DERECHOS">
-                            Contratar <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <p class="service-desc">Registro y protección de obras artísticas, literarias, musicales y de software ante INDAUTOR.</p>
+                        <button class="btn btn-gold btn-service-detail">
+                            Más Información <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
 
                 <!-- Servicio 10 -->
-                <div class="service-card" data-service="contratos">
+                <article class="service-card" data-service="contratos" role="button" tabindex="0">
                     <div class="service-card-visual">
+                        <img src="assets/images/services/10.jpg" alt="Contratos Personalizados" class="service-img"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="service-icon-bg">
                             <i class="fas fa-file-signature"></i>
                         </div>
-                        <span class="service-badge badge-service">Servicio</span>
+                        <span class="service-badge badge-service">Servicio Legal</span>
                     </div>
                     <div class="service-card-body">
                         <h3>Contratos Personalizados</h3>
-                        <p class="service-price">$1,499 <span>MXN</span></p>
-                        <a href="#" class="btn btn-gold" data-stripe-link="STRIPE_LINK_CONTRATOS">
-                            Contratar <i class="fas fa-arrow-right"></i>
-                        </a>
+                        <p class="service-desc">Redacción de contratos a la medida: mercantiles, civiles, laborales, arrendamiento y más.</p>
+                        <button class="btn btn-gold btn-service-detail">
+                            Más Información <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
-                </div>
+                </article>
 
             </div>
         </div>
@@ -329,8 +395,8 @@
             </div>
             <h2>Agenda tu Consulta Personalizada</h2>
             <p>Reserva una sesión de 60 minutos y creemos algo asombroso juntos. Analizamos tu caso, resolvemos tus dudas y definimos la estrategia legal ideal para tu proyecto.</p>
-            <a href="#" class="btn btn-primary btn-lg" data-stripe-link="STRIPE_LINK_CONSULTA" id="btn-consulta">
-                <i class="fas fa-calendar-check"></i> Reservar Ahora — $1,000 MXN
+            <a href="https://wa.me/529982570828?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20personalizada%20con%20Emp%C3%ADrica%20Legal%20Lab." class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i> Agendar por WhatsApp
             </a>
             <p class="cta-note">Respuesta en menos de 24 horas</p>
         </div>
@@ -355,6 +421,9 @@
                     <button type="submit" class="btn btn-primary btn-block">
                         <i class="fas fa-paper-plane"></i> ¡Suscríbeme!
                     </button>
+                    <div class="form-success" id="newsletter-success">
+                        <i class="fas fa-check-circle"></i> ¡Te has suscrito exitosamente!
+                    </div>
                 </form>
             </div>
         </div>
@@ -369,12 +438,12 @@
                 <p>¿Tienes preguntas? Estamos aquí para ayudarte</p>
             </div>
             <div class="contact-grid">
-                <a href="mailto:contacto@empirica.mx" class="contact-card">
+                <a href="mailto:frida@empirica.mx" class="contact-card">
                     <div class="contact-card-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <h3>Email</h3>
-                    <p>contacto@empirica.mx</p>
+                    <p>frida@empirica.mx</p>
                 </a>
                 <a href="https://instagram.com/empiricalegalab" target="_blank" rel="noopener" class="contact-card">
                     <div class="contact-card-icon">
@@ -383,12 +452,12 @@
                     <h3>Instagram</h3>
                     <p>@empiricalegalab</p>
                 </a>
-                <a href="https://wa.me/521TUNUMERO" target="_blank" rel="noopener" class="contact-card">
+                <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20de%20Emp%C3%ADrica%20Legal%20Lab." target="_blank" rel="noopener" class="contact-card">
                     <div class="contact-card-icon">
                         <i class="fab fa-whatsapp"></i>
                     </div>
                     <h3>WhatsApp</h3>
-                    <p>Escríbenos directo</p>
+                    <p>+52 998 257 08 28</p>
                 </a>
             </div>
         </div>
@@ -423,7 +492,7 @@
                         <a href="https://instagram.com/empiricalegalab" target="_blank" rel="noopener" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="mailto:contacto@empirica.mx" aria-label="Email">
+                        <a href="mailto:frida@empirica.mx" aria-label="Email">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </div>
@@ -457,8 +526,18 @@
         </div>
     </div>
 
+    <!-- ===================== MODAL DETALLE SERVICIO ===================== -->
+    <div class="modal-overlay" id="service-modal" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
+        <div class="modal modal-service">
+            <button class="modal-close" id="service-modal-close" aria-label="Cerrar">&times;</button>
+            <div class="service-detail" id="service-detail">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
     <!-- ===================== WHATSAPP FLOAT ===================== -->
-    <a href="https://wa.me/521TUNUMERO" class="whatsapp-float" target="_blank" rel="noopener"
+    <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20de%20Emp%C3%ADrica%20Legal%20Lab." class="whatsapp-float" target="_blank" rel="noopener"
        title="Contáctanos por WhatsApp" aria-label="WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
