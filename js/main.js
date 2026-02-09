@@ -15,7 +15,7 @@
      * 4. Haz deploy como Web App (acceso: Anyone)
      * 5. Copia la URL y pégala aquí:
      */
-    var GOOGLE_SHEET_URL = ''; // https://script.google.com/macros/s/TU_ID/exec
+    var GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyX3vgUvGcldyU3oUdvqhU3LLoPKNuOX4jb8LHaU7HgQQDIzmseHTV-CqjHKkRZFmJz/exec'; // https://script.google.com/macros/s/TU_ID/exec
 
     /* Número de WhatsApp (con código de país, sin +) */
     var WHATSAPP_NUMBER = '529982570828';
