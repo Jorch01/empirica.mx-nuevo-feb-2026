@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empírica Legal Lab — Asesoría Legal para Emprendedores en México</title>
-    <meta name="description" content="Empírica Legal Lab: soluciones legales diseñadas para emprendedores en México. Registro de marca, contratos, sociedades jurídicas, litigio, amparo, derechos de autor y más. Agenda tu consulta personalizada.">
-    <meta name="keywords" content="despacho jurídico México, abogados emprendedores, registro de marca IMPI, contratos personalizados, sociedad jurídica, juicio de amparo, litigio México, derechos de autor INDAUTOR, aviso de privacidad, consultoría legal, Empírica Legal Lab, corresponsalías legales, legal english real estate">
+    <meta name="description" content="Empírica Legal Lab: soluciones legales integrales para emprendedores, empresas y corporativos en México. Litigio, propiedad intelectual, derecho corporativo, compliance y fiscalización preventiva para hoteles y empresas. Agenda tu consulta.">
+    <meta name="keywords" content="despacho jurídico México, abogados emprendedores, registro de marca IMPI, contratos personalizados, sociedad jurídica, juicio de amparo, litigio México, derechos de autor INDAUTOR, aviso de privacidad, consultoría legal, Empírica Legal Lab, corresponsalías legales, compliance corporativo, fiscalización preventiva, derecho preventivo empresas, derecho corporativo hoteles, mitigación riesgos legales">
     <meta name="author" content="Empírica Legal Lab">
     <meta name="robots" content="index, follow">
     <meta name="googlebot" content="index, follow">
@@ -47,7 +47,7 @@
         "@context": "https://schema.org",
         "@type": "LegalService",
         "name": "Empírica Legal Lab",
-        "description": "Despacho jurídico enfocado en emprendedores. Registro de marca, contratos, sociedades jurídicas, litigio, amparo, derechos de autor y más.",
+        "description": "Despacho jurídico para emprendedores y corporativos. Litigio, propiedad intelectual, derecho corporativo, compliance y fiscalización preventiva.",
         "url": "https://empirica.mx",
         "logo": "https://empirica.mx/assets/images/logo/logo.png",
         "email": "frida@empirica.mx",
@@ -61,16 +61,18 @@
             "name": "México"
         },
         "serviceType": [
-            "Registro de Marca",
-            "Contratos Personalizados",
-            "Creación de Sociedades Jurídicas",
             "Litigio y Juicio de Amparo",
-            "Derechos de Autor",
-            "Aviso de Privacidad",
-            "Consulta Legal Personalizada",
             "Corresponsalías",
             "Transcripciones Legales",
-            "Legal English for Real Estate"
+            "Registro de Marca",
+            "Derechos de Autor",
+            "Legal English for Real Estate",
+            "Compliance y Fiscalización Preventiva",
+            "Creación de Sociedades Jurídicas",
+            "Contratos Personalizados",
+            "Aviso de Privacidad",
+            "Consulta Legal Personalizada",
+            "Derecho Corporativo y Preventivo"
         ],
         "knowsLanguage": ["es", "en"]
     }
@@ -142,201 +144,270 @@
             <div class="section-header">
                 <span class="section-tag">Lo que hacemos</span>
                 <h2>Nuestros Servicios</h2>
-                <p>Soluciones legales diseñadas para emprendedores y empresas en crecimiento</p>
+                <p>Soluciones legales integrales para emprendedores, empresas en crecimiento y corporativos</p>
             </div>
-            <div class="services-grid">
 
-                <!-- Servicio 1 -->
-                <article class="service-card" data-service="legal-english" role="button" tabindex="0">
-                    <div class="service-card-visual">
-                        <img src="assets/images/services/1.jpg" alt="Legal English for Real Estate" class="service-img"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="service-icon-bg">
-                            <i class="fas fa-language"></i>
-                        </div>
-                        <span class="service-badge badge-digital">Producto Digital</span>
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Legal English for Real Estate</h3>
-                        <p class="service-desc">Material educativo sobre terminología legal en inglés para transacciones inmobiliarias.</p>
-                        <button class="btn btn-gold btn-service-detail">
-                            Más Información <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
+            <!-- Category Tabs -->
+            <div class="services-tabs" role="tablist">
+                <button class="services-tab active" role="tab" aria-selected="true" data-category="litigio">
+                    <i class="fas fa-gavel"></i>
+                    <span>Litigio</span>
+                </button>
+                <button class="services-tab" role="tab" aria-selected="false" data-category="propiedad-intelectual">
+                    <i class="fas fa-copyright"></i>
+                    <span>Propiedad Intelectual</span>
+                </button>
+                <button class="services-tab" role="tab" aria-selected="false" data-category="corporativo">
+                    <i class="fas fa-building"></i>
+                    <span>Corporativo y Preventivo</span>
+                </button>
+            </div>
 
-                <!-- Servicio 2 -->
-                <article class="service-card" data-service="transcripciones" role="button" tabindex="0">
-                    <div class="service-card-visual">
-                        <img src="assets/images/services/2.jpg" alt="Transcripciones de Audio y Audiencias" class="service-img"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="service-icon-bg">
-                            <i class="fas fa-microphone-lines"></i>
-                        </div>
-                        <span class="service-badge badge-digital">Producto Digital</span>
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Transcripciones de Audio &amp; Audiencias</h3>
-                        <p class="service-desc">Servicio profesional de transcripción de audiencias judiciales y grabaciones de audio legal.</p>
-                        <button class="btn btn-gold btn-service-detail">
-                            Más Información <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
+            <!-- ═══ CATEGORÍA 1: LITIGIO ═══ -->
+            <div class="services-category active" id="cat-litigio" role="tabpanel">
+                <div class="category-intro">
+                    <h3>Litigio y Defensa Legal</h3>
+                    <p>Representación estratégica y defensa jurídica con experiencia comprobada en todas las instancias. Protegemos tus derechos con rigor técnico y compromiso absoluto.</p>
+                </div>
+                <div class="services-grid">
 
-                <!-- Servicio 3 -->
-                <article class="service-card" data-service="corresponsalias" role="button" tabindex="0">
-                    <div class="service-card-visual">
-                        <img src="assets/images/services/3.jpg" alt="Corresponsalías" class="service-img"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="service-icon-bg">
-                            <i class="fas fa-handshake"></i>
+                    <article class="service-card" data-service="litigio" role="button" tabindex="0">
+                        <div class="service-card-visual">
+                            <img src="assets/images/services/4.jpg" alt="Litigio y Juicio de Amparo" class="service-img"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <span class="service-badge badge-service">Servicio Legal</span>
                         </div>
-                        <span class="service-badge badge-subscription">Suscripción Mensual</span>
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Corresponsalías</h3>
-                        <p class="service-desc">Representación legal en diferentes estados de la República Mexicana.</p>
-                        <button class="btn btn-gold btn-service-detail">
-                            Más Información <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
+                        <div class="service-card-body">
+                            <h3>Litigio / Juicio de Amparo</h3>
+                            <p class="service-desc">Defensa y representación legal especializada en juicios de amparo y litigio en todas las instancias.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                Más Información <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
 
-                <!-- Servicio 4 -->
-                <article class="service-card" data-service="litigio" role="button" tabindex="0">
-                    <div class="service-card-visual">
-                        <img src="assets/images/services/4.jpg" alt="Litigio y Juicio de Amparo" class="service-img"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="service-icon-bg">
-                            <i class="fas fa-gavel"></i>
+                    <article class="service-card" data-service="corresponsalias" role="button" tabindex="0">
+                        <div class="service-card-visual">
+                            <img src="assets/images/services/3.jpg" alt="Corresponsalías" class="service-img"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <span class="service-badge badge-subscription">Suscripción Mensual</span>
                         </div>
-                        <span class="service-badge badge-service">Servicio Legal</span>
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Litigio / Juicio de Amparo</h3>
-                        <p class="service-desc">Defensa y representación legal especializada en juicios de amparo y litigio.</p>
-                        <button class="btn btn-gold btn-service-detail">
-                            Más Información <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
+                        <div class="service-card-body">
+                            <h3>Corresponsalías</h3>
+                            <p class="service-desc">Representación legal en diferentes estados de la República Mexicana con seguimiento continuo.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                Más Información <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
 
-                <!-- Servicio 5 -->
-                <article class="service-card" data-service="aviso-privacidad" role="button" tabindex="0">
-                    <div class="service-card-visual">
-                        <img src="assets/images/services/5.jpg" alt="Aviso de Privacidad" class="service-img"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="service-icon-bg">
-                            <i class="fas fa-shield-halved"></i>
+                    <article class="service-card" data-service="transcripciones" role="button" tabindex="0">
+                        <div class="service-card-visual">
+                            <img src="assets/images/services/2.jpg" alt="Transcripciones de Audio y Audiencias" class="service-img"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-microphone-lines"></i>
+                            </div>
+                            <span class="service-badge badge-digital">Producto Digital</span>
                         </div>
-                        <span class="service-badge badge-service">Servicio Legal</span>
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Aviso de Privacidad</h3>
-                        <p class="service-desc">Elaboración de avisos de privacidad conforme a la Ley Federal de Protección de Datos Personales.</p>
-                        <button class="btn btn-gold btn-service-detail">
-                            Más Información <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
+                        <div class="service-card-body">
+                            <h3>Transcripciones de Audio &amp; Audiencias</h3>
+                            <p class="service-desc">Transcripción profesional de audiencias judiciales y grabaciones de audio legal.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                Más Información <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
 
-                <!-- Servicio 6 -->
-                <article class="service-card service-card-featured" data-service="consulta" role="button" tabindex="0">
-                    <div class="service-card-visual">
-                        <img src="assets/images/services/6.jpg" alt="Consulta Personalizada" class="service-img"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="service-icon-bg">
-                            <i class="fas fa-comments"></i>
+                </div>
+            </div>
+
+            <!-- ═══ CATEGORÍA 2: PROPIEDAD INTELECTUAL ═══ -->
+            <div class="services-category" id="cat-propiedad-intelectual" role="tabpanel">
+                <div class="category-intro">
+                    <h3>Derechos de Autor y Propiedad Industrial</h3>
+                    <p>Protegemos tus creaciones, tu marca y tu identidad comercial. Registro, defensa y asesoría integral ante IMPI e INDAUTOR para blindar el valor intangible de tu negocio.</p>
+                </div>
+                <div class="services-grid">
+
+                    <article class="service-card" data-service="registro-marca" role="button" tabindex="0">
+                        <div class="service-card-visual">
+                            <img src="assets/images/services/7.jpg" alt="Registro de Marca" class="service-img"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-registered"></i>
+                            </div>
+                            <span class="service-badge badge-service">Servicio Legal</span>
                         </div>
-                        <span class="service-badge badge-booking">Reserva · 60 min</span>
+                        <div class="service-card-body">
+                            <h3>Registro de Marca</h3>
+                            <p class="service-desc">Protege tu identidad de marca ante el IMPI con búsqueda de disponibilidad y seguimiento completo.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                Más Información <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="service-card" data-service="derechos-autor" role="button" tabindex="0">
+                        <div class="service-card-visual">
+                            <img src="assets/images/services/9.jpg" alt="Derechos de Autor" class="service-img"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-copyright"></i>
+                            </div>
+                            <span class="service-badge badge-service">Servicio Legal</span>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>Derechos de Autor</h3>
+                            <p class="service-desc">Registro y protección de obras artísticas, literarias, musicales y de software ante INDAUTOR.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                Más Información <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="service-card" data-service="legal-english" role="button" tabindex="0">
+                        <div class="service-card-visual">
+                            <img src="assets/images/services/1.jpg" alt="Legal English for Real Estate" class="service-img"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-language"></i>
+                            </div>
+                            <span class="service-badge badge-digital">Producto Digital</span>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>Legal English for Real Estate</h3>
+                            <p class="service-desc">Material educativo sobre terminología legal en inglés para transacciones inmobiliarias.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                Más Información <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- ═══ CATEGORÍA 3: CORPORATIVO Y PREVENTIVO ═══ -->
+            <div class="services-category" id="cat-corporativo" role="tabpanel">
+                <div class="category-intro category-intro-enterprise">
+                    <div class="enterprise-badge"><i class="fas fa-shield-halved"></i> Servicio Empresarial</div>
+                    <h3>Derecho Corporativo y Preventivo</h3>
+                    <p>Nuestro equipo cuenta con socios que han trabajado internamente en la mitigación de riesgos de empresas de talla transnacional. Diseñamos estrategias de cumplimiento normativo y prevención jurídica para que su empresa opere con certeza legal y ventaja competitiva.</p>
+                </div>
+
+                <!-- Enterprise CTA Banner -->
+                <div class="enterprise-banner">
+                    <div class="enterprise-banner-content">
+                        <div class="enterprise-banner-icon">
+                            <i class="fas fa-building-shield"></i>
+                        </div>
+                        <div class="enterprise-banner-text">
+                            <h4>Programa de Prevención y Fiscalización para Corporativos</h4>
+                            <p>Dirigido a directores generales, directores jurídicos y propietarios de hoteles y empresas que buscan mitigar riesgos regulatorios, fiscales y administrativos antes de que se conviertan en contingencias.</p>
+                        </div>
+                        <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20conocer%20el%20programa%20de%20derecho%20preventivo%20y%20fiscalizaci%C3%B3n%20para%20corporativos%20de%20Emp%C3%ADrica%20Legal%20Lab." class="btn btn-primary" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i> Solicitar Información
+                        </a>
                     </div>
-                    <div class="service-card-body">
+                </div>
+
+                <div class="services-grid">
+
+                    <article class="service-card service-card-enterprise" data-service="compliance-preventivo" role="button" tabindex="0">
+                        <div class="service-card-visual service-visual-enterprise">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-scale-balanced"></i>
+                            </div>
+                            <span class="service-badge badge-enterprise">Empresarial</span>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>Compliance y Fiscalización Preventiva</h3>
+                            <p class="service-desc">Auditorías preventivas, análisis de riesgos regulatorios y estrategias de cumplimiento normativo en materia fiscal, administrativa, laboral y de protección de datos para hoteles y corporativos.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                Más Información <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="service-card" data-service="sociedad-juridica" role="button" tabindex="0">
+                        <div class="service-card-visual">
+                            <img src="assets/images/services/8.jpg" alt="Creación de Sociedad Jurídica Express" class="service-img"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-building-columns"></i>
+                            </div>
+                            <span class="service-badge badge-service">Servicio Legal</span>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>Creación de Sociedad Jurídica Express</h3>
+                            <p class="service-desc">Constitución rápida de tu sociedad mercantil con acta constitutiva y trámites incluidos.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                Más Información <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="service-card" data-service="contratos" role="button" tabindex="0">
+                        <div class="service-card-visual">
+                            <img src="assets/images/services/10.jpg" alt="Contratos Personalizados" class="service-img"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                            <span class="service-badge badge-service">Servicio Legal</span>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>Contratos Personalizados</h3>
+                            <p class="service-desc">Redacción de contratos a la medida: mercantiles, civiles, laborales, arrendamiento y más.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                Más Información <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="service-card" data-service="aviso-privacidad" role="button" tabindex="0">
+                        <div class="service-card-visual">
+                            <img src="assets/images/services/5.jpg" alt="Aviso de Privacidad" class="service-img"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-shield-halved"></i>
+                            </div>
+                            <span class="service-badge badge-service">Servicio Legal</span>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>Aviso de Privacidad</h3>
+                            <p class="service-desc">Elaboración de avisos de privacidad conforme a la Ley Federal de Protección de Datos Personales.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                Más Información <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- Consulta Personalizada — CTA transversal -->
+            <div class="services-consulta-cta">
+                <div class="consulta-cta-inner">
+                    <div class="consulta-cta-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="consulta-cta-text">
                         <h3>Consulta Personalizada</h3>
-                        <p class="service-desc">Sesión de 60 minutos donde analizamos tu caso y definimos la mejor estrategia legal.</p>
-                        <button class="btn btn-gold btn-service-detail">
-                            Más Información <i class="fas fa-arrow-right"></i>
-                        </button>
+                        <p>Sesión de 60 minutos donde analizamos tu caso y definimos la mejor estrategia legal para tu proyecto o empresa.</p>
                     </div>
-                </article>
-
-                <!-- Servicio 7 -->
-                <article class="service-card" data-service="registro-marca" role="button" tabindex="0">
-                    <div class="service-card-visual">
-                        <img src="assets/images/services/7.jpg" alt="Registro de Marca" class="service-img"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="service-icon-bg">
-                            <i class="fas fa-registered"></i>
-                        </div>
-                        <span class="service-badge badge-service">Servicio Legal</span>
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Registro de Marca</h3>
-                        <p class="service-desc">Protege tu identidad de marca ante el IMPI con búsqueda de disponibilidad y seguimiento.</p>
-                        <button class="btn btn-gold btn-service-detail">
-                            Más Información <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
-
-                <!-- Servicio 8 -->
-                <article class="service-card" data-service="sociedad-juridica" role="button" tabindex="0">
-                    <div class="service-card-visual">
-                        <img src="assets/images/services/8.jpg" alt="Creación de Sociedad Jurídica Express" class="service-img"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="service-icon-bg">
-                            <i class="fas fa-building-columns"></i>
-                        </div>
-                        <span class="service-badge badge-service">Servicio Legal</span>
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Creación de Sociedad Jurídica Express</h3>
-                        <p class="service-desc">Constitución rápida de tu sociedad mercantil con acta constitutiva y trámites incluidos.</p>
-                        <button class="btn btn-gold btn-service-detail">
-                            Más Información <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
-
-                <!-- Servicio 9 -->
-                <article class="service-card" data-service="derechos-autor" role="button" tabindex="0">
-                    <div class="service-card-visual">
-                        <img src="assets/images/services/9.jpg" alt="Derechos de Autor" class="service-img"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="service-icon-bg">
-                            <i class="fas fa-copyright"></i>
-                        </div>
-                        <span class="service-badge badge-service">Servicio Legal</span>
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Derechos de Autor</h3>
-                        <p class="service-desc">Registro y protección de obras artísticas, literarias, musicales y de software ante INDAUTOR.</p>
-                        <button class="btn btn-gold btn-service-detail">
-                            Más Información <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
-
-                <!-- Servicio 10 -->
-                <article class="service-card" data-service="contratos" role="button" tabindex="0">
-                    <div class="service-card-visual">
-                        <img src="assets/images/services/10.jpg" alt="Contratos Personalizados" class="service-img"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="service-icon-bg">
-                            <i class="fas fa-file-signature"></i>
-                        </div>
-                        <span class="service-badge badge-service">Servicio Legal</span>
-                    </div>
-                    <div class="service-card-body">
-                        <h3>Contratos Personalizados</h3>
-                        <p class="service-desc">Redacción de contratos a la medida: mercantiles, civiles, laborales, arrendamiento y más.</p>
-                        <button class="btn btn-gold btn-service-detail">
-                            Más Información <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </article>
-
+                    <button class="btn btn-gold btn-consulta-cta" data-service="consulta" role="button" tabindex="0">
+                        Agendar Consulta <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
+
         </div>
     </section>
 
@@ -473,11 +544,11 @@
                     <a href="#contacto">Contacto</a>
                 </div>
                 <div class="footer-links">
-                    <h4>Servicios Populares</h4>
-                    <a href="#servicios">Registro de Marca</a>
-                    <a href="#servicios">Contratos</a>
-                    <a href="#servicios">Sociedad Jurídica</a>
-                    <a href="#servicios">Litigio / Amparo</a>
+                    <h4>Áreas de Práctica</h4>
+                    <a href="#servicios">Litigio y Amparo</a>
+                    <a href="#servicios">Propiedad Intelectual</a>
+                    <a href="#servicios">Derecho Corporativo</a>
+                    <a href="#servicios">Compliance Preventivo</a>
                 </div>
                 <div class="footer-social">
                     <h4>Síguenos</h4>

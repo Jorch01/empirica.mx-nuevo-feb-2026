@@ -141,6 +141,22 @@
                 'Cláusulas de protección personalizadas',
                 'Revisión y ajustes incluidos'
             ]
+        },
+        'compliance-preventivo': {
+            name: 'Compliance y Fiscalización Preventiva',
+            icon: 'fa-scale-balanced',
+            type: 'Servicio Empresarial',
+            description: 'Programa integral de derecho preventivo diseñado para hoteles, corporativos y empresas que buscan anticiparse a riesgos regulatorios y fiscales. Nuestro equipo, con experiencia directa en la mitigación de riesgos de empresas transnacionales, ejecuta ejercicios de prevención en fiscalización, cumplimiento normativo y blindaje jurídico en diversas materias administrativas y fiscales.',
+            features: [
+                'Auditorías preventivas en materia fiscal (SAT, ISR, IVA, IEPS)',
+                'Diagnóstico de riesgos regulatorios y administrativos',
+                'Estrategias de cumplimiento normativo (compliance corporativo)',
+                'Prevención en materia laboral, ambiental y de protección de datos',
+                'Revisión de obligaciones ante autoridades municipales, estatales y federales',
+                'Ejercicios de fiscalización simulada para preparación ante auditorías',
+                'Asesoría especializada para el sector hotelero y turístico',
+                'Diseño de políticas internas de prevención y gobierno corporativo'
+            ]
         }
     };
 
@@ -150,6 +166,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         initNavbar();
         initMobileMenu();
+        initServiceTabs();
         initSubscribeModal();
         initServiceModals();
         initForms();
@@ -202,6 +219,47 @@
                 links.classList.remove('open');
                 toggle.classList.remove('active');
             }
+        });
+    }
+
+    /* ──────────────────────────────────────────────────
+       Service Category Tabs
+       ────────────────────────────────────────────────── */
+    function initServiceTabs() {
+        var tabs = document.querySelectorAll('.services-tab');
+        var categories = document.querySelectorAll('.services-category');
+        if (!tabs.length || !categories.length) return;
+
+        tabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                var targetCategory = this.getAttribute('data-category');
+
+                // Update tab states
+                tabs.forEach(function (t) {
+                    t.classList.remove('active');
+                    t.setAttribute('aria-selected', 'false');
+                });
+                this.classList.add('active');
+                this.setAttribute('aria-selected', 'true');
+
+                // Update category panels
+                categories.forEach(function (cat) {
+                    cat.classList.remove('active');
+                });
+                var targetPanel = document.getElementById('cat-' + targetCategory);
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+
+                    // Re-trigger scroll animations for newly visible cards
+                    var newCards = targetPanel.querySelectorAll('.service-card');
+                    newCards.forEach(function (card, index) {
+                        card.classList.remove('animated');
+                        setTimeout(function () {
+                            card.classList.add('animated');
+                        }, index * 80);
+                    });
+                }
+            });
         });
     }
 
@@ -269,6 +327,14 @@
                 }
             });
         });
+
+        // Consulta CTA button
+        var consultaCta = document.querySelector('.btn-consulta-cta');
+        if (consultaCta) {
+            consultaCta.addEventListener('click', function () {
+                openServiceModal('consulta');
+            });
+        }
 
         if (closeBtn) {
             closeBtn.addEventListener('click', function () {
@@ -434,12 +500,14 @@
        Scroll Animations (Intersection Observer)
        ────────────────────────────────────────────────── */
     function initScrollAnimations() {
-        var sections = document.querySelectorAll('.section-header, .about-content, .about-visual, .cta-content, .newsletter-inner, .contact-card');
+        var sections = document.querySelectorAll('.section-header, .about-content, .about-visual, .cta-content, .newsletter-inner, .contact-card, .category-intro, .enterprise-banner, .services-consulta-cta');
         sections.forEach(function (el) {
             el.classList.add('animate-on-scroll');
         });
 
-        var serviceCards = document.querySelectorAll('.service-card');
+        // Only animate cards in the initially active category
+        var activeCategory = document.querySelector('.services-category.active');
+        var serviceCards = activeCategory ? activeCategory.querySelectorAll('.service-card') : document.querySelectorAll('.service-card');
 
         var observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
@@ -447,6 +515,7 @@
                     if (entry.target.classList.contains('service-card')) {
                         var cards = Array.from(serviceCards);
                         var index = cards.indexOf(entry.target);
+                        if (index === -1) index = 0;
                         setTimeout(function () {
                             entry.target.classList.add('animated');
                         }, index * 80);
