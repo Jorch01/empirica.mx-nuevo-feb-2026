@@ -142,6 +142,21 @@
                 'Revisión y ajustes incluidos'
             ]
         },
+        'hospitality-advisory': {
+            name: 'Hotels, Boutique Hotels & Short-Term Rentals — Legal & Operational Advisory',
+            icon: 'fa-hotel',
+            type: 'Servicio Empresarial',
+            description: 'Proporcionamos asesoría legal y operativa estratégica a hoteles, hoteles boutique y operadores de rentas vacacionales (Airbnb) en Quintana Roo. Apoyamos a propietarios de hoteles, inversionistas en hospitalidad y accionistas en la protección del valor de sus activos, estabilización de operaciones y mejora de la rentabilidad dentro de un entorno turístico altamente regulado. Nuestro enfoque se centra en identificar ineficiencias operativas, reducir la exposición regulatoria y fiscal, y fortalecer las estructuras contractuales, laborales y corporativas que impactan directamente el desempeño financiero.',
+            features: [
+                'Auditorías operativas y de proveedores para mejorar eficiencia y rentabilidad',
+                'Análisis de exposición fiscal y estrategia de cumplimiento para plataformas de renta vacacional',
+                'Redacción y negociación de contratos de administración, proveeduría y operación',
+                'Mitigación de riesgos laborales y de outsourcing para operaciones hoteleras',
+                'Estrategias de prevención de responsabilidad con huéspedes y resolución de disputas',
+                'Estructuración corporativa y protección de activos para inversionistas en hospitalidad',
+                'Asesoría preventiva y soporte en negociaciones ante SAT, SEFIPLAN, IMSS, INFONAVIT y Secretaría del Trabajo'
+            ]
+        },
         'compliance-preventivo': {
             name: 'Compliance y Fiscalización Preventiva',
             icon: 'fa-scale-balanced',
@@ -163,6 +178,9 @@
     /* ──────────────────────────────────────────────────
        DOM Ready
        ────────────────────────────────────────────────── */
+    /* URL del Google Apps Script para reseñas (opcional — ver google-apps-script-reviews.js) */
+    var GOOGLE_REVIEWS_URL = ''; // Pega aquí la URL de tu Apps Script para reseñas
+
     document.addEventListener('DOMContentLoaded', function () {
         initNavbar();
         initMobileMenu();
@@ -172,6 +190,7 @@
         initForms();
         initScrollAnimations();
         initSmoothScroll();
+        initGoogleReviews();
     });
 
     /* ──────────────────────────────────────────────────
@@ -500,7 +519,7 @@
        Scroll Animations (Intersection Observer)
        ────────────────────────────────────────────────── */
     function initScrollAnimations() {
-        var sections = document.querySelectorAll('.section-header, .about-content, .about-visual, .cta-content, .newsletter-inner, .contact-card, .category-intro, .enterprise-banner, .services-consulta-cta');
+        var sections = document.querySelectorAll('.section-header, .about-content, .about-visual, .cta-content, .newsletter-inner, .contact-card, .category-intro, .enterprise-banner, .services-consulta-cta, .reviews-summary, .review-card, .reviews-cta');
         sections.forEach(function (el) {
             el.classList.add('animate-on-scroll');
         });
@@ -556,6 +575,80 @@
                     });
                 }
             });
+        });
+    }
+
+    /* ──────────────────────────────────────────────────
+       Google Reviews (via Google Apps Script proxy)
+       ────────────────────────────────────────────────── */
+    function initGoogleReviews() {
+        if (!GOOGLE_REVIEWS_URL) return;
+
+        fetch(GOOGLE_REVIEWS_URL)
+            .then(function (response) { return response.json(); })
+            .then(function (data) {
+                if (data && data.reviews && data.reviews.length > 0) {
+                    renderReviews(data);
+                }
+            })
+            .catch(function () {
+                // Fallback: keep static reviews in HTML
+            });
+    }
+
+    function renderReviews(data) {
+        var grid = document.getElementById('reviews-grid');
+        var scoreEl = document.getElementById('reviews-score');
+        var starsEl = document.getElementById('reviews-stars');
+        var countEl = document.getElementById('reviews-count');
+
+        if (!grid) return;
+
+        // Update summary
+        if (data.rating && scoreEl) {
+            scoreEl.textContent = data.rating.toFixed(1);
+        }
+        if (data.total && countEl) {
+            countEl.textContent = data.total + ' opiniones en Google';
+        }
+        if (data.rating && starsEl) {
+            var starsHtml = '';
+            for (var i = 1; i <= 5; i++) {
+                if (i <= Math.floor(data.rating)) {
+                    starsHtml += '<i class="fas fa-star"></i>';
+                } else if (i - data.rating < 1) {
+                    starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    starsHtml += '<i class="far fa-star"></i>';
+                }
+            }
+            starsEl.innerHTML = starsHtml;
+        }
+
+        // Render review cards
+        grid.innerHTML = '';
+        data.reviews.forEach(function (review) {
+            var initial = review.author ? review.author.charAt(0).toUpperCase() : 'U';
+            var starCount = review.rating || 5;
+            var starsHtml = '';
+            for (var i = 0; i < starCount; i++) {
+                starsHtml += '<i class="fas fa-star"></i>';
+            }
+
+            var card = document.createElement('div');
+            card.className = 'review-card';
+            card.innerHTML =
+                '<div class="review-header">' +
+                    '<div class="review-avatar">' + initial + '</div>' +
+                    '<div class="review-meta">' +
+                        '<span class="review-author">' + (review.author || 'Usuario') + '</span>' +
+                        '<div class="review-stars">' + starsHtml + '</div>' +
+                    '</div>' +
+                    '<span class="review-date">' + (review.date || '') + '</span>' +
+                '</div>' +
+                '<p class="review-text">' + (review.text || '') + '</p>' +
+                '<div class="review-source"><i class="fab fa-google"></i> Google</div>';
+            grid.appendChild(card);
         });
     }
 

@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /google-apps-script.js
+Disallow: /google-apps-script-reviews.js
 
 Sitemap: https://empirica.mx/sitemap.xml
