@@ -179,7 +179,7 @@
        DOM Ready
        ────────────────────────────────────────────────── */
     /* URL del Google Apps Script para reseñas (opcional — ver google-apps-script-reviews.js) */
-    var GOOGLE_REVIEWS_URL = ''; // Pega aquí la URL de tu Apps Script para reseñas
+    var GOOGLE_REVIEWS_URL = 'https://script.google.com/macros/s/AKfycbwNC-E8ZdUxDJu3tQHbz0FQz3ZvZoFqxIZSa9dSL8zNsDCmMx1_VYFQbUjMLl9XFQCbcg/exec'; // Pega aquí la URL de tu Apps Script para reseñas
 
     document.addEventListener('DOMContentLoaded', function () {
         initNavbar();
