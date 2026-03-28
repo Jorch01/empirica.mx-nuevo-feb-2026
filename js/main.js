@@ -172,6 +172,42 @@
                 'Asesoría especializada para el sector hotelero y turístico',
                 'Diseño de políticas internas de prevención y gobierno corporativo'
             ]
+        },
+        'due-diligence-inmob': {
+            name: 'Consultoría Preventiva y Transaccional',
+            icon: 'fa-magnifying-glass-chart',
+            type: 'Servicio Legal',
+            description: 'Servicio integral de consultoría inmobiliaria para dar certeza jurídica a clientes nacionales y extranjeros en cada transacción. Realizamos investigación exhaustiva de la situación legal del inmueble, análisis de cadena de propiedad y redacción de contratos especializados.',
+            features: [
+                'Due diligence inmobiliario: antecedentes registrales, libertad de gravámenes, prediales, servicios y situación fiscal',
+                'Dictaminación de títulos: análisis de la cadena de propiedad para detectar vicios ocultos o riesgos de nulidad',
+                'Contratos de compraventa, promesa, permuta y donación',
+                'Estructuración y acompañamiento en fideicomisos inmobiliarios'
+            ]
+        },
+        'extranjeros-fideicomiso': {
+            name: 'Servicios para Extranjeros y Zonas Restringidas',
+            icon: 'fa-earth-americas',
+            type: 'Servicio Legal',
+            description: 'Acompañamiento legal especializado para inversionistas extranjeros que adquieren inmuebles en México. Constitución de fideicomisos en zona restringida (50 km de costa, 100 km de frontera) y creación de sociedades mexicanas con cláusula de admisión de extranjeros para fines comerciales o residenciales.',
+            features: [
+                'Fideicomisos de zona restringida: constitución, cesión de derechos y extinción',
+                'Constitución de sociedades mexicanas con cláusula de admisión de extranjeros',
+                'Asesoría para inversión inmobiliaria residencial y comercial',
+                'Acompañamiento ante notarios, Registro Público y Secretaría de Relaciones Exteriores'
+            ]
+        },
+        'litigio-inmobiliario': {
+            name: 'Defensa Jurídica y Litigio Inmobiliario',
+            icon: 'fa-scale-balanced',
+            type: 'Servicio Legal',
+            description: 'Defensa y representación legal especializada en controversias inmobiliarias. Protegemos su propiedad y sus derechos ante tribunales civiles y federales con estrategia jurídica sólida y experiencia en la materia.',
+            features: [
+                'Juicios reivindicatorios y de usucapión: defensa de la propiedad y regularización de posesiones',
+                'Juicios de arrendamiento inmobiliario: desocupación por falta de pago o rescisión de contrato',
+                'Amparo en materia inmobiliaria: protección contra clausuras injustificadas de obras o expropiaciones',
+                'Defensa ante actos de autoridad que afecten la propiedad inmobiliaria'
+            ]
         }
     };
 
@@ -191,6 +227,7 @@
         initScrollAnimations();
         initSmoothScroll();
         initGoogleReviews();
+        initLanguageToggle();
     });
 
     /* ──────────────────────────────────────────────────
@@ -594,6 +631,149 @@
             .catch(function () {
                 // Fallback: keep static reviews in HTML
             });
+    }
+
+    /* ──────────────────────────────────────────────────
+       Language Toggle (ES / EN)
+       ────────────────────────────────────────────────── */
+    var TRANSLATIONS = {
+        en: {
+            // Navbar
+            nav_services: 'Services', nav_about: 'About Us', nav_reviews: 'Reviews',
+            nav_contact: 'Contact', nav_cta: 'Book Consultation',
+            // Hero
+            hero_tagline: 'Empowering entrepreneurs with legal insights.',
+            hero_btn_services: 'View Services', hero_btn_consult: 'Book Consultation',
+            // Services header
+            svc_tag: 'What we do', svc_heading: 'Our Services',
+            svc_subheading: 'Comprehensive legal solutions for entrepreneurs, growing companies and corporates',
+            // Tabs
+            tab_litigation: 'Litigation', tab_ip: 'Intellectual Property',
+            tab_corporate: 'Corporate & Preventive', tab_inmobiliario: 'Real Estate',
+            // Category 1
+            cat1_title: 'Litigation & Legal Defense',
+            cat1_desc: 'Strategic representation and legal defense with proven experience at all levels. We protect your rights with technical rigor and absolute commitment.',
+            svc_litigio_title: 'Litigation / Amparo',
+            svc_litigio_desc: 'Specialized legal defense and representation in amparo proceedings and litigation at all levels.',
+            svc_corresponsalias_title: 'Legal Correspondents',
+            svc_corresponsalias_desc: 'Legal representation across different states of Mexico with ongoing follow-up.',
+            svc_transcripciones_title: 'Audio & Hearing Transcriptions',
+            svc_transcripciones_desc: 'Professional transcription of court hearings and legal audio recordings.',
+            // Category 2
+            cat2_title: 'Copyright & Industrial Property',
+            cat2_desc: 'We protect your creations, your brand and your commercial identity. Registration, defense and comprehensive advisory before IMPI and INDAUTOR to safeguard the intangible value of your business.',
+            svc_marca_title: 'Trademark Registration',
+            svc_marca_desc: 'Protect your brand identity before IMPI with availability search and full follow-up.',
+            svc_autor_title: 'Copyright',
+            svc_autor_desc: 'Registration and protection of artistic, literary, musical and software works before INDAUTOR.',
+            svc_english_title: 'Legal English for Real Estate',
+            svc_english_desc: 'Educational material on legal terminology in English for real estate transactions.',
+            // Category 3
+            cat3_badge: 'Enterprise Service',
+            cat3_title: 'Corporate & Preventive Law',
+            cat3_desc: 'Our team includes partners who have worked internally in risk mitigation for multinational companies. We design compliance and legal prevention strategies so your company operates with legal certainty and competitive advantage.',
+            banner_title: 'Prevention & Tax Compliance Program for Corporates & Hospitality Sector',
+            banner_desc: 'Designed for CEOs, legal directors, hotel owners, hospitality investors and vacation rental operators seeking to mitigate regulatory, tax and administrative risks before they become contingencies.',
+            svc_hotels_title: 'Hotels, Boutique Hotels & Short-Term Rentals',
+            svc_hotels_desc: 'Strategic legal and operational advisory for hotels, boutique hotels and vacation rental operators in Quintana Roo. Asset protection, regulatory compliance and profitability optimization.',
+            svc_compliance_title: 'Compliance & Preventive Tax Review',
+            svc_compliance_desc: 'Preventive audits, regulatory risk analysis and compliance strategies in tax, administrative, labor and data protection matters for hotels and corporates.',
+            svc_sociedad_title: 'Express Company Incorporation',
+            svc_sociedad_desc: 'Fast incorporation of your company with articles of incorporation and procedures included.',
+            svc_contratos_title: 'Custom Contracts',
+            svc_contratos_desc: 'Tailored contract drafting: commercial, civil, labor, lease and more.',
+            svc_privacidad_title: 'Privacy Notice',
+            svc_privacidad_desc: 'Preparation of privacy notices in accordance with the Federal Data Protection Law.',
+            // Category 4 — Inmobiliario
+            inmob_title: 'Real Estate Law',
+            inmob_intro: 'Legal certainty in every real estate transaction. Comprehensive advisory for buyers, sellers, national and foreign investors in the acquisition, regularization and defense of real property in Mexico.',
+            svc_duediligence_title: 'Preventive & Transactional Advisory',
+            svc_duediligence_desc: 'Real estate due diligence, title review and specialized contracts for purchase, promise, exchange, donation and trusts.',
+            svc_extranjeros_title: 'Services for Foreigners & Restricted Zones',
+            svc_extranjeros_desc: 'Restricted zone trusts, incorporation of Mexican companies with foreign admission clause for real estate investment.',
+            svc_litigioinmob_title: 'Legal Defense & Real Estate Litigation',
+            svc_litigioinmob_desc: 'Revindicatory actions, adverse possession, lease disputes and amparo against government actions in real estate matters.',
+            badge_legal: 'Legal Service',
+            btn_more_info: 'More Information',
+            // Consulta CTA
+            consulta_title: 'Personalized Consultation',
+            consulta_desc: 'A 60-minute session where we analyze your case and define the best legal strategy for your project or business.',
+            consulta_btn: 'Book Consultation',
+            // About
+            about_tag: 'About Us',
+            about_heading: 'Your strategic <span class="text-gold">legal</span> partner',
+            about_p1: 'At <strong>Empírica Legal Lab</strong> we combine legal expertise with a fresh and innovative approach to support entrepreneurs and companies at every stage of their growth.',
+            about_p2: 'We believe the law should be an accessible, clear and powerful tool to drive your projects. We\'re not your typical law firm — we\'re your legal lab.',
+            stat_services: 'Legal services', stat_digital: 'Digital focus', stat_response: 'Response time',
+            // Reviews
+            reviews_tag: 'Client Reviews', reviews_heading: 'What they say on <span class="text-gold">Google</span>',
+            reviews_sub: 'Our clients\' trust is our greatest endorsement',
+            // CTA
+            cta_heading: 'Book Your Personalized Consultation',
+            cta_desc: 'Reserve a 60-minute session and let\'s build something amazing together. We analyze your case, answer your questions and define the ideal legal strategy for your project.',
+            cta_btn: 'Book via WhatsApp', cta_note: 'Response within 24 hours',
+            // Newsletter
+            news_tag: 'Stay informed', news_heading: 'Subscribe for tips and promotions',
+            news_desc: 'Let\'s grow your business. Receive exclusive advice, legal tips and everything you need to know straight to your inbox.',
+            // Contact
+            contact_tag: 'Let\'s Talk', contact_heading: 'Contact', contact_sub: 'Have questions? We\'re here to help',
+            // Footer
+            footer_nav: 'Navigation', footer_areas: 'Practice Areas', footer_follow: 'Follow Us',
+            footer_inmobiliario: 'Real Estate Law',
+            // WhatsApp
+            wa_tooltip: 'Questions? Write to us'
+        }
+    };
+
+    var currentLang = 'es';
+
+    function initLanguageToggle() {
+        var btn = document.getElementById('lang-toggle');
+        if (!btn) return;
+
+        // Restore saved language
+        var saved = localStorage.getItem('empirica_lang');
+        if (saved === 'en') {
+            currentLang = 'en';
+            applyTranslations('en');
+            btn.textContent = 'ES';
+            document.documentElement.lang = 'en';
+        }
+
+        btn.addEventListener('click', function () {
+            if (currentLang === 'es') {
+                currentLang = 'en';
+                applyTranslations('en');
+                btn.textContent = 'ES';
+                document.documentElement.lang = 'en';
+            } else {
+                currentLang = 'es';
+                applyTranslations('es');
+                btn.textContent = 'EN';
+                document.documentElement.lang = 'es';
+            }
+            localStorage.setItem('empirica_lang', currentLang);
+        });
+    }
+
+    function applyTranslations(lang) {
+        var elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(function (el) {
+            var key = el.getAttribute('data-i18n');
+            if (lang === 'es') {
+                // Restore original Spanish text
+                var original = el.getAttribute('data-i18n-es');
+                if (original) el.innerHTML = original;
+            } else {
+                // Save original Spanish text if not saved yet
+                if (!el.getAttribute('data-i18n-es')) {
+                    el.setAttribute('data-i18n-es', el.innerHTML);
+                }
+                if (TRANSLATIONS.en[key]) {
+                    el.innerHTML = TRANSLATIONS.en[key];
+                }
+            }
+        });
     }
 
     function renderReviews(data) {
