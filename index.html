@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empírica Legal Lab — Asesoría Legal para Emprendedores y Corporativos en México | Legal Services in English</title>
-    <meta name="description" content="Empírica Legal Lab: soluciones legales integrales para emprendedores, empresas y corporativos en México. Litigio, propiedad intelectual, derecho corporativo, compliance, fiscalización preventiva, asesoría legal para hoteles y rentas vacacionales en Quintana Roo. Legal services available in English. Agenda tu consulta.">
-    <meta name="keywords" content="despacho jurídico México, abogados emprendedores, registro de marca IMPI, contratos personalizados, sociedad jurídica, juicio de amparo, litigio México, derechos de autor INDAUTOR, aviso de privacidad, consultoría legal, Empírica Legal Lab, corresponsalías legales, compliance corporativo, fiscalización preventiva, derecho preventivo empresas, derecho corporativo hoteles, mitigación riesgos legales, legal services English Mexico, Cambridge ILEC, abogados Cancún, hotel legal advisory Quintana Roo, short-term rental legal Mexico, Airbnb legal compliance Mexico, hospitality law Mexico, asesoría legal hoteles boutique">
+    <meta name="description" content="Empírica Legal Lab: soluciones legales integrales para emprendedores, empresas y corporativos en México. Litigio, propiedad intelectual, derecho corporativo, compliance, fiscalización preventiva, derecho inmobiliario, fideicomisos para extranjeros, asesoría legal para hoteles y rentas vacacionales en Quintana Roo. Legal services available in English. Agenda tu consulta.">
+    <meta name="keywords" content="despacho jurídico México, abogados emprendedores, registro de marca IMPI, contratos personalizados, sociedad jurídica, juicio de amparo, litigio México, derechos de autor INDAUTOR, aviso de privacidad, consultoría legal, Empírica Legal Lab, corresponsalías legales, compliance corporativo, fiscalización preventiva, derecho preventivo empresas, derecho corporativo hoteles, mitigación riesgos legales, legal services English Mexico, Cambridge ILEC, abogados Cancún, hotel legal advisory Quintana Roo, short-term rental legal Mexico, Airbnb legal compliance Mexico, hospitality law Mexico, asesoría legal hoteles boutique, derecho inmobiliario México, due diligence inmobiliario, fideicomiso zona restringida, abogados inmobiliarios Cancún, real estate lawyer Mexico, foreigners real estate Mexico, compraventa inmuebles México, usucapión México, litigio inmobiliario">
     <meta name="author" content="Empírica Legal Lab">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
@@ -21,7 +21,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content="Empírica Legal Lab — Asesoría Legal para Emprendedores y Corporativos | Legal Services in English">
-    <meta property="og:description" content="Soluciones legales diseñadas para emprendedores y empresas en crecimiento. Registro de marca, contratos, sociedades, litigio, compliance, asesoría legal para hoteles y rentas vacacionales. Legal services available in English.">
+    <meta property="og:description" content="Soluciones legales diseñadas para emprendedores y empresas en crecimiento. Registro de marca, contratos, sociedades, litigio, compliance, derecho inmobiliario, fideicomisos para extranjeros y asesoría legal para hoteles. Legal services available in English.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://empirica.mx">
     <meta property="og:image" content="https://empirica.mx/assets/images/logo/og-image.png">
@@ -58,7 +58,7 @@
         "@context": "https://schema.org",
         "@type": "LegalService",
         "name": "Empírica Legal Lab",
-        "description": "Despacho jurídico para emprendedores y corporativos en México. Litigio, propiedad intelectual, derecho corporativo, compliance, fiscalización preventiva y asesoría legal para hoteles y rentas vacacionales en Quintana Roo. Legal services available in English — Cambridge ILEC certified attorneys.",
+        "description": "Despacho jurídico para emprendedores y corporativos en México. Litigio, propiedad intelectual, derecho corporativo, compliance, fiscalización preventiva, derecho inmobiliario, fideicomisos para extranjeros y asesoría legal para hoteles y rentas vacacionales en Quintana Roo. Legal services available in English — Cambridge ILEC certified attorneys.",
         "url": "https://empirica.mx",
         "logo": "https://empirica.mx/assets/images/logo/logo.png",
         "image": "https://empirica.mx/assets/images/logo/og-image.png",
@@ -104,7 +104,13 @@
             "Derecho Corporativo y Preventivo",
             "Hotel Legal Advisory",
             "Short-Term Rental Legal Compliance",
-            "Hospitality Law Advisory"
+            "Hospitality Law Advisory",
+            "Derecho Inmobiliario",
+            "Due Diligence Inmobiliario",
+            "Fideicomiso Zona Restringida",
+            "Real Estate Law Mexico",
+            "Foreign Investment Real Estate",
+            "Litigio Inmobiliario"
         ],
         "knowsLanguage": ["es", "en"],
         "hasCredential": {
@@ -140,11 +146,11 @@
                 <span class="brand-legal">LEGAL LAB</span>
             </a>
             <div class="navbar-links" id="nav-links">
-                <a href="#servicios">Servicios</a>
-                <a href="#nosotros">Nosotros</a>
-                <a href="#opiniones">Opiniones</a>
-                <a href="#contacto">Contacto</a>
-                <a href="#consulta" class="btn btn-nav">Agendar Consulta</a>
+                <a href="#servicios" data-i18n="nav_services">Servicios</a>
+                <a href="#nosotros" data-i18n="nav_about">Nosotros</a>
+                <a href="#opiniones" data-i18n="nav_reviews">Opiniones</a>
+                <a href="#contacto" data-i18n="nav_contact">Contacto</a>
+                <a href="#consulta" class="btn btn-nav" data-i18n="nav_cta">Agendar Consulta</a>
             </div>
             <button class="navbar-toggle" id="nav-toggle" aria-label="Abrir menú">
                 <i class="fas fa-bars"></i>
@@ -165,13 +171,13 @@
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             </div>
             <h1 class="hero-title">Empírica <span class="text-gold">Legal Lab</span></h1>
-            <p class="hero-tagline">Empowering entrepreneurs with legal insights.</p>
+            <p class="hero-tagline" data-i18n="hero_tagline">Empowering entrepreneurs with legal insights.</p>
             <div class="hero-ctas">
                 <a href="#servicios" class="btn btn-primary btn-lg">
-                    <i class="fas fa-briefcase"></i> Ver Servicios
+                    <i class="fas fa-briefcase"></i> <span data-i18n="hero_btn_services">Ver Servicios</span>
                 </a>
                 <a href="#consulta" class="btn btn-outline btn-lg">
-                    <i class="fas fa-calendar-check"></i> Agendar Consulta
+                    <i class="fas fa-calendar-check"></i> <span data-i18n="hero_btn_consult">Agendar Consulta</span>
                 </a>
             </div>
             <div class="hero-social">
@@ -194,32 +200,36 @@
     <section class="services" id="servicios">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Lo que hacemos</span>
-                <h2>Nuestros Servicios</h2>
-                <p>Soluciones legales integrales para emprendedores, empresas en crecimiento y corporativos</p>
+                <span class="section-tag" data-i18n="svc_tag">Lo que hacemos</span>
+                <h2 data-i18n="svc_heading">Nuestros Servicios</h2>
+                <p data-i18n="svc_subheading">Soluciones legales integrales para emprendedores, empresas en crecimiento y corporativos</p>
             </div>
 
             <!-- Category Tabs -->
             <div class="services-tabs" role="tablist">
                 <button class="services-tab active" role="tab" aria-selected="true" data-category="litigio">
                     <i class="fas fa-gavel"></i>
-                    <span>Litigio</span>
+                    <span data-i18n="tab_litigation">Litigio</span>
                 </button>
                 <button class="services-tab" role="tab" aria-selected="false" data-category="propiedad-intelectual">
                     <i class="fas fa-copyright"></i>
-                    <span>Propiedad Intelectual</span>
+                    <span data-i18n="tab_ip">Propiedad Intelectual</span>
                 </button>
                 <button class="services-tab" role="tab" aria-selected="false" data-category="corporativo">
                     <i class="fas fa-building"></i>
-                    <span>Corporativo y Preventivo</span>
+                    <span data-i18n="tab_corporate">Corporativo y Preventivo</span>
+                </button>
+                <button class="services-tab" role="tab" aria-selected="false" data-category="inmobiliario">
+                    <i class="fas fa-house-chimney"></i>
+                    <span data-i18n="tab_inmobiliario">Inmobiliario</span>
                 </button>
             </div>
 
             <!-- ═══ CATEGORÍA 1: LITIGIO ═══ -->
             <div class="services-category active" id="cat-litigio" role="tabpanel">
                 <div class="category-intro">
-                    <h3>Litigio y Defensa Legal</h3>
-                    <p>Representación estratégica y defensa jurídica con experiencia comprobada en todas las instancias. Protegemos tus derechos con rigor técnico y compromiso absoluto.</p>
+                    <h3 data-i18n="cat1_title">Litigio y Defensa Legal</h3>
+                    <p data-i18n="cat1_desc">Representación estratégica y defensa jurídica con experiencia comprobada en todas las instancias. Protegemos tus derechos con rigor técnico y compromiso absoluto.</p>
                 </div>
                 <div class="services-grid">
 
@@ -233,8 +243,8 @@
                             <span class="service-badge badge-service">Servicio Legal</span>
                         </div>
                         <div class="service-card-body">
-                            <h3>Litigio / Juicio de Amparo</h3>
-                            <p class="service-desc">Defensa y representación legal especializada en juicios de amparo y litigio en todas las instancias.</p>
+                            <h3 data-i18n="svc_litigio_title">Litigio / Juicio de Amparo</h3>
+                            <p class="service-desc" data-i18n="svc_litigio_desc">Defensa y representación legal especializada en juicios de amparo y litigio en todas las instancias.</p>
                             <button class="btn btn-gold btn-service-detail">
                                 Más Información <i class="fas fa-arrow-right"></i>
                             </button>
@@ -251,8 +261,8 @@
                             <span class="service-badge badge-subscription">Suscripción Mensual</span>
                         </div>
                         <div class="service-card-body">
-                            <h3>Corresponsalías</h3>
-                            <p class="service-desc">Representación legal en diferentes estados de la República Mexicana con seguimiento continuo.</p>
+                            <h3 data-i18n="svc_corresponsalias_title">Corresponsalías</h3>
+                            <p class="service-desc" data-i18n="svc_corresponsalias_desc">Representación legal en diferentes estados de la República Mexicana con seguimiento continuo.</p>
                             <button class="btn btn-gold btn-service-detail">
                                 Más Información <i class="fas fa-arrow-right"></i>
                             </button>
@@ -269,8 +279,8 @@
                             <span class="service-badge badge-digital">Producto Digital</span>
                         </div>
                         <div class="service-card-body">
-                            <h3>Transcripciones de Audio &amp; Audiencias</h3>
-                            <p class="service-desc">Transcripción profesional de audiencias judiciales y grabaciones de audio legal.</p>
+                            <h3 data-i18n="svc_transcripciones_title">Transcripciones de Audio &amp; Audiencias</h3>
+                            <p class="service-desc" data-i18n="svc_transcripciones_desc">Transcripción profesional de audiencias judiciales y grabaciones de audio legal.</p>
                             <button class="btn btn-gold btn-service-detail">
                                 Más Información <i class="fas fa-arrow-right"></i>
                             </button>
@@ -283,8 +293,8 @@
             <!-- ═══ CATEGORÍA 2: PROPIEDAD INTELECTUAL ═══ -->
             <div class="services-category" id="cat-propiedad-intelectual" role="tabpanel">
                 <div class="category-intro">
-                    <h3>Derechos de Autor y Propiedad Industrial</h3>
-                    <p>Protegemos tus creaciones, tu marca y tu identidad comercial. Registro, defensa y asesoría integral ante IMPI e INDAUTOR para blindar el valor intangible de tu negocio.</p>
+                    <h3 data-i18n="cat2_title">Derechos de Autor y Propiedad Industrial</h3>
+                    <p data-i18n="cat2_desc">Protegemos tus creaciones, tu marca y tu identidad comercial. Registro, defensa y asesoría integral ante IMPI e INDAUTOR para blindar el valor intangible de tu negocio.</p>
                 </div>
                 <div class="services-grid">
 
@@ -298,8 +308,8 @@
                             <span class="service-badge badge-service">Servicio Legal</span>
                         </div>
                         <div class="service-card-body">
-                            <h3>Registro de Marca</h3>
-                            <p class="service-desc">Protege tu identidad de marca ante el IMPI con búsqueda de disponibilidad y seguimiento completo.</p>
+                            <h3 data-i18n="svc_marca_title">Registro de Marca</h3>
+                            <p class="service-desc" data-i18n="svc_marca_desc">Protege tu identidad de marca ante el IMPI con búsqueda de disponibilidad y seguimiento completo.</p>
                             <button class="btn btn-gold btn-service-detail">
                                 Más Información <i class="fas fa-arrow-right"></i>
                             </button>
@@ -316,8 +326,8 @@
                             <span class="service-badge badge-service">Servicio Legal</span>
                         </div>
                         <div class="service-card-body">
-                            <h3>Derechos de Autor</h3>
-                            <p class="service-desc">Registro y protección de obras artísticas, literarias, musicales y de software ante INDAUTOR.</p>
+                            <h3 data-i18n="svc_autor_title">Derechos de Autor</h3>
+                            <p class="service-desc" data-i18n="svc_autor_desc">Registro y protección de obras artísticas, literarias, musicales y de software ante INDAUTOR.</p>
                             <button class="btn btn-gold btn-service-detail">
                                 Más Información <i class="fas fa-arrow-right"></i>
                             </button>
@@ -334,8 +344,8 @@
                             <span class="service-badge badge-digital">Producto Digital</span>
                         </div>
                         <div class="service-card-body">
-                            <h3>Legal English for Real Estate</h3>
-                            <p class="service-desc">Material educativo sobre terminología legal en inglés para transacciones inmobiliarias.</p>
+                            <h3 data-i18n="svc_english_title">Legal English for Real Estate</h3>
+                            <p class="service-desc" data-i18n="svc_english_desc">Material educativo sobre terminología legal en inglés para transacciones inmobiliarias.</p>
                             <button class="btn btn-gold btn-service-detail">
                                 Más Información <i class="fas fa-arrow-right"></i>
                             </button>
@@ -348,9 +358,9 @@
             <!-- ═══ CATEGORÍA 3: CORPORATIVO Y PREVENTIVO ═══ -->
             <div class="services-category" id="cat-corporativo" role="tabpanel">
                 <div class="category-intro category-intro-enterprise">
-                    <div class="enterprise-badge"><i class="fas fa-shield-halved"></i> Servicio Empresarial</div>
-                    <h3>Derecho Corporativo y Preventivo</h3>
-                    <p>Nuestro equipo cuenta con socios que han trabajado internamente en la mitigación de riesgos de empresas de talla transnacional. Diseñamos estrategias de cumplimiento normativo y prevención jurídica para que su empresa opere con certeza legal y ventaja competitiva.</p>
+                    <div class="enterprise-badge"><i class="fas fa-shield-halved"></i> <span data-i18n="cat3_badge">Servicio Empresarial</span></div>
+                    <h3 data-i18n="cat3_title">Derecho Corporativo y Preventivo</h3>
+                    <p data-i18n="cat3_desc">Nuestro equipo cuenta con socios que han trabajado internamente en la mitigación de riesgos de empresas de talla transnacional. Diseñamos estrategias de cumplimiento normativo y prevención jurídica para que su empresa opere con certeza legal y ventaja competitiva.</p>
                 </div>
 
                 <!-- Enterprise CTA Banner -->
@@ -360,8 +370,8 @@
                             <i class="fas fa-building-shield"></i>
                         </div>
                         <div class="enterprise-banner-text">
-                            <h4>Programa de Prevención y Fiscalización para Corporativos y Sector Hotelero</h4>
-                            <p>Dirigido a directores generales, directores jurídicos, propietarios de hoteles, inversionistas en hospitalidad y operadores de rentas vacacionales que buscan mitigar riesgos regulatorios, fiscales y administrativos antes de que se conviertan en contingencias.</p>
+                            <h4 data-i18n="banner_title">Programa de Prevención y Fiscalización para Corporativos y Sector Hotelero</h4>
+                            <p data-i18n="banner_desc">Dirigido a directores generales, directores jurídicos, propietarios de hoteles, inversionistas en hospitalidad y operadores de rentas vacacionales que buscan mitigar riesgos regulatorios, fiscales y administrativos antes de que se conviertan en contingencias.</p>
                         </div>
                         <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20conocer%20el%20programa%20de%20derecho%20preventivo%20y%20fiscalizaci%C3%B3n%20para%20corporativos%20de%20Emp%C3%ADrica%20Legal%20Lab." class="btn btn-primary" target="_blank" rel="noopener">
                             <i class="fab fa-whatsapp"></i> Solicitar Información
@@ -379,8 +389,8 @@
                             <span class="service-badge badge-enterprise">Empresarial</span>
                         </div>
                         <div class="service-card-body">
-                            <h3>Hotels, Boutique Hotels &amp; Short-Term Rentals</h3>
-                            <p class="service-desc">Asesoría legal y operativa estratégica para hoteles, hoteles boutique y operadores de rentas vacacionales en Quintana Roo. Protección de activos, cumplimiento regulatorio y optimización de rentabilidad.</p>
+                            <h3 data-i18n="svc_hotels_title">Hotels, Boutique Hotels &amp; Short-Term Rentals</h3>
+                            <p class="service-desc" data-i18n="svc_hotels_desc">Asesoría legal y operativa estratégica para hoteles, hoteles boutique y operadores de rentas vacacionales en Quintana Roo. Protección de activos, cumplimiento regulatorio y optimización de rentabilidad.</p>
                             <button class="btn btn-gold btn-service-detail">
                                 Más Información <i class="fas fa-arrow-right"></i>
                             </button>
@@ -395,8 +405,8 @@
                             <span class="service-badge badge-enterprise">Empresarial</span>
                         </div>
                         <div class="service-card-body">
-                            <h3>Compliance y Fiscalización Preventiva</h3>
-                            <p class="service-desc">Auditorías preventivas, análisis de riesgos regulatorios y estrategias de cumplimiento normativo en materia fiscal, administrativa, laboral y de protección de datos para hoteles y corporativos.</p>
+                            <h3 data-i18n="svc_compliance_title">Compliance y Fiscalización Preventiva</h3>
+                            <p class="service-desc" data-i18n="svc_compliance_desc">Auditorías preventivas, análisis de riesgos regulatorios y estrategias de cumplimiento normativo en materia fiscal, administrativa, laboral y de protección de datos para hoteles y corporativos.</p>
                             <button class="btn btn-gold btn-service-detail">
                                 Más Información <i class="fas fa-arrow-right"></i>
                             </button>
@@ -413,8 +423,8 @@
                             <span class="service-badge badge-service">Servicio Legal</span>
                         </div>
                         <div class="service-card-body">
-                            <h3>Creación de Sociedad Jurídica Express</h3>
-                            <p class="service-desc">Constitución rápida de tu sociedad mercantil con acta constitutiva y trámites incluidos.</p>
+                            <h3 data-i18n="svc_sociedad_title">Creación de Sociedad Jurídica Express</h3>
+                            <p class="service-desc" data-i18n="svc_sociedad_desc">Constitución rápida de tu sociedad mercantil con acta constitutiva y trámites incluidos.</p>
                             <button class="btn btn-gold btn-service-detail">
                                 Más Información <i class="fas fa-arrow-right"></i>
                             </button>
@@ -431,8 +441,8 @@
                             <span class="service-badge badge-service">Servicio Legal</span>
                         </div>
                         <div class="service-card-body">
-                            <h3>Contratos Personalizados</h3>
-                            <p class="service-desc">Redacción de contratos a la medida: mercantiles, civiles, laborales, arrendamiento y más.</p>
+                            <h3 data-i18n="svc_contratos_title">Contratos Personalizados</h3>
+                            <p class="service-desc" data-i18n="svc_contratos_desc">Redacción de contratos a la medida: mercantiles, civiles, laborales, arrendamiento y más.</p>
                             <button class="btn btn-gold btn-service-detail">
                                 Más Información <i class="fas fa-arrow-right"></i>
                             </button>
@@ -449,10 +459,69 @@
                             <span class="service-badge badge-service">Servicio Legal</span>
                         </div>
                         <div class="service-card-body">
-                            <h3>Aviso de Privacidad</h3>
-                            <p class="service-desc">Elaboración de avisos de privacidad conforme a la Ley Federal de Protección de Datos Personales.</p>
+                            <h3 data-i18n="svc_privacidad_title">Aviso de Privacidad</h3>
+                            <p class="service-desc" data-i18n="svc_privacidad_desc">Elaboración de avisos de privacidad conforme a la Ley Federal de Protección de Datos Personales.</p>
                             <button class="btn btn-gold btn-service-detail">
                                 Más Información <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- ═══ CATEGORÍA 4: INMOBILIARIO ═══ -->
+            <div class="services-category" id="cat-inmobiliario" role="tabpanel">
+                <div class="category-intro">
+                    <h3 data-i18n="inmob_title">Derecho Inmobiliario</h3>
+                    <p data-i18n="inmob_intro">Certeza jurídica en cada transacción inmobiliaria. Asesoría integral para compradores, vendedores, inversionistas nacionales y extranjeros en la adquisición, regularización y defensa de bienes inmuebles en México.</p>
+                </div>
+                <div class="services-grid">
+
+                    <article class="service-card" data-service="due-diligence-inmob" role="button" tabindex="0">
+                        <div class="service-card-visual">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-magnifying-glass-chart"></i>
+                            </div>
+                            <span class="service-badge badge-service" data-i18n="badge_legal">Servicio Legal</span>
+                        </div>
+                        <div class="service-card-body">
+                            <h3 data-i18n="svc_duediligence_title">Consultoría Preventiva y Transaccional</h3>
+                            <p class="service-desc" data-i18n="svc_duediligence_desc">Due diligence inmobiliario, dictaminación de títulos y contratos especializados de compraventa, promesa, permuta, donación y fideicomisos.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                <span data-i18n="btn_more_info">Más Información</span> <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="service-card" data-service="extranjeros-fideicomiso" role="button" tabindex="0">
+                        <div class="service-card-visual">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-earth-americas"></i>
+                            </div>
+                            <span class="service-badge badge-service" data-i18n="badge_legal">Servicio Legal</span>
+                        </div>
+                        <div class="service-card-body">
+                            <h3 data-i18n="svc_extranjeros_title">Servicios para Extranjeros y Zonas Restringidas</h3>
+                            <p class="service-desc" data-i18n="svc_extranjeros_desc">Fideicomisos de zona restringida, constitución de sociedades mexicanas con cláusula de admisión de extranjeros para inversión inmobiliaria.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                <span data-i18n="btn_more_info">Más Información</span> <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="service-card" data-service="litigio-inmobiliario" role="button" tabindex="0">
+                        <div class="service-card-visual">
+                            <div class="service-icon-bg">
+                                <i class="fas fa-scale-balanced"></i>
+                            </div>
+                            <span class="service-badge badge-service" data-i18n="badge_legal">Servicio Legal</span>
+                        </div>
+                        <div class="service-card-body">
+                            <h3 data-i18n="svc_litigioinmob_title">Defensa Jurídica y Litigio Inmobiliario</h3>
+                            <p class="service-desc" data-i18n="svc_litigioinmob_desc">Juicios reivindicatorios, usucapión, arrendamiento inmobiliario y amparo contra actos de autoridad en materia inmobiliaria.</p>
+                            <button class="btn btn-gold btn-service-detail">
+                                <span data-i18n="btn_more_info">Más Información</span> <i class="fas fa-arrow-right"></i>
                             </button>
                         </div>
                     </article>
@@ -467,11 +536,11 @@
                         <i class="fas fa-comments"></i>
                     </div>
                     <div class="consulta-cta-text">
-                        <h3>Consulta Personalizada</h3>
-                        <p>Sesión de 60 minutos donde analizamos tu caso y definimos la mejor estrategia legal para tu proyecto o empresa.</p>
+                        <h3 data-i18n="consulta_title">Consulta Personalizada</h3>
+                        <p data-i18n="consulta_desc">Sesión de 60 minutos donde analizamos tu caso y definimos la mejor estrategia legal para tu proyecto o empresa.</p>
                     </div>
                     <button class="btn btn-gold btn-consulta-cta" data-service="consulta" role="button" tabindex="0">
-                        Agendar Consulta <i class="fas fa-arrow-right"></i>
+                        <span data-i18n="consulta_btn">Agendar Consulta</span> <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
@@ -484,10 +553,10 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-content">
-                    <span class="section-tag">Sobre Nosotros</span>
-                    <h2>Tu aliado legal <span class="text-gold">estratégico</span></h2>
-                    <p>En <strong>Empírica Legal Lab</strong> combinamos experiencia jurídica con un enfoque fresco e innovador para acompañar a emprendedores y empresas en cada etapa de su crecimiento.</p>
-                    <p>Creemos que el derecho debe ser una herramienta accesible, clara y poderosa para impulsar tus proyectos. No somos el típico despacho — somos tu laboratorio legal.</p>
+                    <span class="section-tag" data-i18n="about_tag">Sobre Nosotros</span>
+                    <h2 data-i18n="about_heading">Tu aliado legal <span class="text-gold">estratégico</span></h2>
+                    <p data-i18n="about_p1">En <strong>Empírica Legal Lab</strong> combinamos experiencia jurídica con un enfoque fresco e innovador para acompañar a emprendedores y empresas en cada etapa de su crecimiento.</p>
+                    <p data-i18n="about_p2">Creemos que el derecho debe ser una herramienta accesible, clara y poderosa para impulsar tus proyectos. No somos el típico despacho — somos tu laboratorio legal.</p>
                     <div class="about-credentials">
                         <div class="credential-badge">
                             <i class="fas fa-language"></i>
@@ -501,15 +570,15 @@
                     <div class="about-stats">
                         <div class="stat">
                             <span class="stat-number">10+</span>
-                            <span class="stat-label">Servicios legales</span>
+                            <span class="stat-label" data-i18n="stat_services">Servicios legales</span>
                         </div>
                         <div class="stat">
                             <span class="stat-number">100%</span>
-                            <span class="stat-label">Enfoque digital</span>
+                            <span class="stat-label" data-i18n="stat_digital">Enfoque digital</span>
                         </div>
                         <div class="stat">
                             <span class="stat-number">24h</span>
-                            <span class="stat-label">Tiempo de respuesta</span>
+                            <span class="stat-label" data-i18n="stat_response">Tiempo de respuesta</span>
                         </div>
                     </div>
                 </div>
@@ -532,9 +601,9 @@
     <section class="reviews" id="opiniones">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Opiniones de nuestros clientes</span>
-                <h2>Lo que dicen en <span class="text-gold">Google</span></h2>
-                <p>La confianza de nuestros clientes es nuestro mejor respaldo</p>
+                <span class="section-tag" data-i18n="reviews_tag">Opiniones de nuestros clientes</span>
+                <h2 data-i18n="reviews_heading">Lo que dicen en <span class="text-gold">Google</span></h2>
+                <p data-i18n="reviews_sub">La confianza de nuestros clientes es nuestro mejor respaldo</p>
             </div>
             <div class="reviews-summary">
                 <div class="reviews-rating">
@@ -612,12 +681,12 @@
             <div class="cta-icon">
                 <i class="fas fa-star"></i>
             </div>
-            <h2>Agenda tu Consulta Personalizada</h2>
-            <p>Reserva una sesión de 60 minutos y creemos algo asombroso juntos. Analizamos tu caso, resolvemos tus dudas y definimos la estrategia legal ideal para tu proyecto.</p>
+            <h2 data-i18n="cta_heading">Agenda tu Consulta Personalizada</h2>
+            <p data-i18n="cta_desc">Reserva una sesión de 60 minutos y creemos algo asombroso juntos. Analizamos tu caso, resolvemos tus dudas y definimos la estrategia legal ideal para tu proyecto.</p>
             <a href="https://wa.me/529982570828?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta%20personalizada%20con%20Emp%C3%ADrica%20Legal%20Lab." class="btn btn-primary btn-lg" target="_blank" rel="noopener">
-                <i class="fab fa-whatsapp"></i> Agendar por WhatsApp
+                <i class="fab fa-whatsapp"></i> <span data-i18n="cta_btn">Agendar por WhatsApp</span>
             </a>
-            <p class="cta-note">Respuesta en menos de 24 horas</p>
+            <p class="cta-note" data-i18n="cta_note">Respuesta en menos de 24 horas</p>
         </div>
     </section>
 
@@ -626,9 +695,9 @@
         <div class="container">
             <div class="newsletter-inner">
                 <div class="newsletter-text">
-                    <span class="section-tag section-tag-light">Mantente informado</span>
-                    <h2>Suscríbete para conocer tips y promociones</h2>
-                    <p>Elevemos tu negocio. Recibe asesoría exclusiva, consejos legales y todo lo que necesitas saber directo a tu inbox.</p>
+                    <span class="section-tag section-tag-light" data-i18n="news_tag">Mantente informado</span>
+                    <h2 data-i18n="news_heading">Suscríbete para conocer tips y promociones</h2>
+                    <p data-i18n="news_desc">Elevemos tu negocio. Recibe asesoría exclusiva, consejos legales y todo lo que necesitas saber directo a tu inbox.</p>
                 </div>
                 <form class="newsletter-form" id="newsletter-form">
                     <div class="form-group">
@@ -652,9 +721,9 @@
     <section class="contact" id="contacto">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Hablemos</span>
-                <h2>Contacto</h2>
-                <p>¿Tienes preguntas? Estamos aquí para ayudarte</p>
+                <span class="section-tag" data-i18n="contact_tag">Hablemos</span>
+                <h2 data-i18n="contact_heading">Contacto</h2>
+                <p data-i18n="contact_sub">¿Tienes preguntas? Estamos aquí para ayudarte</p>
             </div>
             <div class="contact-grid">
                 <a href="mailto:frida@empirica.mx" class="contact-card">
@@ -693,22 +762,23 @@
                     <p class="footer-english-badge"><i class="fas fa-globe"></i> Legal services available in English — Cambridge ILEC Certified</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Navegación</h4>
+                    <h4 data-i18n="footer_nav">Navegación</h4>
                     <a href="#servicios">Servicios</a>
                     <a href="#nosotros">Nosotros</a>
                     <a href="#consulta">Consulta</a>
                     <a href="#contacto">Contacto</a>
                 </div>
                 <div class="footer-links">
-                    <h4>Áreas de Práctica</h4>
+                    <h4 data-i18n="footer_areas">Áreas de Práctica</h4>
                     <a href="#servicios">Litigio y Amparo</a>
                     <a href="#servicios">Propiedad Intelectual</a>
                     <a href="#servicios">Derecho Corporativo</a>
                     <a href="#servicios">Compliance Preventivo</a>
                     <a href="#servicios">Hotels &amp; Rentals Advisory</a>
+                    <a href="#servicios" data-i18n="footer_inmobiliario">Derecho Inmobiliario</a>
                 </div>
                 <div class="footer-social">
-                    <h4>Síguenos</h4>
+                    <h4 data-i18n="footer_follow">Síguenos</h4>
                     <div class="social-icons">
                         <a href="https://instagram.com/empiricalegalab" target="_blank" rel="noopener" aria-label="Instagram">
                             <i class="fab fa-instagram"></i>
@@ -757,11 +827,17 @@
         </div>
     </div>
 
+    <!-- ===================== LANGUAGE TOGGLE ===================== -->
+    <button class="lang-toggle" id="lang-toggle" aria-label="Switch language" title="English / Español">EN</button>
+
     <!-- ===================== WHATSAPP FLOAT ===================== -->
-    <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20de%20Emp%C3%ADrica%20Legal%20Lab." class="whatsapp-float" target="_blank" rel="noopener"
-       title="Contáctanos por WhatsApp" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <div class="whatsapp-float-wrapper">
+        <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20los%20servicios%20de%20Emp%C3%ADrica%20Legal%20Lab." class="whatsapp-float" target="_blank" rel="noopener"
+           title="Contáctanos por WhatsApp" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <span class="whatsapp-tooltip" data-i18n="wa_tooltip">¿Tienes dudas? Escríbenos</span>
+    </div>
 
     <!-- Scripts -->
     <script src="js/main.js"></script>
