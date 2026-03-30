@@ -122,7 +122,6 @@
             align-items: center;
             background: linear-gradient(135deg, var(--color-green-dark) 0%, #1A2744 100%);
             padding: 140px 0 var(--spacing-4xl);
-            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -133,6 +132,28 @@
             width: 60%; height: 120%;
             background: radial-gradient(circle, rgba(155,138,94,0.08) 0%, transparent 70%);
             pointer-events: none;
+        }
+        .landing-hero-inner {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2xl);
+        }
+        .landing-hero-content {
+            flex: 1;
+            text-align: left;
+        }
+        .landing-hero-image {
+            flex: 0 0 340px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+        .landing-hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
         }
         .landing-hero h1 {
             font-family: var(--font-serif);
@@ -146,12 +167,11 @@
             font-size: clamp(1rem, 2vw, 1.2rem);
             color: rgba(255,255,255,0.8);
             max-width: 650px;
-            margin: 0 auto var(--spacing-xl);
             line-height: 1.7;
+            margin-bottom: var(--spacing-xl);
         }
         .landing-hero-ctas {
             display: flex;
-            justify-content: center;
             gap: var(--spacing-md);
             flex-wrap: wrap;
             margin-bottom: var(--spacing-xl);
@@ -320,52 +340,15 @@
             margin-top: 2px;
         }
 
-        /* ── Team Photo ── */
-        .landing-team {
-            background: white;
-            padding: var(--spacing-4xl) 0;
-        }
-        .landing-team-inner {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-2xl);
-        }
-        .landing-team-photo {
-            flex: 0 0 380px;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.10);
-        }
-        .landing-team-photo img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-        .landing-team-text {
-            flex: 1;
-        }
-        .landing-team-text h2 {
-            font-family: var(--font-serif);
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            color: var(--color-text-dark);
-            margin-bottom: var(--spacing-md);
-        }
-        .landing-team-text p {
-            font-size: 1rem;
-            color: var(--color-text-mid);
-            line-height: 1.8;
-            margin-bottom: var(--spacing-md);
-        }
-
         @media (max-width: 768px) {
+            .landing-hero-inner { flex-direction: column; text-align: center; }
+            .landing-hero-content { text-align: center; }
+            .landing-hero-image { flex: none; width: 60%; max-width: 260px; order: -1; margin-bottom: var(--spacing-lg); }
+            .landing-hero-ctas { flex-direction: column; align-items: center; }
+            .landing-hero-ctas .btn { width: 100%; justify-content: center; max-width: 340px; }
             .landing-trust-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
             .landing-services-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
             .landing-testimonials-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
-            .landing-team-inner { flex-direction: column; text-align: center; }
-            .landing-team-photo { flex: none; width: 100%; max-width: 340px; }
-            .landing-hero-ctas { flex-direction: column; align-items: center; }
-            .landing-hero-ctas .btn { width: 100%; justify-content: center; max-width: 340px; }
             .landing-navbar-phone { display: none; }
         }
     </style>
@@ -384,8 +367,8 @@
                 <span class="brand-legal">LEGAL LAB</span>
             </a>
             <div class="landing-navbar-right">
-                <a href="tel:+529981399930" class="landing-navbar-phone">
-                    <i class="fas fa-phone"></i> +52 998 139 9930
+                <a href="https://wa.me/529981399930" class="landing-navbar-phone" target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp"></i> +52 998 139 9930
                 </a>
                 <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20agendar%20una%20consulta%20legal%20gratuita%20con%20Emp%C3%ADrica%20Legal%20Lab." class="btn btn-nav" target="_blank" rel="noopener">
                     Agendar Consulta
@@ -397,18 +380,25 @@
     <!-- ===================== HERO ===================== -->
     <section class="landing-hero">
         <div class="container">
-            <h1>Abogados en Cancún — <span class="text-gold">Defensa Legal Estratégica</span></h1>
-            <p class="hero-subtitle">Litigio civil, mercantil, laboral y juicio de amparo. Representación legal agresiva y resultados comprobados en Quintana Roo.</p>
-            <div class="landing-hero-ctas">
-                <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20agendar%20una%20consulta%20legal%20gratuita%20con%20Emp%C3%ADrica%20Legal%20Lab." class="btn btn-primary btn-lg" target="_blank" rel="noopener">
-                    <i class="fab fa-whatsapp"></i> Agendar Consulta Gratis
-                </a>
-                <a href="tel:+529981399930" class="btn btn-outline btn-lg">
-                    <i class="fas fa-phone"></i> Llamar Ahora: +52 998 139 9930
-                </a>
-            </div>
-            <div class="landing-trust-badge">
-                <i class="fas fa-star"></i> 4.9 en Google &nbsp;|&nbsp; Más de 10 años de experiencia
+            <div class="landing-hero-inner">
+                <div class="landing-hero-content">
+                    <h1>Abogados en Cancún — <span class="text-gold">Defensa Legal Estratégica</span></h1>
+                    <p class="hero-subtitle">Litigio civil, mercantil, laboral y juicio de amparo. Representación legal agresiva y resultados comprobados en Quintana Roo.</p>
+                    <div class="landing-hero-ctas">
+                        <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20agendar%20una%20consulta%20legal%20gratuita%20con%20Emp%C3%ADrica%20Legal%20Lab." class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i> Agendar Consulta Gratis
+                        </a>
+                        <a href="https://wa.me/529981399930" class="btn btn-outline btn-lg" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i> Llamar por WhatsApp
+                        </a>
+                    </div>
+                    <div class="landing-trust-badge">
+                        <i class="fas fa-star"></i> 5.0 en Google &nbsp;|&nbsp; Más de 10 años de experiencia
+                    </div>
+                </div>
+                <div class="landing-hero-image">
+                    <img src="assets/images/hero/about-photo.jpg" alt="Equipo de Empírica Legal Lab en Cancún" loading="lazy">
+                </div>
             </div>
         </div>
     </section>
@@ -496,59 +486,43 @@
         </div>
     </section>
 
-    <!-- ===================== TESTIMONIOS ===================== -->
+    <!-- ===================== OPINIONES GOOGLE ===================== -->
     <section class="landing-testimonials">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Casos reales</span>
-                <h2>Lo Que Dicen Nuestros Clientes</h2>
+                <span class="section-tag">Opiniones en Google</span>
+                <h2>Lo Que Dicen Nuestros Clientes en <span class="text-gold">Google</span></h2>
             </div>
             <div class="landing-testimonials-grid">
                 <div class="landing-testimonial-card">
                     <div class="landing-testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <blockquote>"Me despidieron injustificadamente y Empírica logró que me pagaran la liquidación completa en menos de 3 meses. Siempre me mantuvieron informado y fueron muy claros con el proceso."</blockquote>
+                    <blockquote>"Excelente servicio. La Lic. Frida me ayudó con el registro de mi marca de forma rápida y profesional. Muy recomendable para emprendedores que buscan proteger su negocio."</blockquote>
                     <div class="landing-testimonial-author">
-                        Roberto G.
-                        <span>Caso laboral — Cancún</span>
+                        María González
+                        <span><i class="fab fa-google"></i> Opinión en Google</span>
                     </div>
                 </div>
                 <div class="landing-testimonial-card">
                     <div class="landing-testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <blockquote>"Tenía un problema con un contrato de arrendamiento que parecía imposible de resolver. La estrategia de Empírica fue impecable: ganamos el juicio y recuperé mi inversión."</blockquote>
+                    <blockquote>"Contraté sus servicios para la constitución de mi empresa y quedé muy satisfecho. El proceso fue claro y eficiente. Su conocimiento en derecho corporativo es impresionante."</blockquote>
                     <div class="landing-testimonial-author">
-                        Adriana L.
-                        <span>Litigio civil — Playa del Carmen</span>
+                        Jorge Ramírez
+                        <span><i class="fab fa-google"></i> Opinión en Google</span>
                     </div>
                 </div>
                 <div class="landing-testimonial-card">
                     <div class="landing-testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <blockquote>"Presentaron un amparo que detuvo un acto de autoridad que afectaba mi negocio. Son ágiles, estratégicos y siempre accesibles por WhatsApp. Totalmente recomendados."</blockquote>
+                    <blockquote>"Outstanding legal support in English for my real estate investment in Cancún. They understood the complexity of cross-border transactions perfectly. Highly professional team."</blockquote>
                     <div class="landing-testimonial-author">
-                        Carlos M.
-                        <span>Amparo — Quintana Roo</span>
+                        Sarah Mitchell
+                        <span><i class="fab fa-google"></i> Opinión en Google</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== EQUIPO ===================== -->
-    <section class="landing-team">
-        <div class="container">
-            <div class="landing-team-inner">
-                <div class="landing-team-photo">
-                    <img src="assets/images/hero/about-photo.jpg" alt="Equipo de Empírica Legal Lab en Cancún" loading="lazy">
-                </div>
-                <div class="landing-team-text">
-                    <h2>Conoce al Equipo de Empírica</h2>
-                    <p>Somos un despacho joven fundado en Cancún con una misión clara: hacer el derecho accesible, transparente y humano. Nada de lenguaje rebuscado — solo asesoría honesta y estratégica.</p>
-                    <p>Nuestro equipo combina más de una década de experiencia en litigio con un enfoque moderno y cercano. Te mantenemos informado en cada paso y siempre estamos a un mensaje de distancia.</p>
                 </div>
             </div>
         </div>
@@ -562,7 +536,7 @@
             <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20agendar%20una%20consulta%20legal%20gratuita%20con%20Emp%C3%ADrica%20Legal%20Lab." class="btn btn-primary btn-lg" target="_blank" rel="noopener">
                 <i class="fab fa-whatsapp"></i> Agendar por WhatsApp
             </a>
-            <p class="landing-contact-line">O llama directamente: <a href="tel:+529981399930">+52 998 139 9930</a> | Email: <a href="mailto:frida@empirica.mx">frida@empirica.mx</a></p>
+            <p class="landing-contact-line">O llama por WhatsApp: <a href="https://wa.me/529981399930" target="_blank" rel="noopener">+52 998 139 9930</a> | Email: <a href="mailto:frida@empirica.mx">frida@empirica.mx</a></p>
         </div>
     </section>
 

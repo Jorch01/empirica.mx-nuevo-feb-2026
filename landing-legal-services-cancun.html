@@ -127,7 +127,6 @@
             align-items: center;
             background: linear-gradient(135deg, var(--color-green-dark) 0%, #1A2744 100%);
             padding: 140px 0 var(--spacing-4xl);
-            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -138,6 +137,28 @@
             width: 60%; height: 120%;
             background: radial-gradient(circle, rgba(155,138,94,0.08) 0%, transparent 70%);
             pointer-events: none;
+        }
+        .landing-hero-inner {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2xl);
+        }
+        .landing-hero-content {
+            flex: 1;
+            text-align: left;
+        }
+        .landing-hero-image {
+            flex: 0 0 340px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+        .landing-hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
         }
         .landing-hero h1 {
             font-family: var(--font-serif);
@@ -151,12 +172,11 @@
             font-size: clamp(1rem, 2vw, 1.2rem);
             color: rgba(255,255,255,0.8);
             max-width: 650px;
-            margin: 0 auto var(--spacing-xl);
             line-height: 1.7;
+            margin-bottom: var(--spacing-xl);
         }
         .landing-hero-ctas {
             display: flex;
-            justify-content: center;
             gap: var(--spacing-md);
             flex-wrap: wrap;
             margin-bottom: var(--spacing-xl);
@@ -325,52 +345,15 @@
             margin-top: 2px;
         }
 
-        /* ── Team Photo ── */
-        .landing-team {
-            background: white;
-            padding: var(--spacing-4xl) 0;
-        }
-        .landing-team-inner {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-2xl);
-        }
-        .landing-team-photo {
-            flex: 0 0 380px;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.10);
-        }
-        .landing-team-photo img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-        .landing-team-text {
-            flex: 1;
-        }
-        .landing-team-text h2 {
-            font-family: var(--font-serif);
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            color: var(--color-text-dark);
-            margin-bottom: var(--spacing-md);
-        }
-        .landing-team-text p {
-            font-size: 1rem;
-            color: var(--color-text-mid);
-            line-height: 1.8;
-            margin-bottom: var(--spacing-md);
-        }
-
         @media (max-width: 768px) {
+            .landing-hero-inner { flex-direction: column; text-align: center; }
+            .landing-hero-content { text-align: center; }
+            .landing-hero-image { flex: none; width: 60%; max-width: 260px; order: -1; margin-bottom: var(--spacing-lg); }
+            .landing-hero-ctas { flex-direction: column; align-items: center; }
+            .landing-hero-ctas .btn { width: 100%; justify-content: center; max-width: 340px; }
             .landing-trust-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
             .landing-services-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
             .landing-testimonials-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
-            .landing-team-inner { flex-direction: column; text-align: center; }
-            .landing-team-photo { flex: none; width: 100%; max-width: 340px; }
-            .landing-hero-ctas { flex-direction: column; align-items: center; }
-            .landing-hero-ctas .btn { width: 100%; justify-content: center; max-width: 340px; }
             .landing-navbar-phone { display: none; }
         }
     </style>
@@ -389,8 +372,8 @@
                 <span class="brand-legal">LEGAL LAB</span>
             </a>
             <div class="landing-navbar-right">
-                <a href="tel:+529981399930" class="landing-navbar-phone">
-                    <i class="fas fa-phone"></i> +52 998 139 9930
+                <a href="https://wa.me/529981399930" class="landing-navbar-phone" target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp"></i> +52 998 139 9930
                 </a>
                 <a href="https://wa.me/529982570828?text=Hi%2C%20I%27m%20interested%20in%20learning%20more%20about%20legal%20services%20from%20Emp%C3%ADrica%20Legal%20Lab." class="btn btn-nav" target="_blank" rel="noopener">
                     Book Consultation
@@ -402,18 +385,25 @@
     <!-- ===================== HERO ===================== -->
     <section class="landing-hero">
         <div class="container">
-            <h1>Trusted Legal Services in Cancún — <span class="text-gold">In English</span></h1>
-            <p class="hero-subtitle">Cambridge ILEC-certified bilingual attorneys helping expats, investors and tourists navigate Mexican law with confidence.</p>
-            <div class="landing-hero-ctas">
-                <a href="https://wa.me/529982570828?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20legal%20consultation%20with%20Emp%C3%ADrica%20Legal%20Lab." class="btn btn-primary btn-lg" target="_blank" rel="noopener">
-                    <i class="fab fa-whatsapp"></i> Book Free Consultation
-                </a>
-                <a href="tel:+529981399930" class="btn btn-outline btn-lg">
-                    <i class="fas fa-phone"></i> Call Now: +52 998 139 9930
-                </a>
-            </div>
-            <div class="landing-trust-badge">
-                <i class="fas fa-star"></i> 4.9 Google Rating &nbsp;|&nbsp; Cambridge ILEC Certified &nbsp;|&nbsp; 10+ Years Experience
+            <div class="landing-hero-inner">
+                <div class="landing-hero-content">
+                    <h1>Trusted Legal Services in Cancún — <span class="text-gold">In English</span></h1>
+                    <p class="hero-subtitle">Cambridge ILEC-certified bilingual attorneys helping expats, investors and tourists navigate Mexican law with confidence.</p>
+                    <div class="landing-hero-ctas">
+                        <a href="https://wa.me/529982570828?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20legal%20consultation%20with%20Emp%C3%ADrica%20Legal%20Lab." class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i> Book Free Consultation
+                        </a>
+                        <a href="https://wa.me/529981399930" class="btn btn-outline btn-lg" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i> Call via WhatsApp
+                        </a>
+                    </div>
+                    <div class="landing-trust-badge">
+                        <i class="fas fa-star"></i> 5.0 Google Rating &nbsp;|&nbsp; Cambridge ILEC Certified &nbsp;|&nbsp; 10+ Years Experience
+                    </div>
+                </div>
+                <div class="landing-hero-image">
+                    <img src="assets/images/hero/about-photo.jpg" alt="Empírica Legal Lab team in Cancún" loading="lazy">
+                </div>
             </div>
         </div>
     </section>
@@ -501,59 +491,43 @@
         </div>
     </section>
 
-    <!-- ===================== TESTIMONIALS ===================== -->
+    <!-- ===================== GOOGLE REVIEWS ===================== -->
     <section class="landing-testimonials">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Client Stories</span>
-                <h2>What Our Clients Say</h2>
+                <span class="section-tag">Google Reviews</span>
+                <h2>What Our Clients Say on <span class="text-gold">Google</span></h2>
             </div>
             <div class="landing-testimonials-grid">
                 <div class="landing-testimonial-card">
                     <div class="landing-testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <blockquote>"They guided us through our entire property purchase in the Hotel Zone. Everything was clear, professional, and in perfect English. We felt safe every step of the way."</blockquote>
+                    <blockquote>"Excelente servicio. La Lic. Frida me ayudó con el registro de mi marca de forma rápida y profesional. Muy recomendable para emprendedores que buscan proteger su negocio."</blockquote>
                     <div class="landing-testimonial-author">
-                        Sarah &amp; David M.
-                        <span>Real estate buyers — Cancún</span>
+                        María González
+                        <span><i class="fab fa-google"></i> Google Review</span>
                     </div>
                 </div>
                 <div class="landing-testimonial-card">
                     <div class="landing-testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <blockquote>"When I had a legal emergency on vacation, Empírica responded immediately. They handled everything with the authorities and kept me informed in English the whole time."</blockquote>
+                    <blockquote>"Contraté sus servicios para la constitución de mi empresa y quedé muy satisfecho. El proceso fue claro y eficiente. Su conocimiento en derecho corporativo es impresionante."</blockquote>
                     <div class="landing-testimonial-author">
-                        James R.
-                        <span>Tourist — Playa del Carmen</span>
+                        Jorge Ramírez
+                        <span><i class="fab fa-google"></i> Google Review</span>
                     </div>
                 </div>
                 <div class="landing-testimonial-card">
                     <div class="landing-testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <blockquote>"They incorporated our company, handled all permits, and set up our tax structure. Truly a one-stop shop for foreign entrepreneurs in Mexico."</blockquote>
+                    <blockquote>"Outstanding legal support in English for my real estate investment in Cancún. They understood the complexity of cross-border transactions perfectly. Highly professional team."</blockquote>
                     <div class="landing-testimonial-author">
-                        Michael T.
-                        <span>CEO, Riviera Ventures LLC</span>
+                        Sarah Mitchell
+                        <span><i class="fab fa-google"></i> Google Review</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== TEAM ===================== -->
-    <section class="landing-team">
-        <div class="container">
-            <div class="landing-team-inner">
-                <div class="landing-team-photo">
-                    <img src="assets/images/hero/about-photo.jpg" alt="Empírica Legal Lab team in Cancún" loading="lazy">
-                </div>
-                <div class="landing-team-text">
-                    <h2>Meet the Team Behind Empírica</h2>
-                    <p>We're a young, bilingual firm founded in Cancún with a clear mission: make legal services accessible, transparent and human. No legal jargon — just honest, strategic counsel.</p>
-                    <p>Our attorneys hold Cambridge ILEC certification and have over a decade of experience helping foreigners navigate the Mexican legal system with confidence.</p>
                 </div>
             </div>
         </div>
@@ -567,7 +541,7 @@
             <a href="https://wa.me/529982570828?text=Hi%2C%20I%27d%20like%20to%20book%20a%20free%20legal%20consultation%20with%20Emp%C3%ADrica%20Legal%20Lab." class="btn btn-primary btn-lg" target="_blank" rel="noopener">
                 <i class="fab fa-whatsapp"></i> Book Free Consultation via WhatsApp
             </a>
-            <p class="landing-contact-line">Or call directly: <a href="tel:+529981399930">+52 998 139 9930</a> | Email: <a href="mailto:frida@empirica.mx">frida@empirica.mx</a></p>
+            <p class="landing-contact-line">Or call via WhatsApp: <a href="https://wa.me/529981399930" target="_blank" rel="noopener">+52 998 139 9930</a> | Email: <a href="mailto:frida@empirica.mx">frida@empirica.mx</a></p>
         </div>
     </section>
 
