@@ -130,7 +130,6 @@
             align-items: center;
             background: linear-gradient(135deg, var(--color-green-dark) 0%, #1A2744 100%);
             padding: 140px 0 var(--spacing-4xl);
-            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -141,6 +140,28 @@
             width: 60%; height: 120%;
             background: radial-gradient(circle, rgba(155,138,94,0.08) 0%, transparent 70%);
             pointer-events: none;
+        }
+        .landing-hero-inner {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2xl);
+        }
+        .landing-hero-content {
+            flex: 1;
+            text-align: left;
+        }
+        .landing-hero-image {
+            flex: 0 0 340px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+        .landing-hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
         }
         .landing-hero h1 {
             font-family: var(--font-serif);
@@ -154,12 +175,11 @@
             font-size: clamp(1rem, 2vw, 1.2rem);
             color: rgba(255,255,255,0.8);
             max-width: 680px;
-            margin: 0 auto var(--spacing-xl);
             line-height: 1.7;
+            margin-bottom: var(--spacing-xl);
         }
         .landing-hero-ctas {
             display: flex;
-            justify-content: center;
             gap: var(--spacing-md);
             flex-wrap: wrap;
             margin-bottom: var(--spacing-xl);
@@ -383,44 +403,6 @@
             margin-top: 2px;
         }
 
-        /* ── Team Photo ── */
-        .landing-team {
-            background: white;
-            padding: var(--spacing-4xl) 0;
-        }
-        .landing-team-inner {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-2xl);
-        }
-        .landing-team-photo {
-            flex: 0 0 380px;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.10);
-        }
-        .landing-team-photo img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-        .landing-team-text {
-            flex: 1;
-        }
-        .landing-team-text h2 {
-            font-family: var(--font-serif);
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            color: var(--color-text-dark);
-            margin-bottom: var(--spacing-md);
-        }
-        .landing-team-text p {
-            font-size: 1rem;
-            color: var(--color-text-mid);
-            line-height: 1.8;
-            margin-bottom: var(--spacing-md);
-        }
-
         /* ── Por qué nosotros ── */
         .landing-why-us {
             background: linear-gradient(135deg, var(--color-green-dark) 0%, #1A2744 100%);
@@ -467,20 +449,21 @@
         }
 
         @media (max-width: 768px) {
+            .landing-hero-inner { flex-direction: column; text-align: center; }
+            .landing-hero-content { text-align: center; }
+            .landing-hero-image { flex: none; width: 60%; max-width: 260px; order: -1; margin-bottom: var(--spacing-lg); }
+            .landing-hero-ctas { flex-direction: column; align-items: center; }
+            .landing-hero-ctas .btn { width: 100%; justify-content: center; max-width: 340px; }
             .landing-trust-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
             .landing-services-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
             .landing-testimonials-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
             .landing-why-us-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
-            .landing-team-inner { flex-direction: column; text-align: center; }
-            .landing-team-photo { flex: none; width: 100%; max-width: 340px; }
             .landing-process-grid {
                 grid-template-columns: 1fr;
                 max-width: 440px;
                 margin: 0 auto;
             }
             .landing-process-grid::before { display: none; }
-            .landing-hero-ctas { flex-direction: column; align-items: center; }
-            .landing-hero-ctas .btn { width: 100%; justify-content: center; max-width: 340px; }
             .landing-navbar-phone { display: none; }
         }
     </style>
@@ -499,8 +482,8 @@
                 <span class="brand-legal">LEGAL LAB</span>
             </a>
             <div class="landing-navbar-right">
-                <a href="tel:+529981399930" class="landing-navbar-phone">
-                    <i class="fas fa-phone"></i> +52 998 139 9930
+                <a href="https://wa.me/529981399930" class="landing-navbar-phone" target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp"></i> +52 998 139 9930
                 </a>
                 <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20registrar%20una%20marca%20ante%20el%20IMPI.%20%C2%BFMe%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn btn-nav" target="_blank" rel="noopener">
                     Registra Tu Marca
@@ -512,18 +495,25 @@
     <!-- ===================== HERO ===================== -->
     <section class="landing-hero">
         <div class="container">
-            <h1>Registro de Marcas en México — <span class="text-gold">Protege Tu Negocio</span></h1>
-            <p class="hero-subtitle">Abogados especialistas en propiedad intelectual. Registro ante IMPI, derechos de autor ante INDAUTOR, y protección integral de tus activos intangibles. Asesoría en todo México.</p>
-            <div class="landing-hero-ctas">
-                <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20registrar%20una%20marca%20ante%20el%20IMPI.%20%C2%BFMe%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
-                    <i class="fab fa-whatsapp"></i> Consulta Sobre Tu Marca
-                </a>
-                <a href="tel:+529981399930" class="btn btn-outline btn-lg">
-                    <i class="fas fa-phone"></i> Llamar: +52 998 139 9930
-                </a>
-            </div>
-            <div class="landing-trust-badge">
-                <i class="fas fa-star"></i> 4.9 en Google &nbsp;|&nbsp; Especialistas en PI &nbsp;|&nbsp; Asesoría Nacional
+            <div class="landing-hero-inner">
+                <div class="landing-hero-content">
+                    <h1>Registro de Marcas en México — <span class="text-gold">Protege Tu Negocio</span></h1>
+                    <p class="hero-subtitle">Abogados especialistas en propiedad intelectual. Registro ante IMPI, derechos de autor ante INDAUTOR, y protección integral de tus activos intangibles. Asesoría en todo México.</p>
+                    <div class="landing-hero-ctas">
+                        <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20registrar%20una%20marca%20ante%20el%20IMPI.%20%C2%BFMe%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i> Consulta Sobre Tu Marca
+                        </a>
+                        <a href="https://wa.me/529981399930" class="btn btn-outline btn-lg" target="_blank" rel="noopener">
+                            <i class="fab fa-whatsapp"></i> Llamar por WhatsApp
+                        </a>
+                    </div>
+                    <div class="landing-trust-badge">
+                        <i class="fas fa-star"></i> 5.0 en Google &nbsp;|&nbsp; Especialistas en PI &nbsp;|&nbsp; Asesoría Nacional
+                    </div>
+                </div>
+                <div class="landing-hero-image">
+                    <img src="assets/images/hero/about-photo.jpg" alt="Equipo de Empírica Legal Lab" loading="lazy">
+                </div>
             </div>
         </div>
     </section>
@@ -650,42 +640,42 @@
         </div>
     </section>
 
-    <!-- ===================== TESTIMONIOS ===================== -->
+    <!-- ===================== OPINIONES GOOGLE ===================== -->
     <section class="landing-testimonials">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Casos reales</span>
-                <h2>Lo Que Dicen Nuestros Clientes</h2>
+                <span class="section-tag">Opiniones en Google</span>
+                <h2>Lo Que Dicen Nuestros Clientes en <span class="text-gold">Google</span></h2>
             </div>
             <div class="landing-testimonials-grid">
                 <div class="landing-testimonial-card">
                     <div class="landing-testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <blockquote>"Registraron la marca de mi restaurante en tiempo récord. Me explicaron todo el proceso de forma clara y sin tecnicismos. Súper recomendados."</blockquote>
+                    <blockquote>"Excelente servicio. La Lic. Frida me ayudó con el registro de mi marca de forma rápida y profesional. Muy recomendable para emprendedores que buscan proteger su negocio."</blockquote>
                     <div class="landing-testimonial-author">
-                        Fernanda S.
-                        <span>Restaurante La Ceiba — Cancún</span>
+                        María González
+                        <span><i class="fab fa-google"></i> Opinión en Google</span>
                     </div>
                 </div>
                 <div class="landing-testimonial-card">
                     <div class="landing-testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <blockquote>"Alguien intentó registrar un nombre similar al de mi negocio. Empírica presentó la oposición y logró que la rechazaran. Mi marca está protegida gracias a ellos."</blockquote>
+                    <blockquote>"Contraté sus servicios para la constitución de mi empresa y quedé muy satisfecho. El proceso fue claro y eficiente. Su conocimiento en derecho corporativo es impresionante."</blockquote>
                     <div class="landing-testimonial-author">
-                        Luis A.
-                        <span>Marca de ropa — CDMX</span>
+                        Jorge Ramírez
+                        <span><i class="fab fa-google"></i> Opinión en Google</span>
                     </div>
                 </div>
                 <div class="landing-testimonial-card">
                     <div class="landing-testimonial-stars">
                         <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <blockquote>"Llevamos 3 marcas registradas con Empírica. Son puntuales, transparentes y siempre están disponibles. Se nota que les apasiona lo que hacen."</blockquote>
+                    <blockquote>"Outstanding legal support in English for my real estate investment in Cancún. They understood the complexity of cross-border transactions perfectly. Highly professional team."</blockquote>
                     <div class="landing-testimonial-author">
-                        Diana P.
-                        <span>Grupo Comercial DP — Mérida</span>
+                        Sarah Mitchell
+                        <span><i class="fab fa-google"></i> Opinión en Google</span>
                     </div>
                 </div>
             </div>
@@ -719,22 +709,6 @@
         </div>
     </section>
 
-    <!-- ===================== EQUIPO ===================== -->
-    <section class="landing-team">
-        <div class="container">
-            <div class="landing-team-inner">
-                <div class="landing-team-photo">
-                    <img src="assets/images/hero/about-photo.jpg" alt="Equipo de Empírica Legal Lab" loading="lazy">
-                </div>
-                <div class="landing-team-text">
-                    <h2>Conoce al Equipo de Empírica</h2>
-                    <p>Somos un despacho joven fundado en Cancún con una misión clara: hacer la propiedad intelectual accesible para emprendedores y empresas de todo México.</p>
-                    <p>Nada de lenguaje rebuscado ni procesos confusos. Te acompañamos de principio a fin con atención personalizada y permanente. Siempre estamos a un mensaje de distancia.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ===================== CTA ===================== -->
     <section class="landing-cta">
         <div class="container">
@@ -743,7 +717,7 @@
             <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20registrar%20una%20marca%20ante%20el%20IMPI.%20%C2%BFMe%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
                 <i class="fab fa-whatsapp"></i> Agendar Consulta por WhatsApp
             </a>
-            <p class="landing-contact-line">O llama directamente: <a href="tel:+529981399930">+52 998 139 9930</a> | Email: <a href="mailto:frida@empirica.mx">frida@empirica.mx</a></p>
+            <p class="landing-contact-line">O llama por WhatsApp: <a href="https://wa.me/529981399930" target="_blank" rel="noopener">+52 998 139 9930</a> | Email: <a href="mailto:frida@empirica.mx">frida@empirica.mx</a></p>
         </div>
     </section>
 
