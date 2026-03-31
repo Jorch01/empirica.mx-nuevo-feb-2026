@@ -564,10 +564,12 @@
                 grid-template-rows: auto auto;
                 min-height: auto;
                 padding-top: 72px;
+                overflow: hidden;
             }
             .marcas-hero-left {
                 clip-path: none;
-                padding: 40px 24px 52px;
+                padding: 40px 24px 44px;
+                padding-right: 24px;
                 align-items: center;
                 text-align: center;
             }
@@ -576,20 +578,47 @@
                 margin-left: auto;
                 margin-right: auto;
             }
-            .marcas-hero-checklist { align-items: flex-start; width: fit-content; margin: 0 auto 1.75rem; }
-            .marcas-hero-ctas { justify-content: center; }
-            .marcas-hero-right {
-                height: 55vw;
-                min-height: 260px;
-                max-height: 360px;
-                overflow: hidden;
+            .marcas-hero-checklist {
+                align-items: flex-start;
+                width: fit-content;
+                margin: 0 auto 1.75rem;
             }
+            .marcas-hero-ctas { justify-content: center; }
+
+            /* Image band: office background fills full width below text */
+            .marcas-hero-right {
+                grid-row: 2;
+                grid-column: 1;
+                position: relative;
+                height: 60vw;
+                min-height: 280px;
+                max-height: 420px;
+                overflow: hidden;
+                background-position: center 30%;
+            }
+            .marcas-hero-right::before {
+                background: linear-gradient(
+                    to bottom,
+                    rgba(28, 43, 54, 0.7) 0%,
+                    rgba(28, 43, 54, 0.15) 35%,
+                    transparent 65%
+                );
+            }
+
+            /* Characters: centered in the image band, anchored to bottom */
             .marcas-hero-characters {
-                right: auto;
+                position: absolute;
+                bottom: 0;
                 left: 50%;
+                right: auto;
                 transform: translateX(-50%);
-                height: 100%;
-                max-width: 85%;
+                height: 95%;
+                width: auto;
+                max-width: none;
+                max-height: 400px;
+                filter:
+                    drop-shadow(0 0 20px rgba(0,0,0,0.4))
+                    drop-shadow(0 4px 12px rgba(0,0,0,0.25));
             }
         }
 
@@ -610,8 +639,18 @@
 
         @media (max-width: 480px) {
             .marcas-hero-left h1 { font-size: 2rem; }
+            .marcas-hero-left { padding: 32px 18px 36px; }
             .btn-marcas-primary, .btn-marcas-secondary { width: 100%; justify-content: center; }
-            .marcas-hero-right { height: 62vw; }
+            .marcas-hero-right {
+                height: 65vw;
+                min-height: 240px;
+                max-height: 340px;
+            }
+            .marcas-hero-characters {
+                height: 90%;
+                max-height: 320px;
+            }
+            .marcas-hero-badge { font-size: 0.75rem; padding: 7px 14px; }
         }
     </style>
 </head>
