@@ -124,79 +124,188 @@
         }
         .landing-navbar-phone:hover { color: white; }
 
-        .landing-hero {
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--color-green-dark) 0%, #1A2744 100%);
-            padding: 140px 0 var(--spacing-4xl);
+        /* ═══════════════════════════════════════════
+           MARCAS HERO – Layered CSS Grid Design
+           ═══════════════════════════════════════════ */
+
+        .marcas-hero {
+            display: grid;
+            grid-template-columns: 52fr 48fr;
+            min-height: 100vh;
+            padding-top: 80px; /* navbar offset */
             position: relative;
             overflow: hidden;
         }
-        .landing-hero::before {
-            content: '';
-            position: absolute;
-            top: -40%; right: -20%;
-            width: 60%; height: 120%;
-            background: radial-gradient(circle, rgba(155,138,94,0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .landing-hero-inner {
+
+        /* ── Capa Media: Panel izquierdo azul oscuro con corte diagonal ── */
+        .marcas-hero-left {
+            background: #1c2b36;
+            clip-path: polygon(0 0, 100% 0, 88% 100%, 0% 100%);
+            padding: clamp(48px, 6vw, 88px) clamp(28px, 7vw, 80px);
+            padding-right: clamp(80px, 12vw, 140px); /* compensa el clip-path */
             display: flex;
-            align-items: center;
-            gap: var(--spacing-2xl);
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
         }
-        .landing-hero-content {
-            flex: 1;
-            text-align: left;
+
+        .marcas-hero-tag {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-gold);
+            margin-bottom: 1rem;
         }
-        .landing-hero-image {
-            flex: 0 0 340px;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: 0 16px 48px rgba(0,0,0,0.3);
-            border: 3px solid rgba(255,255,255,0.1);
-        }
-        .landing-hero-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-        .landing-hero h1 {
+
+        .marcas-hero-left h1 {
             font-family: var(--font-serif);
-            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-size: clamp(2.4rem, 4vw, 3.8rem);
             color: white;
-            line-height: 1.15;
-            margin-bottom: var(--spacing-md);
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
         }
-        .landing-hero h1 .text-gold { color: var(--color-gold); }
-        .landing-hero .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: rgba(255,255,255,0.8);
-            max-width: 680px;
-            line-height: 1.7;
-            margin-bottom: var(--spacing-xl);
+        .marcas-hero-left h1 .text-gold { color: var(--color-gold); }
+
+        .marcas-hero-left .hero-subtitle {
+            font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+            color: rgba(255,255,255,0.78);
+            line-height: 1.75;
+            margin-bottom: 1.6rem;
+            max-width: 440px;
         }
-        .landing-hero-ctas {
+
+        /* ── Checklist de beneficios ── */
+        .marcas-hero-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem;
             display: flex;
-            gap: var(--spacing-md);
-            flex-wrap: wrap;
-            margin-bottom: var(--spacing-xl);
+            flex-direction: column;
+            gap: 0.75rem;
         }
-        .landing-trust-badge {
-            display: inline-flex;
+        .marcas-hero-checklist li {
+            display: flex;
             align-items: center;
-            gap: var(--spacing-sm);
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: var(--radius-full);
-            padding: 10px 24px;
-            color: rgba(255,255,255,0.85);
-            font-size: 0.85rem;
+            gap: 0.65rem;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.9);
             font-weight: 500;
         }
-        .landing-trust-badge i { color: var(--color-gold); }
+        .marcas-hero-checklist li i {
+            color: var(--color-gold);
+            font-size: 1rem;
+            flex-shrink: 0;
+            width: 18px;
+        }
+
+        /* ── CTAs ── */
+        .marcas-hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.75rem;
+        }
+
+        /* Botón dorado con degradado */
+        .btn-marcas-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #c4a96e 0%, #9B8A5E 60%, #b89d60 100%);
+            color: #1c2b36;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 14px 28px;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(155,138,94,0.35);
+            white-space: nowrap;
+        }
+        .btn-marcas-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(155,138,94,0.5);
+            color: #1c2b36;
+        }
+
+        /* Botón outline blanco (WhatsApp llamada) */
+        .btn-marcas-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 12px 26px;
+            border-radius: var(--radius-full);
+            border: 2px solid rgba(255,255,255,0.55);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .btn-marcas-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+            color: white;
+        }
+
+        /* Badge de confianza */
+        .marcas-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: var(--radius-full);
+            padding: 9px 20px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+        .marcas-hero-badge i { color: var(--color-gold); }
+
+        /* ── Capa Base: Panel derecho con imagen de oficina ── */
+        .marcas-hero-right {
+            position: relative;
+            background-image: url('assets/images/hero/fondo-oficina.jpg');
+            background-size: cover;
+            background-position: center;
+            overflow: visible;
+        }
+
+        /* Degradado izquierdo que suaviza la transición con el panel oscuro */
+        .marcas-hero-right::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to right,
+                rgba(28, 43, 54, 0.85) 0%,
+                rgba(28, 43, 54, 0.25) 30%,
+                transparent 60%
+            );
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* ── Capa Superior: Personajes PNG superpuestos en la frontera ── */
+        .marcas-hero-characters {
+            position: absolute;
+            bottom: 0;
+            right: 40%; /* posicionado en ~60% desde izquierda, straddling la frontera */
+            height: 92%;
+            width: auto;
+            z-index: 4;
+            filter:
+                drop-shadow(-12px 0px 24px rgba(0,0,0,0.55))
+                drop-shadow(6px 4px 12px rgba(0,0,0,0.3));
+            pointer-events: none;
+        }
+
 
         .landing-trust-section {
             background: var(--color-cream);
@@ -448,12 +557,44 @@
             line-height: 1.7;
         }
 
+        /* ── Hero mobile ── */
+        @media (max-width: 900px) {
+            .marcas-hero {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+                min-height: auto;
+                padding-top: 72px;
+            }
+            .marcas-hero-left {
+                clip-path: none;
+                padding: 40px 24px 52px;
+                align-items: center;
+                text-align: center;
+            }
+            .marcas-hero-left .hero-subtitle {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .marcas-hero-checklist { align-items: flex-start; width: fit-content; margin: 0 auto 1.75rem; }
+            .marcas-hero-ctas { justify-content: center; }
+            .marcas-hero-right {
+                height: 55vw;
+                min-height: 260px;
+                max-height: 360px;
+                overflow: hidden;
+            }
+            .marcas-hero-characters {
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 100%;
+                max-width: 85%;
+            }
+        }
+
+        /* ── General section responsive ── */
         @media (max-width: 768px) {
-            .landing-hero-inner { flex-direction: column; text-align: center; }
-            .landing-hero-content { text-align: center; }
-            .landing-hero-image { flex: none; width: 60%; max-width: 260px; order: -1; margin-bottom: var(--spacing-lg); }
-            .landing-hero-ctas { flex-direction: column; align-items: center; }
-            .landing-hero-ctas .btn { width: 100%; justify-content: center; max-width: 340px; }
             .landing-trust-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
             .landing-services-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
             .landing-testimonials-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
@@ -465,6 +606,12 @@
             }
             .landing-process-grid::before { display: none; }
             .landing-navbar-phone { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .marcas-hero-left h1 { font-size: 2rem; }
+            .btn-marcas-primary, .btn-marcas-secondary { width: 100%; justify-content: center; }
+            .marcas-hero-right { height: 62vw; }
         }
     </style>
 </head>
@@ -493,29 +640,45 @@
     </nav>
 
     <!-- ===================== HERO ===================== -->
-    <section class="landing-hero">
-        <div class="container">
-            <div class="landing-hero-inner">
-                <div class="landing-hero-content">
-                    <h1>Registro de Marcas en México — <span class="text-gold">Protege Tu Negocio</span></h1>
-                    <p class="hero-subtitle">Abogados especialistas en propiedad intelectual. Registro ante IMPI, derechos de autor ante INDAUTOR, y protección integral de tus activos intangibles. Asesoría en todo México.</p>
-                    <div class="landing-hero-ctas">
-                        <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20registrar%20una%20marca%20ante%20el%20IMPI.%20%C2%BFMe%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
-                            <i class="fab fa-whatsapp"></i> Consulta Sobre Tu Marca
-                        </a>
-                        <a href="https://wa.me/529981399930" class="btn btn-outline btn-lg" target="_blank" rel="noopener">
-                            <i class="fab fa-whatsapp"></i> Llamar por WhatsApp
-                        </a>
-                    </div>
-                    <div class="landing-trust-badge">
-                        <i class="fas fa-star"></i> 4.9 en Google &nbsp;|&nbsp; Especialistas en PI &nbsp;|&nbsp; Asesoría Nacional
-                    </div>
-                </div>
-                <div class="landing-hero-image">
-                    <img src="assets/images/hero/about-photo.jpg" alt="Equipo de Empírica Legal Lab" loading="lazy">
-                </div>
+    <section class="marcas-hero">
+
+        <!-- CAPA MEDIA: Panel de texto azul oscuro con corte diagonal -->
+        <div class="marcas-hero-left">
+            <span class="marcas-hero-tag">Propiedad Intelectual &mdash; Asesoría Nacional</span>
+            <h1>Registro de Marcas<br>en México — <span class="text-gold">Protege Tu Negocio</span></h1>
+            <p class="hero-subtitle">Abogados especialistas en propiedad intelectual. Registro ante IMPI, derechos de autor INDAUTOR y protección integral de tus activos. Asesoría en todo México.</p>
+
+            <!-- Checklist de beneficios -->
+            <ul class="marcas-hero-checklist">
+                <li><i class="fas fa-check-circle"></i> Exclusividad nacional por 10 años ante el IMPI</li>
+                <li><i class="fas fa-copyright"></i> Derechos de autor registrados en INDAUTOR</li>
+                <li><i class="fas fa-shield-halved"></i> Defensa legal contra imitadores y piratas</li>
+            </ul>
+
+            <div class="marcas-hero-ctas">
+                <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20registrar%20una%20marca%20ante%20el%20IMPI.%20%C2%BFMe%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%3F" class="btn-marcas-primary" target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp"></i> Consulta Sobre Tu Marca
+                </a>
+                <a href="https://wa.me/529981399930" class="btn-marcas-secondary" target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp"></i> Llamar por WhatsApp
+                </a>
+            </div>
+
+            <div class="marcas-hero-badge">
+                <i class="fas fa-star"></i> 4.9 en Google &nbsp;|&nbsp; Especialistas en PI &nbsp;|&nbsp; Asesoría Nacional
             </div>
         </div>
+
+        <!-- CAPA BASE: Fondo de oficina (lado derecho) -->
+        <div class="marcas-hero-right"></div>
+
+        <!-- CAPA SUPERIOR: Personajes PNG superpuestos en la frontera -->
+        <img
+            src="assets/images/hero/personajes.png"
+            alt="Equipo Empírica Legal Lab"
+            class="marcas-hero-characters"
+            loading="eager">
+
     </section>
 
     <!-- ===================== POR QUÉ REGISTRAR TU MARCA ===================== -->
