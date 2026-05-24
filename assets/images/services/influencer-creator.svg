@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1b22;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#1c2b36;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#243545;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="phoneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c8a96e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8c98e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="circleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c8a96e;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#c8a96e;stop-opacity:0.03" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="650" cy="80" r="180" fill="url(#circleGrad)"/>
+  <circle cx="100" cy="420" r="130" fill="url(#circleGrad)"/>
+  <circle cx="720" cy="420" r="90" fill="none" stroke="#c8a96e" stroke-width="1" stroke-opacity="0.12"/>
+  <circle cx="80" cy="80" r="60" fill="none" stroke="#c8a96e" stroke-width="1" stroke-opacity="0.1"/>
+
+  <!-- Grid dots -->
+  <g opacity="0.07">
+    <circle cx="60" cy="140" r="2" fill="#c8a96e"/>
+    <circle cx="100" cy="140" r="2" fill="#c8a96e"/>
+    <circle cx="140" cy="140" r="2" fill="#c8a96e"/>
+    <circle cx="60" cy="180" r="2" fill="#c8a96e"/>
+    <circle cx="100" cy="180" r="2" fill="#c8a96e"/>
+    <circle cx="140" cy="180" r="2" fill="#c8a96e"/>
+    <circle cx="60" cy="220" r="2" fill="#c8a96e"/>
+    <circle cx="100" cy="220" r="2" fill="#c8a96e"/>
+    <circle cx="140" cy="220" r="2" fill="#c8a96e"/>
+  </g>
+
+  <!-- Person silhouette (content creator) -->
+  <!-- Head -->
+  <circle cx="400" cy="160" r="55" fill="#c8a96e" opacity="0.9"/>
+  <!-- Body -->
+  <path d="M320 320 Q400 260 480 320 L490 420 H310 Z" fill="#1a3040" stroke="#c8a96e" stroke-width="1.5" stroke-opacity="0.5"/>
+  <!-- Shoulders/arms outline -->
+  <path d="M320 320 Q295 330 285 380" fill="none" stroke="#c8a96e" stroke-width="2" stroke-opacity="0.5"/>
+  <path d="M480 320 Q505 330 515 380" fill="none" stroke="#c8a96e" stroke-width="2" stroke-opacity="0.5"/>
+
+  <!-- Smartphone in hand -->
+  <rect x="440" y="300" width="70" height="120" rx="8" fill="url(#phoneGrad)" opacity="0.95" filter="url(#glow)"/>
+  <rect x="444" y="308" width="62" height="98" rx="4" fill="#1c2b36"/>
+  <!-- Phone screen content -->
+  <rect x="448" y="312" width="54" height="30" rx="3" fill="#2a4a60"/>
+  <rect x="448" y="348" width="30" height="5" rx="2" fill="#c8a96e" opacity="0.7"/>
+  <rect x="448" y="357" width="50" height="4" rx="2" fill="#c8a96e" opacity="0.4"/>
+  <rect x="448" y="366" width="40" height="4" rx="2" fill="#c8a96e" opacity="0.3"/>
+  <!-- Record button -->
+  <circle cx="475" cy="395" r="8" fill="#e05555" opacity="0.85"/>
+  <circle cx="475" cy="395" r="5" fill="#ff6b6b" opacity="0.9"/>
+
+  <!-- Camera icon (floating) -->
+  <g transform="translate(220, 240)" opacity="0.85" filter="url(#glow)">
+    <rect x="0" y="8" width="50" height="36" rx="5" fill="none" stroke="#c8a96e" stroke-width="2.5"/>
+    <circle cx="25" cy="26" r="9" fill="none" stroke="#c8a96e" stroke-width="2.5"/>
+    <circle cx="25" cy="26" r="5" fill="#c8a96e" opacity="0.4"/>
+    <rect x="10" y="2" width="16" height="8" rx="3" fill="none" stroke="#c8a96e" stroke-width="2"/>
+    <circle cx="40" cy="14" r="3" fill="#c8a96e" opacity="0.7"/>
+  </g>
+
+  <!-- Star/sparkle elements -->
+  <g filter="url(#glow)">
+    <!-- Star 1 -->
+    <path d="M560 120 L564 132 L576 132 L566 140 L570 152 L560 144 L550 152 L554 140 L544 132 L556 132 Z"
+          fill="#c8a96e" opacity="0.8"/>
+    <!-- Star 2 (small) -->
+    <path d="M580 200 L582 206 L588 206 L583 210 L585 216 L580 212 L575 216 L577 210 L572 206 L578 206 Z"
+          fill="#c8a96e" opacity="0.6"/>
+    <!-- Star 3 (tiny) -->
+    <path d="M200 170 L201 174 L205 174 L202 177 L203 181 L200 178 L197 181 L198 177 L195 174 L199 174 Z"
+          fill="#c8a96e" opacity="0.5"/>
+  </g>
+
+  <!-- Social metrics bubbles -->
+  <g transform="translate(540, 260)">
+    <rect x="0" y="0" width="90" height="36" rx="18" fill="#c8a96e" opacity="0.15" stroke="#c8a96e" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="14" y="23" font-family="Arial" font-size="18" fill="#c8a96e" opacity="0.9">♥</text>
+    <text x="35" y="23" font-family="Arial" font-size="12" font-weight="bold" fill="#c8a96e" opacity="0.8">12.4K</text>
+  </g>
+  <g transform="translate(555, 310)">
+    <rect x="0" y="0" width="80" height="32" rx="16" fill="#c8a96e" opacity="0.15" stroke="#c8a96e" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="12" y="21" font-family="Arial" font-size="16" fill="#c8a96e" opacity="0.9">★</text>
+    <text x="30" y="21" font-family="Arial" font-size="11" font-weight="bold" fill="#c8a96e" opacity="0.8">5.6K</text>
+  </g>
+
+  <!-- Horizontal lines (scan lines effect) -->
+  <rect x="0" y="0" width="800" height="500" fill="none" opacity="0.03">
+    <pattern id="lines" x="0" y="0" width="1" height="4" patternUnits="userSpaceOnUse">
+      <rect width="1" height="1" fill="white"/>
+    </pattern>
+  </rect>
+
+  <!-- Bottom gradient overlay -->
+  <rect x="0" y="350" width="800" height="150" fill="url(#bgGrad)" opacity="0.5"/>
+
+  <!-- Label tag -->
+  <rect x="30" y="430" width="200" height="40" rx="4" fill="#c8a96e" opacity="0.12"/>
+  <rect x="30" y="430" width="4" height="40" rx="2" fill="#c8a96e" opacity="0.8"/>
+  <text x="44" y="455" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#c8a96e" opacity="0.9">Representación de Talento</text>
+</svg>
