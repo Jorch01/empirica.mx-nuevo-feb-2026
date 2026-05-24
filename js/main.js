@@ -208,6 +208,34 @@
                 'Amparo en materia inmobiliaria: protección contra clausuras injustificadas de obras o expropiaciones',
                 'Defensa ante actos de autoridad que afecten la propiedad inmobiliaria'
             ]
+        },
+        'representacion-influencers': {
+            name: 'Representación Legal de Influencers y Creadores',
+            icon: 'fa-star',
+            type: 'Management Digital',
+            description: 'Representamos comercialmente a influencers y creadores de contenido ante marcas, agencias y anunciantes. Negociamos campañas, elaboramos contratos, gestionamos derechos de imagen y manejamos el régimen fiscal bajo el esquema de asimilados a salarios. Tú creas — nosotros gestionamos todo lo demás.',
+            features: [
+                'Negociación de campañas, sponsorships y colaboraciones con marcas',
+                'Contratos de representación y licencia de derechos de imagen',
+                'Gestión fiscal: retenciones de ISR y CFDI bajo régimen de asimilados a salarios',
+                'Rendición de cuentas mensual: campañas, montos cobrados y liquidaciones',
+                'Asesoría legal continua en normativa publicitaria y cumplimiento PROFECO',
+                'Exclusividad comercial con 85% del ingreso neto para el creador'
+            ]
+        },
+        'conexion-talento-ugc': {
+            name: 'Conexión de Marcas con Talento Digital',
+            icon: 'fa-people-arrows',
+            type: 'Servicio Empresarial',
+            description: 'Conectamos marcas y anunciantes con los creadores de contenido de nuestra cartera representada. Gestionamos la conexión, el marco contractual, los derechos de uso y la coordinación del proyecto. El contenido lo produce el talento con sus propios recursos; nosotros somos el intermediario legal y comercial de todo el proceso.',
+            features: [
+                'Selección del talento de nuestra cartera según brief, nicho y audiencia',
+                'Coordinación del proyecto: brief, lineamientos, revisiones y aprobaciones',
+                'Contrato formal con licencia de uso por plataforma, plazo y territorio',
+                'Cláusulas expresas de protección contra uso de imagen con inteligencia artificial',
+                'Cumplimiento de normativa publicitaria: PROFECO, disclosure y políticas de plataformas',
+                'CFDI e IVA incluidos en cada transacción'
+            ]
         }
     };
 
