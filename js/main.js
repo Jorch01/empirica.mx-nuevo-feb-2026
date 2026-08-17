@@ -723,6 +723,16 @@
             svc_litigioinmob_desc: 'Revindicatory actions, adverse possession, lease disputes and amparo against government actions in real estate matters.',
             badge_legal: 'Legal Service',
             btn_more_info: 'More Information',
+            // Category 5 — Edictos
+            tab_edictos: 'Legal Notices',
+            edictos_title: 'Legal Notice (Edicto) Publication in Quintana Roo',
+            edictos_intro: 'We handle the full publication process for judicial, probate, foreclosure, notarial and corporate legal notices in the Official Gazette of the State of Quintana Roo, in the judiciary\'s official communication outlet and in newspapers of state or national circulation. We check the text against the court order, cover the publication fees and deliver the certificate of publication ready for your case file. Coverage in Cancún, Chetumal, Playa del Carmen, Cozumel, Tulum and the rest of the state.',
+            svc_edictos_judiciales_title: 'Judicial Notices &amp; Service by Publication',
+            svc_edictos_judiciales_desc: 'Service by publication on defendants of unknown identity or address, foreclosure and auction notices, adverse possession, title confirmation and civil registry corrections. We control outlet, frequency and deadlines.',
+            svc_edictos_sucesorios_title: 'Probate Notices &amp; Notarial Announcements',
+            svc_edictos_sucesorios_desc: 'Calls to heirs and creditors in testate and intestate succession proceedings, plus publication of notarial succession announcements.',
+            svc_edictos_corporativos_title: 'Corporate Calls &amp; Publications',
+            svc_edictos_corporativos_desc: 'Shareholder meeting calls, final liquidation balance sheets, mergers, spin-offs and capital reductions under the General Law of Commercial Companies.',
             // Consulta CTA
             consulta_title: 'Personalized Consultation',
             consulta_desc: 'A 60-minute session where we analyze your case and define the best legal strategy for your project or business.',
@@ -748,6 +758,7 @@
             // Footer
             footer_nav: 'Navigation', footer_areas: 'Practice Areas', footer_follow: 'Follow Us',
             footer_inmobiliario: 'Real Estate Law',
+            footer_edictos: 'Legal Notices in Quintana Roo',
             // WhatsApp
             wa_tooltip: 'Questions? Write to us'
         }
