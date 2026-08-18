@@ -18,7 +18,7 @@
     var GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyX3vgUvGcldyU3oUdvqhU3LLoPKNuOX4jb8LHaU7HgQQDIzmseHTV-CqjHKkRZFmJz/exec'; // https://script.google.com/macros/s/TU_ID/exec
 
     /* Número de WhatsApp (con código de país, sin +) */
-    var WHATSAPP_NUMBER = '529982570828';
+    var WHATSAPP_NUMBER = '529981399930';
 
     /* ── DATOS DE SERVICIOS ── */
     var SERVICES = {
