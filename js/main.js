@@ -725,8 +725,8 @@
             btn_more_info: 'More Information',
             // Category 5 — Edictos
             tab_edictos: 'Legal Notices',
-            edictos_title: 'Legal Notice (Edicto) Publication in Quintana Roo',
-            edictos_intro: 'We publish judicial, probate, foreclosure, notarial and corporate legal notices in a newspaper of state-wide circulation in Quintana Roo. We check the text against the court order, control the dates and the intervals between publications, and deliver the original issues in which your notice appears. Publications for proceedings filed in Cancún, Chetumal, Playa del Carmen, Cozumel, Tulum and the rest of the state.',
+            edictos_title: 'Legal Notice (Edicto) Publication in Quintana Roo &amp; Yucatán',
+            edictos_intro: 'We publish judicial, probate, foreclosure, notarial and corporate legal notices in a newspaper of state-wide circulation in Quintana Roo and Yucatán. We check the text against the court order, control the dates and the intervals between publications, and deliver the original issues in which your notice appears. Publications for proceedings filed in Cancún, Chetumal, Playa del Carmen, Cozumel, Tulum, Mérida, Valladolid, Progreso and the rest of both states.',
             svc_edictos_judiciales_title: 'Judicial Notices &amp; Service by Publication',
             svc_edictos_judiciales_desc: 'Service by publication on defendants of unknown identity or address, foreclosure and auction notices, adverse possession, title confirmation and civil registry corrections. We control frequency and deadlines.',
             svc_edictos_sucesorios_title: 'Probate Notices &amp; Notarial Announcements',
@@ -758,7 +758,7 @@
             // Footer
             footer_nav: 'Navigation', footer_areas: 'Practice Areas', footer_follow: 'Follow Us',
             footer_inmobiliario: 'Real Estate Law',
-            footer_edictos: 'Legal Notices in Quintana Roo',
+            footer_edictos: 'Legal Notices in Quintana Roo &amp; Yucatán',
             // WhatsApp
             wa_tooltip: 'Questions? Write to us'
         }
