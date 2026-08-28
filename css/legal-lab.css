@@ -97,3 +97,38 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* Los enlaces dentro de la franja rosa heredan su color, no el acento global */
 .lab-cta a:not([style*="color:"]) { color: #131E1A; }
+
+/* ==========================================================
+   Landings — mismo lenguaje que la portada
+   La navegación ya no es fija, así que sobra el hueco que
+   compensaba su altura; y los heroes van planos como en el
+   diseño, sin degradados ni texturas.
+   ========================================================== */
+.ed-hero, .landing-hero, .influ-hero, .marcas-hero {
+    background: #131E1A !important;
+    background-image: none !important;
+    padding-top: var(--spacing-4xl) !important;
+}
+.ed-hero::before, .ed-hero::after,
+.landing-hero::before, .landing-hero::after,
+.influ-hero::before, .influ-hero::after,
+.marcas-hero::before, .marcas-hero::after { display: none !important; }
+
+/* Antetítulos en monoespaciada, como en el diseño */
+.ed-hero-tag, .influ-hero-tag, .marcas-hero-tag, .landing-hero .hero-tag {
+    font-family: 'JetBrains Mono', ui-monospace, monospace !important;
+    font-size: .7rem !important;
+    letter-spacing: .16em !important;
+    text-transform: uppercase;
+    color: #CFA892 !important;
+}
+
+/* Titulares con el tracking cerrado del diseño */
+.ed-hero h1, .landing-hero h1, .influ-hero h1, .marcas-hero h1 {
+    letter-spacing: -.035em !important;
+    line-height: 1.04 !important;
+}
+
+/* El pie del diseño se alinea al ancho de la landing */
+.lab-footer { max-width: 1440px; margin: 0 auto; }
+.lab-nav-inner { max-width: 1440px; margin: 0 auto; }
