@@ -18,7 +18,7 @@
     var GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyX3vgUvGcldyU3oUdvqhU3LLoPKNuOX4jb8LHaU7HgQQDIzmseHTV-CqjHKkRZFmJz/exec'; // https://script.google.com/macros/s/TU_ID/exec
 
     /* Número de WhatsApp (con código de país, sin +) */
-    var WHATSAPP_NUMBER = '529981399930';
+    var WHATSAPP_NUMBER = '529982570828';
 
     /* ── DATOS DE SERVICIOS ── */
     var SERVICES = {
@@ -758,6 +758,13 @@
             // Footer
             footer_nav: 'Navigation', footer_areas: 'Practice Areas', footer_follow: 'Follow Us',
             footer_inmobiliario: 'Real Estate Law',
+            team_tag: 'The team',
+            team_role_1: 'Managing Partner',
+            team_area_1: 'Strategic litigation',
+            team_degree_1: 'LL.M. in Amparo',
+            team_role_2: 'Managing Partner',
+            team_area_2: 'Intellectual property, digital law and creators',
+            team_degree_2: 'LL.M. in Amparo',
             footer_edictos: 'Legal Notices in Quintana Roo &amp; Yucatán',
             // WhatsApp
             wa_tooltip: 'Questions? Write to us'
