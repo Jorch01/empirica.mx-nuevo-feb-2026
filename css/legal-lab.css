@@ -1,0 +1,99 @@
+/* ==========================================================
+   EMPÍRICA LEGAL LAB — Hoja del diseño "Legal Lab"
+   El escritorio vive en los estilos en línea del markup
+   (portados del diseño aprobado, 1440 px). Aquí va la base
+   y el comportamiento responsivo.
+   ========================================================== */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    background: #131E1A;
+    color: #EDE7DD;
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: #CFA892; text-decoration: none; transition: color .2s ease; }
+a:hover { color: #EDE7DD; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+.lab { max-width: 1440px; margin: 0 auto; width: 100%; background: #131E1A; }
+
+/* ── Navegación ── */
+.lab-nav { position: sticky; top: 0; z-index: 900; background: rgba(19, 30, 26, .92); backdrop-filter: blur(10px); }
+.lab-nav a { color: inherit; }
+.lab-nav a:hover { color: #CFA892; }
+.lab-nav a[style*="background: #CFA892"]:hover { color: #131E1A; opacity: .88; }
+.lab-lang { letter-spacing: .08em; }
+.lab-nav-toggle { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; color: #EDE7DD; }
+
+/* ── Interacciones que el diseño estático no puede mostrar ── */
+.lab-grid3 > div { transition: border-color .3s ease, transform .3s ease; }
+.lab-grid3 > div:hover { border-color: rgba(207, 168, 146, .55); transform: translateY(-3px); }
+.lab-ctas a, .lab-cta a { transition: opacity .2s ease, background .2s ease, color .2s ease; }
+.lab-ctas a:hover, .lab-cta a:hover { opacity: .86; }
+.lab-footer a { color: inherit; }
+.lab-footer a:hover { color: #CFA892; }
+
+/* ── Tablet ── */
+@media (max-width: 1100px) {
+    .lab-nav, .lab-hero, .lab-sec, .lab-cta, .lab-footer { padding-left: 40px !important; padding-right: 40px !important; }
+    .lab-hero { padding-top: 64px !important; padding-bottom: 64px !important; }
+    .lab-sec { padding-top: 64px !important; padding-bottom: 64px !important; }
+    .lab-h1 { font-size: clamp(40px, 6.4vw, 76px) !important; }
+    .lab-watermark { width: 340px !important; right: -110px !important; }
+    .lab-spec { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+    .lab-spec > div { border-bottom: 1px solid rgba(207, 168, 146, .16); padding-bottom: 18px !important; }
+    .lab-spec > div:nth-child(3n) { border-right: 0 !important; }
+    .lab-grid3, .lab-grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    .lab-grid4 > div { border-right: 0 !important; padding-left: 0 !important; padding-right: 0 !important; }
+    .lab-grid2, .lab-team { grid-template-columns: minmax(0, 1fr) !important; gap: 28px !important; }
+    .lab-sec-head { flex-direction: column; align-items: flex-start !important; gap: 14px; }
+}
+
+/* ── Móvil ── */
+@media (max-width: 760px) {
+    .lab-nav, .lab-hero, .lab-sec, .lab-cta, .lab-footer { padding-left: 22px !important; padding-right: 22px !important; }
+    .lab-hero { padding-top: 44px !important; padding-bottom: 48px !important; }
+    .lab-sec { padding-top: 52px !important; padding-bottom: 52px !important; }
+    .lab-h1 { font-size: clamp(32px, 9vw, 44px) !important; }
+    .lab-watermark { display: none; }
+    .lab-nav-toggle { display: inline-flex; }
+    .lab-nav-links {
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; align-items: stretch !important;
+        gap: 0 !important; padding: 8px 22px 20px;
+        background: #131E1A; border-bottom: 1px solid rgba(207, 168, 146, .16);
+        display: none !important;
+    }
+    .lab-nav-links.open { display: flex !important; }
+    .lab-nav-links > * { padding: 14px 0; }
+    .lab-spec { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    .lab-spec > div:nth-child(3n) { border-right: 1px solid rgba(207, 168, 146, .16) !important; }
+    .lab-spec > div:nth-child(2n) { border-right: 0 !important; }
+    .lab-spec > div { padding-left: 0 !important; padding-right: 14px !important; }
+    .lab-grid3, .lab-grid4 { grid-template-columns: minmax(0, 1fr) !important; }
+    .lab-ctas { flex-direction: column; align-items: stretch !important; }
+    .lab-ctas > a { justify-content: center; text-align: center; }
+    .lab-cta { flex-direction: column; align-items: flex-start !important; gap: 28px !important; padding-top: 52px !important; padding-bottom: 52px !important; }
+    .lab-cta > div:last-child { width: 100%; }
+    .lab-footer { flex-direction: column; align-items: flex-start !important; gap: 14px; text-align: left; }
+    .lab-footer > div { flex-wrap: wrap; gap: 14px !important; }
+}
+
+/* ── Botón flotante de WhatsApp ── */
+.whatsapp-float {
+    position: fixed; right: 20px; bottom: 20px; z-index: 950;
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: #25D366; color: #0B1F14; font-size: 1.6rem;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, .45);
+    transition: transform .2s ease;
+}
+.whatsapp-float:hover { transform: scale(1.06); color: #0B1F14; }
+
+/* Los enlaces dentro de la franja rosa heredan su color, no el acento global */
+.lab-cta a:not([style*="color:"]) { color: #131E1A; }
