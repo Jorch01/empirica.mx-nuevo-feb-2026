@@ -132,3 +132,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* El pie del diseño se alinea al ancho de la landing */
 .lab-footer { max-width: 1440px; margin: 0 auto; }
 .lab-nav-inner { max-width: 1440px; margin: 0 auto; }
+
+/* La barra es sticky: los anclas deben detenerse por debajo de ella */
+[id="servicios"], [id="metodo"], [id="nosotros"], [id="opiniones"], [id="contacto"],
+.ed-section[id], .landing-section[id], .influ-section[id] { scroll-margin-top: 86px; }
+
+/* Selector de idioma: resalta el activo sin perder el formato "ES / EN" */
+.lab-lang { color: #8FA096; }
+.lab-lang b { color: #EDE7DD; font-weight: 500; }
+.lab-lang:hover { color: #CFA892; }

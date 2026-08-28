@@ -196,7 +196,7 @@
 <div class="lab">
 
   <!-- NAV -->
-  <div class="lab-nav" style="display: flex; align-items: center; justify-content: space-between; padding: 20px 64px; border-bottom: 1px solid rgba(207, 168, 146, 0.16);">
+  <div class="lab-nav" id="navbar" style="display: flex; align-items: center; justify-content: space-between; padding: 20px 64px; border-bottom: 1px solid rgba(207, 168, 146, 0.16);">
     <div style="display: flex; align-items: center; gap: 12px;">
       <img src="assets/images/logo/marca-rosa.png" alt="Empírica" style="width: 30px; height: auto;">
       <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; font-weight: 700; letter-spacing: 0.13em; color: #EDE7DD;">EMPÍRICA<span style="color: #CFA892;">_</span>LEGAL<span style="color: #CFA892;">_</span>LAB</span>
@@ -206,7 +206,7 @@
       <a href="#metodo" data-i18n="nav_method">MÉTODO</a>
       <a href="#nosotros" data-i18n="nav_about">NOSOTROS</a>
       <a href="#contacto" data-i18n="nav_contact">CONTACTO</a>
-      <button class="lang-toggle lab-lang" type="button" aria-label="Cambiar idioma"><span style="color: #EDE7DD;">ES</span> / EN</button>
+      <button class="lang-toggle lab-lang" id="lang-toggle" type="button" aria-label="Cambiar idioma"><span style="color: #EDE7DD;">ES</span> / EN</button>
       <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20agendar%20una%20consulta%20con%20Emp%C3%ADrica%20Legal%20Lab." target="_blank" rel="noopener" style="background: #CFA892; color: #131E1A; padding: 11px 20px; font-weight: 700; letter-spacing: 0.06em;">AGENDAR →</a>
     </div>
     <button class="lab-nav-toggle" id="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
@@ -220,14 +220,14 @@
     <div style="position: relative; display: flex; flex-direction: column; gap: 34px;">
       <div style="display: flex; align-items: center; gap: 14px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; color: #CFA892;">
         <span style="width: 6px; height: 6px; background: #CFA892; border-radius: 50%; display: inline-block;"></span>
-        <span>CANCÚN · QUINTANA ROO</span>
+        <span data-i18n="lab_eyebrow_1">CANCÚN · QUINTANA ROO</span>
         <span style="color: rgba(207, 168, 146, 0.4);">/</span>
-        <span style="color: #8FA096;">SERVICIOS EN ESPAÑOL E INGLÉS</span>
+        <span style="color: #8FA096;" data-i18n="lab_eyebrow_2">SERVICIOS EN ESPAÑOL E INGLÉS</span>
       </div>
-      <h1 class="lab-h1" style="font-size: 76px; font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; margin: 0; max-width: 900px; text-wrap: pretty;">No somos el típico despacho.<br><span style="color: #CFA892;">Somos tu laboratorio legal.</span></h1>
-      <p style="max-width: 600px; font-size: 17.5px; line-height: 1.64; color: #A6B5AB; margin: 0;">Experiencia jurídica con un enfoque fresco e innovador para acompañar a emprendedores y empresas en cada etapa de su crecimiento.</p>
+      <h1 class="lab-h1" data-i18n="lab_hero_h1" style="font-size: 76px; font-weight: 700; line-height: 1.02; letter-spacing: -0.035em; margin: 0; max-width: 900px; text-wrap: pretty;">No somos el típico despacho.<br><span style="color: #CFA892;">Somos tu laboratorio legal.</span></h1>
+      <p style="max-width: 600px; font-size: 17.5px; line-height: 1.64; color: #A6B5AB; margin: 0;" data-i18n="lab_hero_sub">Experiencia jurídica con un enfoque fresco e innovador para acompañar a emprendedores y empresas en cada etapa de su crecimiento.</p>
       <div class="lab-ctas" style="display: flex; align-items: center; gap: 14px; margin-top: 6px;">
-        <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20agendar%20una%20consulta%20con%20Emp%C3%ADrica%20Legal%20Lab." target="_blank" rel="noopener" style="background: #CFA892; color: #131E1A; padding: 17px 32px; font-size: 14.5px; font-weight: 700; letter-spacing: 0.02em;">Agendar consulta</a>
+        <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20agendar%20una%20consulta%20con%20Emp%C3%ADrica%20Legal%20Lab." target="_blank" rel="noopener" style="background: #CFA892; color: #131E1A; padding: 17px 32px; font-size: 14.5px; font-weight: 700; letter-spacing: 0.02em;" data-i18n="lab_cta_book">Agendar consulta</a>
         <a href="tel:+529982570828" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(237, 231, 221, 0.28); color: #EDE7DD; padding: 17px 32px; font-size: 14.5px; font-weight: 600;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CFA892" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C4 4.7 4.7 4 5.5 4h2.6c.7 0 1.3.5 1.5 1.1l.9 3c.1.6-.1 1.2-.6 1.5l-1.4 1a12 12 0 004.9 4.9l1-1.4c.4-.5.9-.7 1.5-.6l3 .9c.6.2 1.1.8 1.1 1.5v2.6c0 .8-.7 1.5-1.5 1.5A15.5 15.5 0 014 5.5z"></path></svg>
           Llamar y agendar
@@ -237,27 +237,27 @@
       <!-- SPEC SHEET -->
       <div class="lab-spec" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; border-top: 1px solid rgba(207, 168, 146, 0.16); margin-top: 34px; font-family: 'JetBrains Mono', ui-monospace, monospace;">
         <div style="display: flex; flex-direction: column; gap: 9px; padding: 24px 20px 0 0; border-right: 1px solid rgba(207, 168, 146, 0.16);">
-          <span style="font-size: 10px; letter-spacing: 0.14em; color: #6E8077;">RESPUESTA</span>
-          <span style="font-size: 26px; font-weight: 700; color: #EDE7DD; letter-spacing: -0.03em;">INMEDIATA</span>
+          <span style="font-size: 10px; letter-spacing: 0.14em; color: #6E8077;" data-i18n="lab_spec_response">RESPUESTA</span>
+          <span style="font-size: 26px; font-weight: 700; color: #EDE7DD; letter-spacing: -0.03em;" data-i18n="lab_spec_response_v">INMEDIATA</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 9px; padding: 24px 20px 0; border-right: 1px solid rgba(207, 168, 146, 0.16);">
-          <span style="font-size: 10px; letter-spacing: 0.14em; color: #6E8077;">SERVICIOS</span>
+          <span style="font-size: 10px; letter-spacing: 0.14em; color: #6E8077;" data-i18n="lab_spec_services">SERVICIOS</span>
           <span style="font-size: 26px; font-weight: 700; color: #EDE7DD; letter-spacing: -0.02em;">19</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 9px; padding: 24px 20px 0; border-right: 1px solid rgba(207, 168, 146, 0.16);">
-          <span style="font-size: 10px; letter-spacing: 0.14em; color: #6E8077;">GOOGLE</span>
+          <span style="font-size: 10px; letter-spacing: 0.14em; color: #6E8077;" data-i18n="lab_spec_google">GOOGLE</span>
           <span style="font-size: 26px; font-weight: 700; color: #CFA892; letter-spacing: -0.02em;">4.9</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 9px; padding: 24px 20px 0; border-right: 1px solid rgba(207, 168, 146, 0.16);">
-          <span style="font-size: 10px; letter-spacing: 0.14em; color: #6E8077;">IDIOMAS</span>
+          <span style="font-size: 10px; letter-spacing: 0.14em; color: #6E8077;" data-i18n="lab_spec_langs">IDIOMAS</span>
           <span style="font-size: 26px; font-weight: 700; color: #EDE7DD; letter-spacing: -0.02em;">ES·EN</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 9px; padding: 24px 20px 0; border-right: 1px solid rgba(207, 168, 146, 0.16);">
-          <span style="font-size: 10px; letter-spacing: 0.14em; color: #6E8077;">CERTIF.</span>
+          <span style="font-size: 10px; letter-spacing: 0.14em; color: #6E8077;" data-i18n="lab_spec_cert">CERTIF.</span>
           <span style="font-size: 26px; font-weight: 700; color: #EDE7DD; letter-spacing: -0.02em;">ILEC</span>
         </div>
         <div style="display: flex; flex-direction: column; gap: 9px; padding: 24px 0 0 20px;">
-          <span style="font-size: 10px; letter-spacing: 0.14em; color: #6E8077;">HORARIO</span>
+          <span style="font-size: 10px; letter-spacing: 0.14em; color: #6E8077;" data-i18n="lab_spec_hours">HORARIO</span>
           <span style="font-size: 26px; font-weight: 700; color: #EDE7DD; letter-spacing: -0.02em;">9–18</span>
         </div>
       </div>
@@ -268,10 +268,10 @@
   <div class="lab-sec lab-panel" id="servicios" style="background: #1B2C27; padding: 88px 64px;">
     <div class="lab-sec-head" style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 46px;">
       <div style="display: flex; flex-direction: column; gap: 16px;">
-        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; color: #CFA892;">// ÁREAS DE PRÁCTICA</span>
-        <h2 style="font-size: 42px; font-weight: 700; letter-spacing: -0.03em; margin: 0;">Seis módulos, un mismo criterio.</h2>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; color: #CFA892;" data-i18n="lab_svc_tag">// ÁREAS DE PRÁCTICA</span>
+        <h2 style="font-size: 42px; font-weight: 700; letter-spacing: -0.03em; margin: 0;" data-i18n="lab_svc_h2">Seis módulos, un mismo criterio.</h2>
       </div>
-      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px; color: #8FA096;">19 SERVICIOS ACTIVOS</span>
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px; color: #8FA096;" data-i18n="lab_svc_count">19 SERVICIOS ACTIVOS</span>
     </div>
 
     <div class="lab-grid3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;">
@@ -281,7 +281,7 @@
           <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #CFA892; letter-spacing: 0.1em;">01 /</span>
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#CFA892" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3l8 8"></path><path d="M17 7l-4.5 4.5"></path><path d="M3 21h9"></path><path d="M9.5 6.5L6 10l8 8 3.5-3.5z"></path></svg>
         </div>
-        <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;">Litigio y amparo</h3>
+        <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;" data-i18n="lab_c1">Litigio y amparo</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 7px;">
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">JUICIO DE AMPARO</span>
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">CIVIL</span>
@@ -296,7 +296,7 @@
           <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #CFA892; letter-spacing: 0.1em;">02 /</span>
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#CFA892" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.4 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.5l1.2-5.6L4 9l5.6-.6z"></path></svg>
         </div>
-        <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;">Propiedad intelectual</h3>
+        <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;" data-i18n="lab_c2">Propiedad intelectual</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 7px;">
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">REGISTRO DE MARCA</span>
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">IMPI</span>
@@ -310,12 +310,12 @@
           <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #CFA892; letter-spacing: 0.1em;">03 /</span>
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#CFA892" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V8l7-4 7 4v12"></path><path d="M4 20h16"></path><path d="M9.5 20v-5h5v5"></path></svg>
         </div>
-        <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;">Corporativo y preventivo</h3>
+        <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;" data-i18n="lab_c3">Corporativo y preventivo</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 7px;">
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">SOCIEDAD EXPRESS</span>
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">CONTRATOS</span>
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">COMPLIANCE</span>
-          <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">AVISO DE PRIVACIDAD</span>
+          <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;" data-i18n="lab_priv">AVISO DE PRIVACIDAD</span>
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">HOTELES &amp; RENTALS</span>
         </div>
       </div>
@@ -325,7 +325,7 @@
           <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #CFA892; letter-spacing: 0.1em;">04 /</span>
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#CFA892" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 4l9 6.5"></path><path d="M5.5 9.5V20h13V9.5"></path><path d="M10 20v-5.5h4V20"></path></svg>
         </div>
-        <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;">Inmobiliario</h3>
+        <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;" data-i18n="lab_c4">Inmobiliario</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 7px;">
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">DUE DILIGENCE</span>
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">ZONA RESTRINGIDA</span>
@@ -339,7 +339,7 @@
           <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #CFA892; letter-spacing: 0.1em;">05 /</span>
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#CFA892" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z"></path><path d="M8.5 9.5h7M8.5 13h7M8.5 16.5h4"></path></svg>
         </div>
-        <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;">Edictos en Quintana Roo</h3>
+        <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;" data-i18n="lab_c5">Edictos en Quintana Roo</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 7px;">
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">JUDICIALES</span>
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">EMPLAZAMIENTO</span>
@@ -353,7 +353,7 @@
           <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #CFA892; letter-spacing: 0.1em;">06 /</span>
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#CFA892" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"></circle><path d="M5 20c0-3.6 3.1-5.6 7-5.6s7 2 7 5.6"></path></svg>
         </div>
-        <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;">Talento digital</h3>
+        <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;" data-i18n="lab_c6">Talento digital</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 7px;">
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">INFLUENCERS</span>
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">CONTRATOS DE MARCA</span>
@@ -367,29 +367,29 @@
   <!-- MÉTODO -->
   <div class="lab-sec" id="metodo" style="padding: 88px 64px;">
     <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 46px;">
-      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; color: #CFA892;">// CÓMO TRABAJAMOS</span>
-      <h2 style="font-size: 42px; font-weight: 700; letter-spacing: -0.03em; margin: 0;">Un proceso, sin sorpresas.</h2>
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; color: #CFA892;" data-i18n="lab_met_tag">// CÓMO TRABAJAMOS</span>
+      <h2 style="font-size: 42px; font-weight: 700; letter-spacing: -0.03em; margin: 0;" data-i18n="lab_met_h2">Un proceso, sin sorpresas.</h2>
     </div>
     <div class="lab-grid4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid rgba(207, 168, 146, 0.16);">
       <div style="padding: 30px 26px 0 0; border-right: 1px solid rgba(207, 168, 146, 0.16); display: flex; flex-direction: column; gap: 12px;">
         <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 34px; font-weight: 700; color: rgba(207, 168, 146, 0.35); letter-spacing: -0.03em;">01</span>
-        <h3 style="font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.015em;">Agendas tu consulta</h3>
-        <p style="font-size: 14.5px; line-height: 1.6; color: #8FA096; margin: 0;">Nos llamas o escribes por WhatsApp y reservamos un espacio para revisar tu caso.</p>
+        <h3 style="font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.015em;" data-i18n="lab_m1">Agendas tu consulta</h3>
+        <p style="font-size: 14.5px; line-height: 1.6; color: #8FA096; margin: 0;" data-i18n="lab_m1d">Nos llamas o escribes por WhatsApp y reservamos un espacio para revisar tu caso.</p>
       </div>
       <div style="padding: 30px 26px 0; border-right: 1px solid rgba(207, 168, 146, 0.16); display: flex; flex-direction: column; gap: 12px;">
         <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 34px; font-weight: 700; color: rgba(207, 168, 146, 0.35); letter-spacing: -0.03em;">02</span>
-        <h3 style="font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.015em;">Propuesta y alcance</h3>
+        <h3 style="font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.015em;" data-i18n="lab_m2">Propuesta y alcance</h3>
         <p style="font-size: 14.5px; line-height: 1.6; color: #8FA096; margin: 0;">Entregables, tiempos y honorarios por escrito antes de empezar.</p>
       </div>
       <div style="padding: 30px 26px 0; border-right: 1px solid rgba(207, 168, 146, 0.16); display: flex; flex-direction: column; gap: 12px;">
         <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 34px; font-weight: 700; color: rgba(207, 168, 146, 0.35); letter-spacing: -0.03em;">03</span>
-        <h3 style="font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.015em;">Ejecución</h3>
+        <h3 style="font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.015em;" data-i18n="lab_m3">Ejecución</h3>
         <p style="font-size: 14.5px; line-height: 1.6; color: #8FA096; margin: 0;">Un responsable asignado y avances documentados en cada etapa.</p>
       </div>
       <div style="padding: 30px 0 0 26px; display: flex; flex-direction: column; gap: 12px;">
         <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 34px; font-weight: 700; color: rgba(207, 168, 146, 0.35); letter-spacing: -0.03em;">04</span>
-        <h3 style="font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.015em;">Seguimiento</h3>
-        <p style="font-size: 14.5px; line-height: 1.6; color: #8FA096; margin: 0;">Respuesta inmediata durante todo el asunto, en español o en inglés.</p>
+        <h3 style="font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.015em;" data-i18n="lab_m4">Seguimiento</h3>
+        <p style="font-size: 14.5px; line-height: 1.6; color: #8FA096; margin: 0;" data-i18n="lab_m4d">Respuesta inmediata durante todo el asunto, en español o en inglés.</p>
       </div>
     </div>
   </div>
@@ -398,7 +398,7 @@
   <div class="lab-sec lab-sec-tight" id="opiniones" style="padding: 0 64px 88px;">
     <div class="lab-grid2" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 20px;">
       <div style="border: 1px solid rgba(207, 168, 146, 0.2); background: #1B2C27; padding: 34px 30px; display: flex; flex-direction: column; gap: 14px;">
-        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.14em; color: #6E8077;">GOOGLE REVIEWS</span>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.14em; color: #6E8077;" data-i18n="lab_rev_tag">GOOGLE REVIEWS</span>
         <div style="display: flex; align-items: baseline; gap: 12px;">
           <span style="font-size: 58px; font-weight: 700; letter-spacing: -0.04em; color: #CFA892; line-height: 1;">4.9</span>
           <span style="font-size: 15px; color: #8FA096;">/ 5.0</span>
@@ -410,14 +410,14 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="#CFA892"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"></path></svg>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="#CFA892"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"></path></svg>
         </div>
-        <span style="font-size: 14px; color: #8FA096;">16 opiniones verificadas</span>
+        <span style="font-size: 14px; color: #8FA096;" data-i18n="lab_rev_count">16 opiniones verificadas</span>
       </div>
       <div style="border: 1px solid rgba(207, 168, 146, 0.2); background: #1B2C27; padding: 34px 30px; display: flex; gap: 30px; align-items: center;">
         <div style="flex-shrink: 0; width: 62px; height: 62px; border: 1px solid #CFA892; display: flex; align-items: center; justify-content: center;">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#CFA892" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 9h18M3 15h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"></path></svg>
         </div>
         <div style="display: flex; flex-direction: column; gap: 9px;">
-          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.14em; color: #6E8077;">CERTIFICACIÓN</span>
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.14em; color: #6E8077;" data-i18n="lab_cert_tag">CERTIFICACIÓN</span>
           <h3 style="font-size: 24px; font-weight: 700; margin: 0; letter-spacing: -0.02em;">Cambridge ILEC — We speak English</h3>
           <p style="font-size: 15px; line-height: 1.6; color: #8FA096; margin: 0; max-width: 560px;">International Legal English Certificate. Atendemos clientes internacionales, inversión extranjera y operaciones transfronterizas en todo México.</p>
         </div>
@@ -438,22 +438,22 @@
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 24px;">
-        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; color: #CFA892;">// EL EQUIPO</span>
-        <h2 style="font-size: 42px; font-weight: 700; letter-spacing: -0.03em; margin: 0; line-height: 1.06;">Detrás de cada asunto hay un abogado, no un gestor.</h2>
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; color: #CFA892;" data-i18n="lab_team_tag">// EL EQUIPO</span>
+        <h2 style="font-size: 42px; font-weight: 700; letter-spacing: -0.03em; margin: 0; line-height: 1.06;" data-i18n="lab_team_h2">Detrás de cada asunto hay un abogado, no un gestor.</h2>
         <p style="font-size: 17px; line-height: 1.64; color: #A6B5AB; margin: 0; max-width: 560px;">Combinamos experiencia jurídica con un enfoque fresco e innovador para acompañar a emprendedores y empresas en cada etapa de su crecimiento. Cuando hay un texto, un plazo o un contrato de por medio, lo revisa un abogado — no un gestor.</p>
 
         <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 1px solid rgba(207, 168, 146, 0.16); margin-top: 4px;">
           <div style="display: flex; flex-direction: column; gap: 7px; padding: 24px 24px 0 0; border-right: 1px solid rgba(207, 168, 146, 0.16);">
             <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.02em;">Jorge Israel Clemente Marie</span>
-            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.12em; color: #CFA892;">SOCIO TITULAR</span>
-            <span style="font-size: 14px; line-height: 1.55; color: #8FA096;">Litigio estratégico</span>
-            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.1em; color: #6E8077; margin-top: 2px;">MAESTRO EN AMPARO</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.12em; color: #CFA892;" data-i18n="lab_role_1">SOCIO TITULAR</span>
+            <span style="font-size: 14px; line-height: 1.55; color: #8FA096;" data-i18n="lab_area_1">Litigio estratégico</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.1em; color: #6E8077; margin-top: 2px;" data-i18n="lab_deg_1">MAESTRO EN AMPARO</span>
           </div>
           <div style="display: flex; flex-direction: column; gap: 7px; padding: 24px 0 0 24px;">
             <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.02em;">Frida Delgado Pujol</span>
-            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.12em; color: #CFA892;">SOCIA TITULAR</span>
-            <span style="font-size: 14px; line-height: 1.55; color: #8FA096;">Propiedad intelectual, derecho digital y creadores</span>
-            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.1em; color: #6E8077; margin-top: 2px;">MAESTRA EN AMPARO</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.12em; color: #CFA892;" data-i18n="lab_role_2">SOCIA TITULAR</span>
+            <span style="font-size: 14px; line-height: 1.55; color: #8FA096;" data-i18n="lab_area_2">Propiedad intelectual, derecho digital y creadores</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.1em; color: #6E8077; margin-top: 2px;" data-i18n="lab_deg_2">MAESTRA EN AMPARO</span>
           </div>
         </div>
 
@@ -462,8 +462,8 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CFA892" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 9h18M3 15h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"></path></svg>
             CAMBRIDGE ILEC
           </span>
-          <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 9px 14px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; color: #A6B5AB;">ESPAÑOL · ENGLISH</span>
-          <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 9px 14px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; color: #A6B5AB;">RESPUESTA INMEDIATA</span>
+          <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 9px 14px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; color: #A6B5AB;" data-i18n="lab_chip_lang">ESPAÑOL · ENGLISH</span>
+          <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 9px 14px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.08em; color: #A6B5AB;" data-i18n="lab_chip_resp">RESPUESTA INMEDIATA</span>
         </div>
       </div>
 
@@ -473,7 +473,7 @@
   <!-- CTA -->
   <div class="lab-cta" id="contacto" style="background: #CFA892; color: #131E1A; padding: 76px 64px; display: flex; align-items: center; justify-content: space-between; gap: 60px;">
     <div style="display: flex; flex-direction: column; gap: 16px;">
-      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; color: rgba(19, 30, 26, 0.6);">// AGENDA TU CONSULTA</span>
+      <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; color: rgba(19, 30, 26, 0.6);" data-i18n="lab_ctab_tag">// AGENDA TU CONSULTA</span>
       <h2 style="font-size: 48px; font-weight: 700; letter-spacing: -0.035em; margin: 0; line-height: 1.05;">Cuéntanos tu caso.<br>Te respondemos de inmediato.</h2>
     </div>
     <div style="display: flex; flex-direction: column; gap: 12px; flex-shrink: 0;">
@@ -488,7 +488,7 @@
     <div style="display: flex; gap: 26px;">
       <a href="mailto:frida@empirica.mx">FRIDA@EMPIRICA.MX</a>
       <a href="https://instagram.com/empiricalegalab" target="_blank" rel="noopener">@EMPIRICALEGALAB</a>
-      <a href="aviso-de-privacidad.html">AVISO DE PRIVACIDAD</a><a href="terminos-y-condiciones.html">TÉRMINOS</a>
+      <a href="aviso-de-privacidad.html">AVISO DE PRIVACIDAD</a><a href="terminos-y-condiciones.html" data-i18n="lab_terms">TÉRMINOS</a>
     </div>
   </div>
 
