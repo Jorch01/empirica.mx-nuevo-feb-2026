@@ -631,7 +631,8 @@
                 var target = document.querySelector(href);
                 if (target) {
                     e.preventDefault();
-                    var navbarHeight = document.getElementById('navbar').offsetHeight;
+                    var navbarEl = document.getElementById('navbar');
+                    var navbarHeight = navbarEl ? navbarEl.offsetHeight : 0;
                     var targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
 
                     window.scrollTo({
@@ -723,6 +724,53 @@
             svc_litigioinmob_desc: 'Revindicatory actions, adverse possession, lease disputes and amparo against government actions in real estate matters.',
             badge_legal: 'Legal Service',
             btn_more_info: 'More Information',
+            // ── Portada "Legal Lab" ──
+            nav_method: 'METHOD',
+            lab_eyebrow_1: 'CANCÚN · QUINTANA ROO',
+            lab_eyebrow_2: 'SERVICES IN SPANISH AND ENGLISH',
+            lab_hero_h1: 'We are not the typical law firm.<br><span style="color: #CFA892;">We are your legal lab.</span>',
+            lab_hero_sub: 'Legal experience with a fresh, innovative approach, supporting entrepreneurs and companies at every stage of their growth.',
+            lab_cta_book: 'Book a consultation',
+            lab_spec_response: 'RESPONSE',
+            lab_spec_response_v: 'IMMEDIATE',
+            lab_spec_services: 'SERVICES',
+            lab_spec_google: 'GOOGLE',
+            lab_spec_langs: 'LANGUAGES',
+            lab_spec_cert: 'CERTIF.',
+            lab_spec_hours: 'HOURS',
+            lab_svc_tag: '// PRACTICE AREAS',
+            lab_svc_h2: 'Six modules, one standard.',
+            lab_svc_count: '19 ACTIVE SERVICES',
+            lab_c1: 'Litigation &amp; amparo',
+            lab_c2: 'Intellectual property',
+            lab_c3: 'Corporate &amp; preventive',
+            lab_c4: 'Real estate',
+            lab_c5: 'Legal notices in Quintana Roo',
+            lab_c6: 'Digital talent',
+            lab_met_tag: '// HOW WE WORK',
+            lab_met_h2: 'One process, no surprises.',
+            lab_m1: 'You book your consultation',
+            lab_m1d: 'Call us or message us on WhatsApp and we set aside time to review your case.',
+            lab_m2: 'Proposal and scope',
+            lab_m3: 'Execution',
+            lab_m4: 'Follow-up',
+            lab_m4d: 'Immediate response throughout the matter, in Spanish or English.',
+            lab_rev_tag: 'GOOGLE REVIEWS',
+            lab_rev_count: '16 verified reviews',
+            lab_cert_tag: 'CERTIFICATION',
+            lab_team_tag: '// THE TEAM',
+            lab_team_h2: 'Behind every matter there is a lawyer, not a clerk.',
+            lab_role_1: 'MANAGING PARTNER',
+            lab_role_2: 'MANAGING PARTNER',
+            lab_area_1: 'Strategic litigation',
+            lab_area_2: 'Intellectual property, digital law and creators',
+            lab_deg_1: 'LL.M. IN AMPARO',
+            lab_deg_2: 'LL.M. IN AMPARO',
+            lab_chip_lang: 'SPANISH · ENGLISH',
+            lab_chip_resp: 'IMMEDIATE RESPONSE',
+            lab_ctab_tag: '// BOOK YOUR CONSULTATION',
+            lab_priv: 'PRIVACY NOTICE',
+            lab_terms: 'TERMS',
             // Category 5 — Edictos
             tab_edictos: 'Legal Notices',
             edictos_title: 'Legal Notice (Edicto) Publication in Quintana Roo &amp; Yucatán',
@@ -773,16 +821,22 @@
 
     var currentLang = 'es';
 
+    function setLangLabel(btn, lang) {
+        // El diseño muestra "ES / EN" y resalta el idioma activo
+        btn.innerHTML = lang === 'en' ? 'ES / <b>EN</b>' : '<b>ES</b> / EN';
+    }
+
     function initLanguageToggle() {
         var btn = document.getElementById('lang-toggle');
         if (!btn) return;
+        setLangLabel(btn, 'es');
 
         // Restore saved language
         var saved = localStorage.getItem('empirica_lang');
         if (saved === 'en') {
             currentLang = 'en';
             applyTranslations('en');
-            btn.textContent = 'ES';
+            setLangLabel(btn, 'en');
             document.documentElement.lang = 'en';
         }
 
@@ -790,12 +844,12 @@
             if (currentLang === 'es') {
                 currentLang = 'en';
                 applyTranslations('en');
-                btn.textContent = 'ES';
+                setLangLabel(btn, 'en');
                 document.documentElement.lang = 'en';
             } else {
                 currentLang = 'es';
                 applyTranslations('es');
-                btn.textContent = 'EN';
+                setLangLabel(btn, 'es');
                 document.documentElement.lang = 'es';
             }
             localStorage.setItem('empirica_lang', currentLang);
