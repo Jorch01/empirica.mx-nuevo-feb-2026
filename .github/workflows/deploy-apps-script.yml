@@ -1,0 +1,83 @@
+name: Desplegar Apps Script
+
+# Sube el código de apps-script/<proyecto>/ a Google Apps Script y actualiza
+# la implementación web existente (la URL no cambia). Configuración única en
+# apps-script/README.md. Un proyecto sin sus secrets se omite sin fallar.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps-script/**'
+      - '.github/workflows/deploy-apps-script.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-apps-script
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: reviews
+            script_secret: APPS_SCRIPT_REVIEWS_ID
+            deployment_secret: APPS_SCRIPT_REVIEWS_DEPLOYMENT_ID
+          - project: newsletter
+            script_secret: APPS_SCRIPT_NEWSLETTER_ID
+            deployment_secret: APPS_SCRIPT_NEWSLETTER_DEPLOYMENT_ID
+    env:
+      CLASPRC_JSON: ${{ secrets.CLASPRC_JSON }}
+      SCRIPT_ID: ${{ secrets[matrix.script_secret] }}
+      DEPLOYMENT_ID: ${{ secrets[matrix.deployment_secret] }}
+      GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+      GOOGLE_PLACE_ID: ${{ secrets.GOOGLE_PLACE_ID }}
+    steps:
+      - name: Revisar configuración
+        id: check
+        run: |
+          if [ -z "$CLASPRC_JSON" ] || [ -z "$SCRIPT_ID" ]; then
+            echo "::notice::${{ matrix.project }}: faltan los secrets CLASPRC_JSON o ${{ matrix.script_secret }}; se omite."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.check.outputs.skip != 'true'
+
+      - uses: actions/setup-node@v4
+        if: steps.check.outputs.skip != 'true'
+        with:
+          node-version: '20'
+
+      - name: Preparar clasp
+        if: steps.check.outputs.skip != 'true'
+        working-directory: apps-script/${{ matrix.project }}
+        run: |
+          npm install -g @google/clasp@3.4.1
+          printf '%s' "$CLASPRC_JSON" > ~/.clasprc.json
+          printf '{"scriptId":"%s","rootDir":"."}' "$SCRIPT_ID" > .clasp.json
+          # Inyecta credenciales que no deben vivir en el repositorio público
+          if [ -n "$GOOGLE_PLACES_API_KEY" ]; then sed -i "s|__GOOGLE_API_KEY__|$GOOGLE_PLACES_API_KEY|g" Code.js; fi
+          if [ -n "$GOOGLE_PLACE_ID" ]; then sed -i "s|__PLACE_ID__|$GOOGLE_PLACE_ID|g" Code.js; fi
+
+      - name: Subir código
+        if: steps.check.outputs.skip != 'true'
+        working-directory: apps-script/${{ matrix.project }}
+        run: clasp push --force
+
+      - name: Actualizar implementación web
+        if: steps.check.outputs.skip != 'true'
+        working-directory: apps-script/${{ matrix.project }}
+        run: |
+          if [ -z "$DEPLOYMENT_ID" ]; then
+            echo "::warning::${{ matrix.project }}: código subido, pero falta ${{ matrix.deployment_secret }}; la web app sigue en la versión anterior."
+            exit 0
+          fi
+          clasp redeploy "$DEPLOYMENT_ID" --description "GitHub ${GITHUB_SHA::7}"
+
+      - name: Limpiar credenciales
+        if: always()
+        run: rm -f ~/.clasprc.json

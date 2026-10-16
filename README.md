@@ -12,6 +12,8 @@ Sitio web moderno para **Empírica Legal Lab** — despacho jurídico enfocado e
 │   ├── logo/                     # Coloca tu logo aquí
 │   ├── services/                 # Imágenes de servicios (opcional)
 │   └── hero/                     # Foto para "Sobre Nosotros"
+├── apps-script/                  # Google Apps Script (reseñas, newsletter)
+│                                 #   se despliega solo desde GitHub: ver apps-script/README.md
 ├── CNAME                         # Dominio personalizado
 └── .gitignore
 ```
