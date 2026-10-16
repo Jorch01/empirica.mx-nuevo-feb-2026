@@ -11,7 +11,7 @@
      * Para activar el newsletter:
      * 1. Crea una Google Sheet nueva
      * 2. Ve a Extensiones > Apps Script
-     * 3. Pega el código que está en google-apps-script.js
+     * 3. Pega el código que está en apps-script/newsletter/Code.js
      * 4. Haz deploy como Web App (acceso: Anyone)
      * 5. Copia la URL y pégala aquí:
      */
@@ -242,7 +242,7 @@
     /* ──────────────────────────────────────────────────
        DOM Ready
        ────────────────────────────────────────────────── */
-    /* URL del Google Apps Script para reseñas (opcional — ver google-apps-script-reviews.js) */
+    /* URL del Google Apps Script para reseñas (opcional — ver apps-script/reviews/Code.js) */
     var GOOGLE_REVIEWS_URL = 'https://script.google.com/macros/s/AKfycbwNC-E8ZdUxDJu3tQHbz0FQz3ZvZoFqxIZSa9dSL8zNsDCmMx1_VYFQbUjMLl9XFQCbcg/exec'; // Pega aquí la URL de tu Apps Script para reseñas
 
     document.addEventListener('DOMContentLoaded', function () {

@@ -13,38 +13,23 @@
  *   hoja "Reviews" todas las que ha visto. Así el historial crece con el tiempo.
  * - Si Google falla, se responde con lo último guardado en la hoja.
  *
- * INSTRUCCIONES:
- * 1. Obtén una API Key de Google Cloud con Google Places API habilitada
- *    - Ve a https://console.cloud.google.com
- *    - Crea un proyecto o selecciona uno existente
- *    - Habilita "Places API"
- *    - Crea una API Key en "Credentials"
+ * DESPLIEGUE AUTOMÁTICO:
+ * Este archivo se sube solo a Apps Script desde GitHub cada vez que cambia en
+ * la rama main (ver apps-script/README.md). No lo edites en el editor de
+ * Apps Script: el siguiente despliegue lo sobrescribiría.
  *
- * 2. Obtén tu Place ID de Google:
- *    - Ve a https://developers.google.com/maps/documentation/places/web-service/place-id
- *    - Busca "Empírica Legal Lab" y copia el Place ID
+ * La API Key y el Place ID NO van en este archivo (el repositorio es público).
+ * GitHub los inyecta al desplegar desde los secrets GOOGLE_PLACES_API_KEY y
+ * GOOGLE_PLACE_ID. También se pueden poner en Apps Script > Configuración del
+ * proyecto > Propiedades del script, con los nombres GOOGLE_API_KEY y PLACE_ID.
  *
- * 3. Crea una nueva Google Sheet
- *    - Nombra la primera hoja "Reviews"
- *
- * 4. Ve a Extensiones > Apps Script
- *    - Pega ESTE archivo completo
- *    - Reemplaza GOOGLE_API_KEY y PLACE_ID con tus valores
- *
- * 5. Haz deploy como Web App (acceso: Anyone)
- *    - Copia la URL y pégala en js/main.js en GOOGLE_REVIEWS_URL
- *    - Si ya tenías el script publicado: "Implementar > Administrar
- *      implementaciones > editar (lápiz) > Versión: Nueva versión". Así la URL
- *      no cambia y no hay que tocar js/main.js.
- *
- * 6. (Opcional) Trigger para que la hoja se actualice aunque nadie visite el sitio:
- *    - En Apps Script, ve a "Triggers" (ícono de reloj)
- *    - Agrega un trigger para "fetchAndCacheReviews"
- *    - Tipo: "Time-driven", "Hour timer", "Every 6 hours"
+ * Trigger opcional para que la hoja se actualice aunque nadie visite el sitio:
+ * ejecuta una vez la función setupTrigger desde el editor de Apps Script.
  */
 
-var GOOGLE_API_KEY = 'REPLACE_WITH_YOUR_GOOGLE_API_KEY';
-var PLACE_ID = 'REPLACE_WITH_YOUR_PLACE_ID';
+var PROPS = PropertiesService.getScriptProperties();
+var GOOGLE_API_KEY = PROPS.getProperty('GOOGLE_API_KEY') || '__GOOGLE_API_KEY__';
+var PLACE_ID = PROPS.getProperty('PLACE_ID') || '__PLACE_ID__';
 
 /* Minutos que una consulta a Google se reutiliza antes de volver a pedirla.
    Cada actualización hace 2 consultas a Places API; súbelo si quieres gastar menos. */
@@ -110,7 +95,7 @@ function reviewKey(r) {
 }
 
 function fetchAndCacheReviews() {
-  if (GOOGLE_API_KEY === 'REPLACE_WITH_YOUR_GOOGLE_API_KEY' || PLACE_ID === 'REPLACE_WITH_YOUR_PLACE_ID') {
+  if (GOOGLE_API_KEY.indexOf('__') === 0 || PLACE_ID.indexOf('__') === 0) {
     Logger.log('Please configure GOOGLE_API_KEY and PLACE_ID');
     return null;
   }
@@ -165,4 +150,12 @@ function fetchAndCacheReviews() {
 
   Logger.log('Reviews cached successfully: ' + reviews.length + ' reviews');
   return cacheData;
+}
+
+/* Crea (una sola vez) un trigger que refresca las reseñas cada 6 horas. */
+function setupTrigger() {
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === 'fetchAndCacheReviews') ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger('fetchAndCacheReviews').timeBased().everyHours(6).create();
 }

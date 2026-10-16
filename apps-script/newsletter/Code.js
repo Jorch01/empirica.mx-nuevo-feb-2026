@@ -17,6 +17,9 @@
  * 13. Pega esa URL en js/main.js en la variable GOOGLE_SHEET_URL
  *
  * ¡Listo! Cada suscriptor se guardará automáticamente en tu Google Sheet.
+ *
+ * DESPLIEGUE AUTOMÁTICO: una vez configurado (ver apps-script/README.md), los
+ * cambios a este archivo en la rama main se suben solos a Apps Script.
  */
 
 function doPost(e) {
