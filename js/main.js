@@ -650,16 +650,221 @@
     function initGoogleReviews() {
         if (!GOOGLE_REVIEWS_URL) return;
 
-        fetch(GOOGLE_REVIEWS_URL)
+        var modal = document.getElementById('g-modal');
+        var openBtn = document.getElementById('g-open-all');
+        var closeBtn = document.getElementById('g-modal-close');
+        if (openBtn) openBtn.addEventListener('click', function () { openReviewsModal(0); });
+        if (closeBtn) closeBtn.addEventListener('click', closeReviewsModal);
+        if (modal) {
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) closeReviewsModal();
+            });
+        }
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeReviewsModal();
+        });
+
+        // Siempre se piden datos frescos: el Apps Script decide si consulta a Google
+        fetch(GOOGLE_REVIEWS_URL + (GOOGLE_REVIEWS_URL.indexOf('?') === -1 ? '?' : '&') + 't=' + Date.now())
             .then(function (response) { return response.json(); })
             .then(function (data) {
-                if (data && data.reviews && data.reviews.length > 0) {
+                if (data && (data.rating || (data.reviews && data.reviews.length))) {
+                    reviewsData = data;
                     renderReviews(data);
                 }
             })
             .catch(function () {
-                // Fallback: keep static reviews in HTML
+                // Fallback: se queda la calificación estática del HTML
             });
+    }
+
+    var reviewsData = null;
+    var reviewsFilter = 0;
+
+    function tr(es, en) { return currentLang === 'en' ? en : es; }
+
+    function escapeHtml(str) {
+        return String(str == null ? '' : str)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function reviewText(r) { return (r.text || '').replace(/\s+/g, ' ').trim(); }
+
+    /* Las destacadas combinan estrellas, extensión del comentario y antigüedad.
+       Nunca entran las de menos de 4 estrellas ni las que no traen comentario. */
+    function reviewScore(r) {
+        var len = reviewText(r).length;
+        var ageDays = r.time ? (Date.now() / 1000 - r.time) / 86400 : 9999;
+        var recency = ageDays < 365 ? 10 * (1 - ageDays / 365) : 0;
+        return (r.rating || 0) * 20 + Math.min(len, 500) / 10 + recency;
+    }
+
+    function pickFeatured(reviews, max) {
+        return reviews
+            .filter(function (r) { return (r.rating || 0) >= 4 && reviewText(r).length >= 25; })
+            .sort(function (a, b) { return reviewScore(b) - reviewScore(a); })
+            .slice(0, max);
+    }
+
+    var STAR_PATH = 'M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z';
+
+    function starsSvg(rating, size) {
+        var html = '';
+        for (var i = 1; i <= 5; i++) {
+            var fill = Math.max(0, Math.min(1, rating - (i - 1)));
+            var pct = Math.round(fill * 100);
+            html += '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" aria-hidden="true">' +
+                '<defs><linearGradient id="gs' + size + '-' + pct + '"><stop offset="' + pct + '%" stop-color="#CFA892"></stop>' +
+                '<stop offset="' + pct + '%" stop-color="rgba(207, 168, 146, 0.22)"></stop></linearGradient></defs>' +
+                '<path d="' + STAR_PATH + '" fill="url(#gs' + size + '-' + pct + ')"></path></svg>';
+        }
+        return html;
+    }
+
+    function googleLinks(data) {
+        var id = data.placeId ? encodeURIComponent(data.placeId) : '';
+        return {
+            all: id ? 'https://search.google.com/local/reviews?placeid=' + id
+                : (data.url || 'https://www.google.com/maps/search/?api=1&query=Emp%C3%ADrica+Legal+Lab+Canc%C3%BAn'),
+            write: id ? 'https://search.google.com/local/writereview?placeid=' + id : ''
+        };
+    }
+
+    function reviewCardHtml(r, clamp) {
+        var name = r.author || tr('Usuario de Google', 'Google user');
+        var avatar = r.photo
+            ? '<img src="' + escapeHtml(r.photo) + '" alt="" loading="lazy" referrerpolicy="no-referrer">'
+            : escapeHtml(name.charAt(0).toUpperCase());
+        var text = reviewText(r);
+        return '<div class="lab-rev-head">' +
+                '<span class="lab-rev-avatar">' + avatar + '</span>' +
+                '<span class="lab-rev-meta">' +
+                    '<span class="lab-rev-author">' + escapeHtml(name) + '</span>' +
+                    '<span class="lab-rev-stars" aria-label="' + (r.rating || 0) + ' / 5">' + starsSvg(r.rating || 0, 12) + '</span>' +
+                '</span>' +
+                '<span class="lab-rev-date">' + escapeHtml(r.date || '') + '</span>' +
+            '</div>' +
+            (text
+                ? '<p class="lab-rev-text' + (clamp ? ' is-clamped' : '') + '">' + escapeHtml(text) + '</p>'
+                : '<p class="lab-rev-text is-empty">' + tr('Calificó sin dejar comentario.', 'Rated without a comment.') + '</p>');
+    }
+
+    function renderReviews(data) {
+        var reviews = data.reviews || [];
+        var total = data.total || reviews.length;
+
+        // Calificación general (hero y panel)
+        if (data.rating) {
+            document.querySelectorAll('.js-g-rating').forEach(function (el) {
+                el.textContent = Number(data.rating).toFixed(1);
+            });
+            var starsEl = document.getElementById('g-stars');
+            if (starsEl) starsEl.innerHTML = starsSvg(data.rating, 15);
+        }
+        var countEl = document.getElementById('g-count');
+        if (countEl && total) {
+            countEl.removeAttribute('data-i18n'); // ya no lo pisa el selector de idioma
+            countEl.textContent = total + tr(' opiniones en Google', ' reviews on Google');
+        }
+
+        // Destacadas
+        var grid = document.getElementById('g-featured');
+        if (grid) {
+            var featured = pickFeatured(reviews, 3);
+            grid.innerHTML = '';
+            featured.forEach(function (r) {
+                var card = document.createElement('button');
+                card.type = 'button';
+                card.className = 'lab-rev-card';
+                card.innerHTML = reviewCardHtml(r, true);
+                card.addEventListener('click', function () { openReviewsModal(0); });
+                grid.appendChild(card);
+            });
+            grid.hidden = featured.length === 0;
+        }
+
+        var openBtn = document.getElementById('g-open-all');
+        if (openBtn) {
+            openBtn.hidden = reviews.length === 0;
+            openBtn.innerHTML = tr('LEER TODAS LAS RESEÑAS', 'READ ALL REVIEWS') + ' →';
+        }
+
+        var modal = document.getElementById('g-modal');
+        if (modal && !modal.hidden) renderReviewsModal();
+    }
+
+    function renderReviewsModal() {
+        var data = reviewsData;
+        if (!data) return;
+        var reviews = (data.reviews || []).slice().sort(function (a, b) { return (b.time || 0) - (a.time || 0); });
+        var links = googleLinks(data);
+
+        var title = document.getElementById('g-modal-title');
+        if (title) title.textContent = tr('Todas las reseñas', 'All reviews');
+
+        // Filtros por estrellas (solo los que tienen reseñas)
+        var filters = document.getElementById('g-filters');
+        if (filters) {
+            var counts = { 0: reviews.length };
+            reviews.forEach(function (r) { counts[r.rating] = (counts[r.rating] || 0) + 1; });
+            var html = '';
+            [0, 5, 4, 3, 2, 1].forEach(function (n) {
+                if (!counts[n]) return;
+                var label = n === 0 ? tr('Todas', 'All') : n + '★';
+                html += '<button type="button" data-stars="' + n + '" aria-pressed="' + (reviewsFilter === n) + '"' +
+                    (reviewsFilter === n ? ' class="active"' : '') + '>' + label + ' <span>' + counts[n] + '</span></button>';
+            });
+            filters.innerHTML = html;
+            filters.querySelectorAll('button').forEach(function (b) {
+                b.addEventListener('click', function () {
+                    reviewsFilter = Number(this.getAttribute('data-stars'));
+                    renderReviewsModal();
+                });
+            });
+        }
+
+        var list = document.getElementById('g-list');
+        if (list) {
+            var shown = reviews.filter(function (r) { return !reviewsFilter || r.rating === reviewsFilter; });
+            list.innerHTML = shown.map(function (r) {
+                return '<article class="lab-rev-item">' + reviewCardHtml(r, false) + '</article>';
+            }).join('');
+        }
+
+        var foot = document.getElementById('g-modal-foot');
+        if (foot) {
+            var total = data.total || reviews.length;
+            var note = total > reviews.length
+                ? tr('Mostramos ' + reviews.length + ' de ' + total + ' reseñas (las que Google comparte con sitios externos). ',
+                     'Showing ' + reviews.length + ' of ' + total + ' reviews (the ones Google shares with external sites). ')
+                : '';
+            foot.innerHTML = '<p>' + note + '</p>' +
+                '<div class="lab-rev-modal-links">' +
+                    '<a href="' + escapeHtml(links.all) + '" target="_blank" rel="noopener">' + tr('Ver todas en Google', 'See all on Google') + ' →</a>' +
+                    (links.write ? '<a href="' + escapeHtml(links.write) + '" target="_blank" rel="noopener">' + tr('Escribir una reseña', 'Write a review') + ' →</a>' : '') +
+                '</div>';
+        }
+    }
+
+    function openReviewsModal(stars) {
+        var modal = document.getElementById('g-modal');
+        if (!modal || !reviewsData) return;
+        reviewsFilter = stars || 0;
+        renderReviewsModal();
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        var closeBtn = document.getElementById('g-modal-close');
+        if (closeBtn) closeBtn.focus();
+    }
+
+    function closeReviewsModal() {
+        var modal = document.getElementById('g-modal');
+        if (!modal || modal.hidden) return;
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        var openBtn = document.getElementById('g-open-all');
+        if (openBtn) openBtn.focus();
     }
 
     /* ──────────────────────────────────────────────────
@@ -757,6 +962,9 @@
             lab_m4d: 'Immediate response throughout the matter, in Spanish or English.',
             lab_rev_tag: 'GOOGLE REVIEWS',
             lab_rev_count: '16 verified reviews',
+            lab_rev_all: 'READ ALL REVIEWS',
+            lab_rev_modal_h: 'All reviews',
+            lab_svc_more: 'VIEW SERVICE →',
             lab_cert_tag: 'CERTIFICATION',
             lab_team_tag: '// THE TEAM',
             lab_team_h2: 'Behind every matter there is a lawyer, not a clerk.',
@@ -853,6 +1061,7 @@
                 document.documentElement.lang = 'es';
             }
             localStorage.setItem('empirica_lang', currentLang);
+            if (reviewsData) renderReviews(reviewsData);
         });
     }
 
@@ -873,62 +1082,6 @@
                     el.innerHTML = TRANSLATIONS.en[key];
                 }
             }
-        });
-    }
-
-    function renderReviews(data) {
-        var grid = document.getElementById('reviews-grid');
-        var scoreEl = document.getElementById('reviews-score');
-        var starsEl = document.getElementById('reviews-stars');
-        var countEl = document.getElementById('reviews-count');
-
-        if (!grid) return;
-
-        // Update summary
-        if (data.rating && scoreEl) {
-            scoreEl.textContent = data.rating.toFixed(1);
-        }
-        if (data.total && countEl) {
-            countEl.textContent = data.total + ' opiniones en Google';
-        }
-        if (data.rating && starsEl) {
-            var starsHtml = '';
-            for (var i = 1; i <= 5; i++) {
-                if (i <= Math.floor(data.rating)) {
-                    starsHtml += '<i class="fas fa-star"></i>';
-                } else if (i - data.rating < 1) {
-                    starsHtml += '<i class="fas fa-star-half-alt"></i>';
-                } else {
-                    starsHtml += '<i class="far fa-star"></i>';
-                }
-            }
-            starsEl.innerHTML = starsHtml;
-        }
-
-        // Render review cards
-        grid.innerHTML = '';
-        data.reviews.forEach(function (review) {
-            var initial = review.author ? review.author.charAt(0).toUpperCase() : 'U';
-            var starCount = review.rating || 5;
-            var starsHtml = '';
-            for (var i = 0; i < starCount; i++) {
-                starsHtml += '<i class="fas fa-star"></i>';
-            }
-
-            var card = document.createElement('div');
-            card.className = 'review-card';
-            card.innerHTML =
-                '<div class="review-header">' +
-                    '<div class="review-avatar">' + initial + '</div>' +
-                    '<div class="review-meta">' +
-                        '<span class="review-author">' + (review.author || 'Usuario') + '</span>' +
-                        '<div class="review-stars">' + starsHtml + '</div>' +
-                    '</div>' +
-                    '<span class="review-date">' + (review.date || '') + '</span>' +
-                '</div>' +
-                '<p class="review-text">' + (review.text || '') + '</p>' +
-                '<div class="review-source"><i class="fab fa-google"></i> Google</div>';
-            grid.appendChild(card);
         });
     }
 
