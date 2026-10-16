@@ -38,10 +38,11 @@ Abre el enlace que aparece y autoriza. El navegador te llevará a una página
 página** (desde la barra de direcciones) y pégala en Cloud Shell. Luego:
 
 ```bash
-cat ~/.clasprc.json
+base64 -w0 ~/.clasprc.json; echo
 ```
 
-Copia todo el texto (desde la primera `{` hasta la última `}`) y guárdalo como el secret
+Sale una sola línea larga de letras y números. Cópiala completa (sin el
+texto del prompt que aparece después) y guárdala como el secret
 **`CLASPRC_JSON`**. Es una credencial de tu cuenta: no la compartas por chat ni
 correo.
 
