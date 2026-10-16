@@ -44,20 +44,29 @@ jobs:
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         if: steps.check.outputs.skip != 'true'
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         if: steps.check.outputs.skip != 'true'
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Preparar clasp
         if: steps.check.outputs.skip != 'true'
         working-directory: apps-script/${{ matrix.project }}
         run: |
           npm install -g @google/clasp@3.4.1
-          printf '%s' "$CLASPRC_JSON" > ~/.clasprc.json
+          # CLASPRC_JSON puede venir como JSON o en base64 (más seguro de copiar)
+          CREDS=$(printf '%s' "$CLASPRC_JSON" | tr -d '\r')
+          case "$(printf '%s' "$CREDS" | tr -d '[:space:]' | cut -c1)" in
+            '{') printf '%s' "$CREDS" > ~/.clasprc.json ;;
+            *)   printf '%s' "$CREDS" | tr -d '[:space:]' | base64 -d > ~/.clasprc.json 2>/dev/null || true ;;
+          esac
+          if ! node -e 'JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"))' ~/.clasprc.json 2>/dev/null; then
+            echo "::error::El secret CLASPRC_JSON no es válido (se cortó o alteró al copiarlo). Vuelve a generarlo con: base64 -w0 ~/.clasprc.json (ver apps-script/README.md)."
+            exit 1
+          fi
           printf '{"scriptId":"%s","rootDir":"."}' "$SCRIPT_ID" > .clasp.json
           # Inyecta credenciales que no deben vivir en el repositorio público
           if [ -n "$GOOGLE_PLACES_API_KEY" ]; then sed -i "s|__GOOGLE_API_KEY__|$GOOGLE_PLACES_API_KEY|g" Code.js; fi
