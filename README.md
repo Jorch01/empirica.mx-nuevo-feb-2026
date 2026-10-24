@@ -5,7 +5,11 @@ Sitio web moderno para **Empírica Legal Lab** — despacho jurídico enfocado e
 ## Estructura
 
 ```
-├── index.html                    # Página principal
+├── index.html                    # Página principal (español)
+├── en.html                       # La misma página en inglés: un cambio en una va también en la otra
+├── landing-*.html                # Una página por servicio (las de disputas, en español y en inglés)
+├── abogado-*.html, abogada-*.html, lawyer-*.html
+│                                 # Perfiles de los socios, en español y en inglés
 ├── css/styles.css                # Estilos (responsive, animaciones)
 ├── js/main.js                    # JavaScript (modales, Stripe, formularios)
 ├── assets/images/

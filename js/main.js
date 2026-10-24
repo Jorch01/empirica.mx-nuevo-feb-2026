@@ -954,9 +954,10 @@
             lab_c6: 'Digital talent',
             lab_met_tag: '// HOW WE WORK',
             lab_met_h2: 'One process, no surprises.',
-            lab_m1: 'You book your consultation',
-            lab_m1d: 'Call us or message us on WhatsApp and we set aside time to review your case.',
-            lab_m2: 'Proposal and scope',
+            lab_m1: 'Case evaluation call',
+            lab_m1d: 'Call us or message us on WhatsApp and we review your matter with you. Free of charge.',
+            lab_m2: 'Proposal and budget',
+            lab_m2d: 'In a second call, also free, we give you the work plan, timing and fees in writing.',
             lab_m3: 'Execution',
             lab_m4: 'Follow-up',
             lab_m4d: 'Immediate response throughout the matter, in Spanish or English.',
@@ -970,10 +971,13 @@
             lab_team_h2: 'Behind every matter there is a lawyer, not a clerk.',
             lab_role_1: 'MANAGING PARTNER',
             lab_role_2: 'MANAGING PARTNER',
-            lab_area_1: 'Strategic litigation',
-            lab_area_2: 'Intellectual property, digital law and creators',
+            lab_area_1: 'Strategic litigation, real estate disputes and amparo',
+            lab_area_2: 'Corporate law, trademarks, intellectual property and creators',
             lab_deg_1: 'LL.M. IN AMPARO',
             lab_deg_2: 'LL.M. IN AMPARO',
+            lab_ced_1: 'PROF. LICENSE 08799163',
+            lab_ced_2: 'PROF. LICENSE 8983719',
+            lab_profile: 'VIEW PROFILE →',
             lab_chip_lang: 'SPANISH · ENGLISH',
             lab_chip_resp: 'IMMEDIATE RESPONSE',
             lab_ctab_tag: '// BOOK YOUR CONSULTATION',
@@ -1036,7 +1040,11 @@
 
     function initLanguageToggle() {
         var btn = document.getElementById('lang-toggle');
-        if (!btn) return;
+        if (!btn) {
+            // Páginas con una URL por idioma: el idioma es el del documento
+            currentLang = document.documentElement.lang === 'en' ? 'en' : 'es';
+            return;
+        }
         setLangLabel(btn, 'es');
 
         // Restore saved language
