@@ -23,7 +23,7 @@
 
     <!-- Alternate language -->
     <link rel="alternate" hreflang="es" href="https://empirica.mx/">
-    <link rel="alternate" hreflang="en" href="https://empirica.mx/">
+    <link rel="alternate" hreflang="en" href="https://empirica.mx/en.html">
     <link rel="alternate" hreflang="x-default" href="https://empirica.mx/">
 
     <!-- Open Graph / Facebook -->
@@ -64,15 +64,35 @@
     {
         "@context": "https://schema.org",
         "@type": "LegalService",
+        "@id": "https://empirica.mx/#organization",
         "name": "Empírica Legal Lab",
-        "description": "Despacho jurídico para emprendedores y corporativos en México. Litigio, propiedad intelectual, derecho corporativo, compliance, fiscalización preventiva, derecho inmobiliario, fideicomisos para extranjeros, gestión de publicación de edictos en Quintana Roo y Yucatán, y asesoría legal para hoteles y rentas vacacionales. Legal services available in English — Cambridge ILEC certified attorneys.",
+        "description": "Despacho de abogados en Cancún, Quintana Roo, para mexicanos y extranjeros. Disputas y fraude inmobiliario, litigio, propiedad intelectual, derecho corporativo, compliance, fiscalización preventiva, derecho inmobiliario, fideicomisos para extranjeros, gestión de publicación de edictos en Quintana Roo y Yucatán, y asesoría legal para hoteles y rentas vacacionales. Legal services available in English — Cambridge ILEC certified attorneys.",
         "url": "https://empirica.mx",
         "logo": "https://empirica.mx/assets/images/logo/logo.png",
         "image": "https://empirica.mx/assets/images/logo/og-image.png",
         "email": "frida@empirica.mx",
         "telephone": "+529982570828",
         "sameAs": [
-            "https://instagram.com/empiricalegalab"
+            "https://instagram.com/empiricalegalab",
+            "https://share.google/npREF2PsfLJYBtqW4"
+        ],
+        "hasMap": "https://share.google/npREF2PsfLJYBtqW4",
+        "founder": [
+            {
+                "@type": "Person",
+                "@id": "https://empirica.mx/abogado-jorge-israel-clemente-marie.html#person",
+                "name": "Jorge Israel Clemente Marie",
+                "jobTitle": "Socio titular",
+                "url": "https://empirica.mx/abogado-jorge-israel-clemente-marie.html",
+                "sameAs": ["https://www.linkedin.com/in/jorge-israel-c"]
+            },
+            {
+                "@type": "Person",
+                "@id": "https://empirica.mx/abogada-frida-delgado-pujol.html#person",
+                "name": "Frida Delgado Pujol",
+                "jobTitle": "Socia titular",
+                "url": "https://empirica.mx/abogada-frida-delgado-pujol.html"
+            }
         ],
         "priceRange": "$$",
         "address": {
@@ -87,6 +107,10 @@
             "longitude": "-86.8515"
         },
         "areaServed": [
+            {
+                "@type": "City",
+                "name": "Cancún"
+            },
             {
                 "@type": "Country",
                 "name": "México"
@@ -122,6 +146,8 @@
             "Real Estate Law Mexico",
             "Foreign Investment Real Estate",
             "Litigio Inmobiliario",
+            "Disputas Inmobiliarias",
+            "Fraude Inmobiliario",
             "Publicación de Edictos en Quintana Roo",
             "Publicación de Edictos en Yucatán",
             "Edictos Judiciales y de Emplazamiento",
@@ -167,6 +193,22 @@
                         "@type": "Service",
                         "name": "Litigio y juicio de amparo en Cancún",
                         "url": "https://empirica.mx/landing-abogados-cancun.html"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Disputas y fraude inmobiliario en Cancún",
+                        "url": "https://empirica.mx/landing-disputas-inmobiliarias-cancun.html"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Real estate disputes and fraud in Cancún (in English)",
+                        "url": "https://empirica.mx/landing-real-estate-disputes-cancun.html"
                     }
                 },
                 {
@@ -222,7 +264,7 @@
       <a href="#metodo" data-i18n="nav_method">MÉTODO</a>
       <a href="#nosotros" data-i18n="nav_about">NOSOTROS</a>
       <a href="#contacto" data-i18n="nav_contact">CONTACTO</a>
-      <button class="lang-toggle lab-lang" id="lang-toggle" type="button" aria-label="Cambiar idioma"><span style="color: #EDE7DD;">ES</span> / EN</button>
+      <a class="lab-lang" href="en.html" hreflang="en" lang="en" aria-label="Read this page in English"><b>ES</b> / EN</a>
       <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20agendar%20una%20consulta%20con%20Emp%C3%ADrica%20Legal%20Lab." target="_blank" rel="noopener" style="background: #CFA892; color: #131E1A; padding: 11px 20px; font-weight: 700; letter-spacing: 0.06em;">AGENDAR →</a>
     </div>
     <button class="lab-nav-toggle" id="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
@@ -338,13 +380,14 @@
         </div>
       </div>
 
-      <a href="landing-legal-services-cancun.html" class="lab-svc-card" title="Real estate and legal services for foreigners in Cancún" style="border: 1px solid rgba(207, 168, 146, 0.2); background: #22352E; padding: 28px 26px; display: flex; flex-direction: column; gap: 16px;">
+      <a href="landing-disputas-inmobiliarias-cancun.html" class="lab-svc-card" title="Disputas y fraude inmobiliario en Cancún" style="border: 1px solid rgba(207, 168, 146, 0.2); background: #22352E; padding: 28px 26px; display: flex; flex-direction: column; gap: 16px;">
         <div style="display: flex; align-items: center; justify-content: space-between;">
           <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #CFA892; letter-spacing: 0.1em;">04 /</span>
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#CFA892" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 4l9 6.5"></path><path d="M5.5 9.5V20h13V9.5"></path><path d="M10 20v-5.5h4V20"></path></svg>
         </div>
         <h3 style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; margin: 0;" data-i18n="lab_c4">Inmobiliario</h3>
         <div style="display: flex; flex-wrap: wrap; gap: 7px;">
+          <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">DISPUTAS Y FRAUDE</span>
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">DUE DILIGENCE</span>
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">ZONA RESTRINGIDA</span>
           <span style="border: 1px solid rgba(237, 231, 221, 0.2); padding: 6px 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; color: #A6B5AB;">FIDEICOMISO</span>
@@ -385,6 +428,16 @@
     </div>
   </div>
 
+  <!-- DISPUTAS INMOBILIARIAS -->
+  <a class="lab-band" href="landing-disputas-inmobiliarias-cancun.html">
+    <span class="lab-band-text">
+      <span class="lab-tag">// DISPUTAS INMOBILIARIAS</span>
+      <b>¿Te defraudaron con un inmueble o tienes un pleito por una propiedad?</b>
+      <span>Llevamos cualquier disputa inmobiliaria en Cancún y Quintana Roo, para mexicanos, extranjeros y quienes tienen ambas nacionalidades. La evaluación de tu asunto es sin costo.</span>
+    </span>
+    <span class="lab-band-go">VER CÓMO TE AYUDAMOS →</span>
+  </a>
+
   <!-- MÉTODO -->
   <div class="lab-sec" id="metodo" style="padding: 88px 64px;">
     <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 46px;">
@@ -394,13 +447,13 @@
     <div class="lab-grid4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid rgba(207, 168, 146, 0.16);">
       <div style="padding: 30px 26px 0 0; border-right: 1px solid rgba(207, 168, 146, 0.16); display: flex; flex-direction: column; gap: 12px;">
         <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 34px; font-weight: 700; color: rgba(207, 168, 146, 0.35); letter-spacing: -0.03em;">01</span>
-        <h3 style="font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.015em;" data-i18n="lab_m1">Agendas tu consulta</h3>
-        <p style="font-size: 14.5px; line-height: 1.6; color: #8FA096; margin: 0;" data-i18n="lab_m1d">Nos llamas o escribes por WhatsApp y reservamos un espacio para revisar tu caso.</p>
+        <h3 style="font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.015em;" data-i18n="lab_m1">Conferencia de evaluación</h3>
+        <p style="font-size: 14.5px; line-height: 1.6; color: #8FA096; margin: 0;" data-i18n="lab_m1d">Nos llamas o escribes por WhatsApp y revisamos tu asunto contigo. Sin costo.</p>
       </div>
       <div style="padding: 30px 26px 0; border-right: 1px solid rgba(207, 168, 146, 0.16); display: flex; flex-direction: column; gap: 12px;">
         <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 34px; font-weight: 700; color: rgba(207, 168, 146, 0.35); letter-spacing: -0.03em;">02</span>
-        <h3 style="font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.015em;" data-i18n="lab_m2">Propuesta y alcance</h3>
-        <p style="font-size: 14.5px; line-height: 1.6; color: #8FA096; margin: 0;">Entregables, tiempos y honorarios por escrito antes de empezar.</p>
+        <h3 style="font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.015em;" data-i18n="lab_m2">Propuesta y presupuesto</h3>
+        <p style="font-size: 14.5px; line-height: 1.6; color: #8FA096; margin: 0;" data-i18n="lab_m2d">En una segunda conferencia, también sin costo, te damos por escrito el plan de trabajo, los tiempos y los honorarios.</p>
       </div>
       <div style="padding: 30px 26px 0; border-right: 1px solid rgba(207, 168, 146, 0.16); display: flex; flex-direction: column; gap: 12px;">
         <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 34px; font-weight: 700; color: rgba(207, 168, 146, 0.35); letter-spacing: -0.03em;">03</span>
@@ -469,16 +522,20 @@
 
         <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 1px solid rgba(207, 168, 146, 0.16); margin-top: 4px;">
           <div style="display: flex; flex-direction: column; gap: 7px; padding: 24px 24px 0 0; border-right: 1px solid rgba(207, 168, 146, 0.16);">
-            <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.02em;">Jorge Israel Clemente Marie</span>
+            <a href="abogado-jorge-israel-clemente-marie.html" style="font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: #EDE7DD;">Jorge Israel Clemente Marie</a>
             <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.12em; color: #CFA892;" data-i18n="lab_role_1">SOCIO TITULAR</span>
-            <span style="font-size: 14px; line-height: 1.55; color: #8FA096;" data-i18n="lab_area_1">Litigio estratégico</span>
+            <span style="font-size: 14px; line-height: 1.55; color: #8FA096;" data-i18n="lab_area_1">Litigio estratégico, disputas inmobiliarias y amparo</span>
             <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.1em; color: #6E8077; margin-top: 2px;" data-i18n="lab_deg_1">MAESTRO EN AMPARO</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.1em; color: #6E8077;" data-i18n="lab_ced_1">CÉD. PROF. 08799163</span>
+            <a class="lab-team-link" href="abogado-jorge-israel-clemente-marie.html" data-i18n="lab_profile">VER PERFIL →</a>
           </div>
           <div style="display: flex; flex-direction: column; gap: 7px; padding: 24px 0 0 24px;">
-            <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.02em;">Frida Delgado Pujol</span>
+            <a href="abogada-frida-delgado-pujol.html" style="font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: #EDE7DD;">Frida Delgado Pujol</a>
             <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.12em; color: #CFA892;" data-i18n="lab_role_2">SOCIA TITULAR</span>
-            <span style="font-size: 14px; line-height: 1.55; color: #8FA096;" data-i18n="lab_area_2">Propiedad intelectual, derecho digital y creadores</span>
+            <span style="font-size: 14px; line-height: 1.55; color: #8FA096;" data-i18n="lab_area_2">Derecho corporativo, marcas, propiedad intelectual y creadores</span>
             <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.1em; color: #6E8077; margin-top: 2px;" data-i18n="lab_deg_2">MAESTRA EN AMPARO</span>
+            <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.1em; color: #6E8077;" data-i18n="lab_ced_2">CÉD. PROF. 8983719</span>
+            <a class="lab-team-link" href="abogada-frida-delgado-pujol.html" data-i18n="lab_profile">VER PERFIL →</a>
           </div>
         </div>
 
@@ -500,6 +557,7 @@
     <div style="display: flex; flex-direction: column; gap: 16px;">
       <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.16em; color: rgba(19, 30, 26, 0.6);" data-i18n="lab_ctab_tag">// AGENDA TU CONSULTA</span>
       <h2 style="font-size: 48px; font-weight: 700; letter-spacing: -0.035em; margin: 0; line-height: 1.05;">Cuéntanos tu caso.<br>Te respondemos de inmediato.</h2>
+      <p style="font-size: 16px; line-height: 1.6; color: rgba(19, 30, 26, 0.75); margin: 0; max-width: 560px;">La conferencia de evaluación y la de propuesta y presupuesto son sin costo.</p>
     </div>
     <div style="display: flex; flex-direction: column; gap: 12px; flex-shrink: 0;">
       <a href="https://wa.me/529982570828?text=Hola%2C%20me%20interesa%20agendar%20una%20consulta%20con%20Emp%C3%ADrica%20Legal%20Lab." target="_blank" rel="noopener" style="background: #131E1A; color: #CFA892; padding: 18px 34px; font-size: 14.5px; font-weight: 700; text-align: center;">Agendar consulta →</a>
@@ -511,10 +569,14 @@
   <nav class="lab-svc-links" aria-label="Servicios">
       <span>// SERVICIOS</span>
       <a href="landing-abogados-cancun.html">ABOGADOS EN CANCÚN</a>
+      <a href="landing-disputas-inmobiliarias-cancun.html">DISPUTAS INMOBILIARIAS</a>
       <a href="landing-registro-marcas-mexico.html">REGISTRO DE MARCAS</a>
       <a href="landing-legal-services-cancun.html">LEGAL SERVICES FOR FOREIGNERS</a>
       <a href="landing-edictos-quintana-roo.html">EDICTOS QUINTANA ROO Y YUCATÁN</a>
       <a href="landing-representacion-influencers.html">REPRESENTACIÓN DE INFLUENCERS</a>
+      <span>// EQUIPO</span>
+      <a href="abogado-jorge-israel-clemente-marie.html">JORGE ISRAEL CLEMENTE MARIE</a>
+      <a href="abogada-frida-delgado-pujol.html">FRIDA DELGADO PUJOL</a>
     </nav>
     <div class="lab-footer" style="background: #131E1A; padding: 32px 64px; display: flex; align-items: center; justify-content: space-between; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; color: #6E8077;">
     <span>© 2026 EMPÍRICA LEGAL LAB · CANCÚN, Q. ROO</span>

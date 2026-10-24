@@ -249,3 +249,133 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     .lab-rev-filters { padding-left: 18px; padding-right: 18px; }
     .lab-svc-links { padding-left: 22px; padding-right: 22px; flex-direction: column; align-items: flex-start; }
 }
+
+/* ==========================================================
+   Páginas de contenido: disputas inmobiliarias y perfiles
+   Mismo lenguaje que la portada, con clases en vez de
+   estilos en línea.
+   ========================================================== */
+.lab-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .16em; color: #CFA892; text-transform: uppercase;
+}
+.lab-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #CFA892; }
+.lab-tag {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .16em; color: #CFA892;
+}
+.lab-title { font-size: 64px; font-weight: 700; line-height: 1.04; letter-spacing: -.035em; max-width: 960px; text-wrap: pretty; }
+.lab-title span { color: #CFA892; }
+.lab-h2 { font-size: 40px; font-weight: 700; line-height: 1.08; letter-spacing: -.03em; text-wrap: pretty; }
+.lab-lead { max-width: 680px; font-size: 17.5px; line-height: 1.64; color: #A6B5AB; }
+.lab-stack { display: flex; flex-direction: column; gap: 22px; }
+.lab-head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; max-width: 820px; }
+.lab-head p { font-size: 16.5px; line-height: 1.64; color: #A6B5AB; }
+
+.lab-ctas a.lab-btn, .lab-cta a.lab-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 17px 32px; font-size: 14.5px; font-weight: 700; }
+.lab-btn-primary { background: #CFA892; color: #131E1A !important; }
+.lab-btn-ghost { border: 1px solid rgba(237, 231, 221, .28); color: #EDE7DD !important; font-weight: 600 !important; }
+.lab-btn-dark { background: #131E1A; color: #CFA892 !important; }
+.lab-btn-line { border: 1px solid rgba(19, 30, 26, .35); color: #131E1A !important; font-weight: 600 !important; }
+
+.lab-byline {
+    padding-top: 18px; border-top: 1px solid rgba(207, 168, 146, .16); max-width: 760px;
+    font-size: 14.5px; line-height: 1.6; color: #8FA096;
+}
+.lab-byline b { color: #EDE7DD; font-weight: 600; }
+/* Enlaces dentro de un párrafo: subrayados, no solo de otro color */
+.lab-byline a, .lab-note a, .lab-faq p a { text-decoration: underline; text-underline-offset: 3px; }
+
+.lab-card {
+    border: 1px solid rgba(207, 168, 146, .2); background: #22352E;
+    padding: 28px 26px; display: flex; flex-direction: column; gap: 14px; color: #EDE7DD;
+}
+.lab-card h3 { font-size: 21px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; }
+.lab-card p, .lab-card li { font-size: 14.5px; line-height: 1.6; color: #A6B5AB; }
+.lab-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.lab-card li { padding-left: 16px; position: relative; }
+.lab-card li::before { content: '—'; position: absolute; left: 0; color: #CFA892; }
+.lab-card-num { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .1em; color: #CFA892; }
+a.lab-card:hover { color: #EDE7DD; }
+a.lab-card:focus-visible { outline: 2px solid #CFA892; outline-offset: 3px; }
+
+.lab-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.lab-chips span, .lab-chips li {
+    border: 1px solid rgba(237, 231, 221, .2); padding: 6px 11px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: .04em; color: #A6B5AB;
+}
+ul.lab-chips { list-style: none; }
+
+.lab-steps { counter-reset: step; list-style: none; display: flex; flex-direction: column; border-top: 1px solid rgba(207, 168, 146, .16); max-width: 900px; }
+.lab-steps li {
+    counter-increment: step; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 4px 18px;
+    padding: 22px 0; border-bottom: 1px solid rgba(207, 168, 146, .16);
+    font-size: 15.5px; line-height: 1.6; color: #A6B5AB;
+}
+.lab-steps li::before {
+    content: counter(step, decimal-leading-zero); grid-row: span 2;
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 28px; font-weight: 700;
+    color: rgba(207, 168, 146, .45); letter-spacing: -.03em; line-height: 1;
+}
+.lab-steps b { color: #EDE7DD; font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
+
+.lab-faq { display: flex; flex-direction: column; border-top: 1px solid rgba(207, 168, 146, .16); max-width: 960px; }
+.lab-faq details { border-bottom: 1px solid rgba(207, 168, 146, .16); }
+.lab-faq summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 20px;
+    padding: 22px 0; font-size: 18px; font-weight: 700; letter-spacing: -.015em; color: #EDE7DD;
+}
+.lab-faq summary::-webkit-details-marker { display: none; }
+.lab-faq summary::after { content: '+'; color: #CFA892; font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 400; }
+.lab-faq details[open] summary::after { content: '−'; }
+.lab-faq summary:focus-visible { outline: 2px solid #CFA892; outline-offset: 3px; }
+.lab-faq p { padding: 0 0 24px; max-width: 820px; font-size: 15.5px; line-height: 1.66; color: #A6B5AB; }
+
+.lab-cred { display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid rgba(207, 168, 146, .16); }
+.lab-cred > div { display: grid; grid-template-columns: minmax(160px, .5fr) minmax(0, 1fr); gap: 6px 24px; padding: 18px 0; border-bottom: 1px solid rgba(207, 168, 146, .16); }
+.lab-cred dt { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: .12em; color: #8FA096; text-transform: uppercase; padding-top: 4px; }
+.lab-cred dd { font-size: 15.5px; line-height: 1.55; color: #EDE7DD; }
+.lab-cred dd small { display: block; font-size: 13.5px; color: #8FA096; margin-top: 2px; }
+.lab-note { font-size: 13.5px; line-height: 1.6; color: #8FA096; }
+
+.lab-portrait { position: relative; overflow: hidden; aspect-ratio: 4 / 5; border: 1px solid rgba(207, 168, 146, .22); background: #1B2C27; }
+.lab-portrait img {
+    width: 100%; height: 100%; object-fit: cover;
+    transform: scale(var(--zoom, 1)); transform-origin: var(--fx, 50%) var(--fy, 50%);
+    filter: saturate(.9) contrast(1.03);
+}
+.lab-profile { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 64px; align-items: start; }
+
+.lab-band {
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    padding: 34px 64px; background: #22352E; color: #EDE7DD;
+    border-top: 1px solid rgba(207, 168, 146, .2); border-bottom: 1px solid rgba(207, 168, 146, .2);
+}
+.lab-band:hover { color: #EDE7DD; background: #26392F; }
+.lab-band:focus-visible { outline: 2px solid #CFA892; outline-offset: -4px; }
+.lab-band-text { display: flex; flex-direction: column; gap: 10px; max-width: 900px; }
+.lab-band-text b { font-size: 24px; font-weight: 700; letter-spacing: -.02em; line-height: 1.2; }
+.lab-band-text span { font-size: 15.5px; line-height: 1.6; color: #A6B5AB; }
+.lab-band-go { flex-shrink: 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .12em; color: #CFA892; }
+.lab-team-link { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: .12em; margin-top: 6px; }
+
+@media (max-width: 1100px) {
+    .lab-title { font-size: clamp(40px, 6.4vw, 64px) !important; }
+    .lab-h2 { font-size: 34px; }
+    .lab-profile { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+    .lab-profile .lab-portrait { max-width: 420px; }
+    .lab-band { padding-left: 40px; padding-right: 40px; }
+}
+@media (max-width: 760px) {
+    .lab-title { font-size: clamp(32px, 9vw, 44px) !important; }
+    .lab-h2 { font-size: 28px; }
+    .lab-band { flex-direction: column; align-items: flex-start; padding: 28px 22px; gap: 16px; }
+    .lab-cred > div { grid-template-columns: minmax(0, 1fr); }
+    .lab-steps li { grid-template-columns: 48px minmax(0, 1fr); }
+    .lab-steps li::before { font-size: 22px; }
+    .lab-faq summary { font-size: 16.5px; }
+    /* Que los botones largos y el titular de la franja rosa no se salgan en 320 px */
+    .btn-lg { white-space: normal; text-align: center; justify-content: center; }
+    .lab-cta h2 { font-size: 36px !important; }
+}
