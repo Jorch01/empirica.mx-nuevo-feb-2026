@@ -957,7 +957,7 @@
             lab_m1: 'Case evaluation call',
             lab_m1d: 'Call us or message us on WhatsApp and we review your matter with you. Free of charge.',
             lab_m2: 'Proposal and budget',
-            lab_m2d: 'In a second call, also free, we give you the work plan, timing and fees in writing.',
+            lab_m2d: 'In a second call we give you the work plan, timing and fees in writing.',
             lab_m3: 'Execution',
             lab_m4: 'Follow-up',
             lab_m4d: 'Immediate response throughout the matter, in Spanish or English.',
