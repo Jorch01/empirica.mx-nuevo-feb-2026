@@ -6,12 +6,19 @@ Cada carpeta es un proyecto de Google Apps Script:
 |---|---|---|
 | `reviews/` | Reseñas de Google para el sitio | La que tiene la pestaña "Reviews" |
 | `newsletter/` | Guarda los suscriptores del newsletter | La que tiene la pestaña "Suscriptores" |
+| `contacto/` | Formulario rápido de las landings: guarda cada mensaje y avisa por correo | La que tendrá la pestaña "Contactos" (el script la crea) |
 
 Cuando un cambio en `apps-script/` llega a la rama `main`, el workflow
-`.github/workflows/deploy-apps-script.yml` sube el código a Apps Script y
-actualiza la implementación web que ya existe. **La URL no cambia**, así que no
-hay que tocar `js/main.js`. También se puede lanzar a mano desde
+`.github/workflows/deploy-apps-script.yml` sube el código de **cada carpeta** a
+su Apps Script y actualiza su implementación web. **La URL no cambia.** Si un
+proyecto todavía no tiene implementación web, el workflow la crea y publica su
+URL en `js/apps-script-urls.js`, que es de donde la toma el sitio: no hay que
+copiar URLs a mano. También se puede lanzar desde
 GitHub > Actions > "Desplegar Apps Script" > Run workflow.
+
+Un proyecto nuevo solo necesita su carpeta (con `appsscript.json` y su código)
+y el secret `APPS_SCRIPT_<CARPETA>_ID`, con el nombre de la carpeta en
+mayúsculas (`contacto` → `APPS_SCRIPT_CONTACTO_ID`). El workflow no se toca.
 
 > No edites el código en el editor de Apps Script: el siguiente despliegue lo
 > sobrescribe. Edítalo aquí.
@@ -61,6 +68,9 @@ Abre el Apps Script desde la hoja (Extensiones > Apps Script):
 | `APPS_SCRIPT_NEWSLETTER_ID` | ID del script del newsletter (opcional) |
 | `APPS_SCRIPT_NEWSLETTER_DEPLOYMENT_ID` | ID de implementación del newsletter (opcional) |
 
+Los `…_DEPLOYMENT_ID` son opcionales: sin ellos, el workflow usa la web app ya
+publicada en `js/apps-script-urls.js` o crea una.
+
 ### 4. Credenciales de Google Places (solo reseñas)
 Cópialas del script de reseñas que tienes hoy (las variables `GOOGLE_API_KEY`
 y `PLACE_ID` al inicio del código) **antes** del primer despliegue, porque el
@@ -71,7 +81,27 @@ despliegue reemplaza ese código:
 | `GOOGLE_PLACES_API_KEY` | Tu API Key de Google Cloud |
 | `GOOGLE_PLACE_ID` | El Place ID de Empírica (empieza con `ChIJ…`) |
 
-### 5. Primer despliegue
+### 5. Formulario de contacto (`contacto/`)
+1. Crea una hoja de Google nueva (por ejemplo, "Contactos del sitio").
+2. En la hoja: Extensiones > Apps Script. No pegues nada: deja el proyecto vacío.
+3. ⚙️ Configuración del proyecto > IDs > copia el **ID de secuencia de comandos**
+   y guárdalo como el secret **`APPS_SCRIPT_CONTACTO_ID`**.
+4. GitHub > Actions > "Desplegar Apps Script" > **Run workflow**. Sube el código,
+   crea la web app y publica su URL en el sitio (un commit de
+   `github-actions[bot]` en `main`).
+5. Vuelve al editor de Apps Script (recarga la página), elige la función
+   **`autorizar`** y dale **Ejecutar**. Acepta los permisos de la hoja y del
+   correo. Solo esta vez: los despliegues siguientes ya no lo piden.
+
+Desde ese momento, cada mensaje del formulario queda en la pestaña "Contactos" y
+llega un aviso a los correos de `AVISAR_A` (al inicio de `contacto/Code.js`).
+Mientras no esté configurado, el formulario abre WhatsApp con el mensaje, así
+que ningún cliente se pierde.
+
+Si el registro del workflow dice que una web app "todavía no responde", es que
+falta el paso 5 en ese proyecto.
+
+### 6. Primer despliegue
 GitHub > Actions > "Desplegar Apps Script" > **Run workflow**. Si sale en
 verde, abre la URL de la web app: debe responder con las reseñas actuales.
 

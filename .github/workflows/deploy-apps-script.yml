@@ -1,8 +1,10 @@
 name: Desplegar Apps Script
 
-# Sube el código de apps-script/<proyecto>/ a Google Apps Script y actualiza
-# la implementación web existente (la URL no cambia). Configuración única en
-# apps-script/README.md. Un proyecto sin sus secrets se omite sin fallar.
+# Sube cada proyecto de apps-script/<proyecto>/ a Google Apps Script, actualiza
+# su web app (la URL no cambia) y, si un proyecto todavía no tiene web app, la
+# crea y publica su URL en js/apps-script-urls.js. Un proyecto nuevo solo
+# necesita su carpeta y el secret APPS_SCRIPT_<PROYECTO>_ID: no hay que tocar
+# este archivo. Configuración única en apps-script/README.md.
 
 on:
   push:
@@ -10,37 +12,27 @@ on:
     paths:
       - 'apps-script/**'
       - '.github/workflows/deploy-apps-script.yml'
+      - '.github/scripts/desplegar-apps-script.mjs'
   workflow_dispatch:
 
 concurrency:
   group: deploy-apps-script
   cancel-in-progress: false
 
+permissions:
+  contents: write   # para publicar js/apps-script-urls.js
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - project: reviews
-            script_secret: APPS_SCRIPT_REVIEWS_ID
-            deployment_secret: APPS_SCRIPT_REVIEWS_DEPLOYMENT_ID
-          - project: newsletter
-            script_secret: APPS_SCRIPT_NEWSLETTER_ID
-            deployment_secret: APPS_SCRIPT_NEWSLETTER_DEPLOYMENT_ID
     env:
       CLASPRC_JSON: ${{ secrets.CLASPRC_JSON }}
-      SCRIPT_ID: ${{ secrets[matrix.script_secret] }}
-      DEPLOYMENT_ID: ${{ secrets[matrix.deployment_secret] }}
-      GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
-      GOOGLE_PLACE_ID: ${{ secrets.GOOGLE_PLACE_ID }}
     steps:
       - name: Revisar configuración
         id: check
         run: |
-          if [ -z "$CLASPRC_JSON" ] || [ -z "$SCRIPT_ID" ]; then
-            echo "::notice::${{ matrix.project }}: faltan los secrets CLASPRC_JSON o ${{ matrix.script_secret }}; se omite."
+          if [ -z "$CLASPRC_JSON" ]; then
+            echo "::notice::Falta el secret CLASPRC_JSON; no se despliega nada (ver apps-script/README.md)."
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
 
@@ -54,7 +46,6 @@ jobs:
 
       - name: Preparar clasp
         if: steps.check.outputs.skip != 'true'
-        working-directory: apps-script/${{ matrix.project }}
         run: |
           npm install -g @google/clasp@3.4.1
           # CLASPRC_JSON puede venir como JSON o en base64 (más seguro de copiar)
@@ -67,25 +58,32 @@ jobs:
             echo "::error::El secret CLASPRC_JSON no es válido (se cortó o alteró al copiarlo). Vuelve a generarlo con: base64 -w0 ~/.clasprc.json (ver apps-script/README.md)."
             exit 1
           fi
-          printf '{"scriptId":"%s","rootDir":"."}' "$SCRIPT_ID" > .clasp.json
-          # Inyecta credenciales que no deben vivir en el repositorio público
-          if [ -n "$GOOGLE_PLACES_API_KEY" ]; then sed -i "s|__GOOGLE_API_KEY__|$GOOGLE_PLACES_API_KEY|g" Code.js; fi
-          if [ -n "$GOOGLE_PLACE_ID" ]; then sed -i "s|__PLACE_ID__|$GOOGLE_PLACE_ID|g" Code.js; fi
 
-      - name: Subir código
+      - name: Desplegar cada proyecto
         if: steps.check.outputs.skip != 'true'
-        working-directory: apps-script/${{ matrix.project }}
-        run: clasp push --force
+        env:
+          # El script busca APPS_SCRIPT_<PROYECTO>_ID y _DEPLOYMENT_ID de cada carpeta.
+          SECRETOS: ${{ toJSON(secrets) }}
+        run: node .github/scripts/desplegar-apps-script.mjs
 
-      - name: Actualizar implementación web
-        if: steps.check.outputs.skip != 'true'
-        working-directory: apps-script/${{ matrix.project }}
+      - name: Publicar las URL en el sitio
+        # También si un proyecto falló: las URL de los demás deben quedar publicadas.
+        if: always() && steps.check.outputs.skip != 'true' && github.ref == 'refs/heads/main'
         run: |
-          if [ -z "$DEPLOYMENT_ID" ]; then
-            echo "::warning::${{ matrix.project }}: código subido, pero falta ${{ matrix.deployment_secret }}; la web app sigue en la versión anterior."
+          if [ -z "$(git status --porcelain -- js/apps-script-urls.js)" ]; then
+            echo "Las URL publicadas no cambiaron."
             exit 0
           fi
-          clasp redeploy "$DEPLOYMENT_ID" --description "GitHub ${GITHUB_SHA::7}"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add js/apps-script-urls.js
+          git commit -m "Apps Script: URL de las web apps"
+          for intento in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then exit 0; fi
+            sleep 5
+          done
+          echo "::warning::No se pudo publicar js/apps-script-urls.js. Pégalo tal cual en el repositorio:"
+          cat js/apps-script-urls.js
 
       - name: Limpiar credenciales
         if: always()

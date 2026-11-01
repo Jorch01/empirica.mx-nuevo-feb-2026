@@ -7,15 +7,13 @@
 
     /* ── CONFIGURACIÓN ── */
 
-    /* Google Sheets como base de datos de suscriptores.
-     * Para activar el newsletter:
-     * 1. Crea una Google Sheet nueva
-     * 2. Ve a Extensiones > Apps Script
-     * 3. Pega el código que está en apps-script/newsletter/Code.js
-     * 4. Haz deploy como Web App (acceso: Anyone)
-     * 5. Copia la URL y pégala aquí:
+    /* La URL de la web app de cada proyecto de apps-script/ (newsletter,
+     * reseñas, contacto): la publica el despliegue automático en
+     * js/apps-script-urls.js. Las de aquí abajo quedan por si una página no
+     * carga ese archivo. Ver apps-script/README.md.
      */
-    var GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyX3vgUvGcldyU3oUdvqhU3LLoPKNuOX4jb8LHaU7HgQQDIzmseHTV-CqjHKkRZFmJz/exec'; // https://script.google.com/macros/s/TU_ID/exec
+    var APPS_SCRIPT = window.EMPIRICA_APPS_SCRIPT || {};
+    var GOOGLE_SHEET_URL = APPS_SCRIPT.newsletter || 'https://script.google.com/macros/s/AKfycbyX3vgUvGcldyU3oUdvqhU3LLoPKNuOX4jb8LHaU7HgQQDIzmseHTV-CqjHKkRZFmJz/exec';
 
     /* Número de WhatsApp (con código de país, sin +) */
     var WHATSAPP_NUMBER = '529982570828';
@@ -242,8 +240,8 @@
     /* ──────────────────────────────────────────────────
        DOM Ready
        ────────────────────────────────────────────────── */
-    /* URL del Google Apps Script para reseñas (opcional — ver apps-script/reviews/Code.js) */
-    var GOOGLE_REVIEWS_URL = 'https://script.google.com/macros/s/AKfycbwNC-E8ZdUxDJu3tQHbz0FQz3ZvZoFqxIZSa9dSL8zNsDCmMx1_VYFQbUjMLl9XFQCbcg/exec'; // Pega aquí la URL de tu Apps Script para reseñas
+    /* Reseñas de Google (apps-script/reviews) */
+    var GOOGLE_REVIEWS_URL = APPS_SCRIPT.reviews || 'https://script.google.com/macros/s/AKfycbwNC-E8ZdUxDJu3tQHbz0FQz3ZvZoFqxIZSa9dSL8zNsDCmMx1_VYFQbUjMLl9XFQCbcg/exec';
 
     document.addEventListener('DOMContentLoaded', function () {
         initNavbar();
@@ -256,6 +254,8 @@
         initSmoothScroll();
         initGoogleReviews();
         initLanguageToggle();
+        initLeadTracking();
+        initContactForms();
     });
 
     /* ──────────────────────────────────────────────────
@@ -642,6 +642,127 @@
                 }
             });
         });
+    }
+
+    /* ──────────────────────────────────────────────────
+       Contactos para Google Analytics
+       Cada clic a WhatsApp, teléfono o correo, y cada formulario enviado, se
+       registra como "generate_lead": quien escribe por WhatsApp y se va en
+       segundos ya no cuenta como rebote si ese evento es "clave" en GA4.
+       ────────────────────────────────────────────────── */
+    function registrarLead(metodo) {
+        if (typeof window.gtag !== 'function') return;
+        window.gtag('event', 'generate_lead', {
+            method: metodo,
+            lead_source: location.pathname.replace(/^\//, '') || 'index.html'
+        });
+    }
+
+    function initLeadTracking() {
+        document.addEventListener('click', function (e) {
+            var a = e.target.closest ? e.target.closest('a[href]') : null;
+            if (!a) return;
+            var href = a.getAttribute('href') || '';
+            var metodo = /^https?:\/\/(wa\.me|api\.whatsapp\.com)\//.test(href) ? 'whatsapp'
+                : /^tel:/.test(href) ? 'telefono'
+                : /^mailto:/.test(href) ? 'correo' : '';
+            if (metodo) registrarLead(metodo);
+        }, true);
+    }
+
+    /* ──────────────────────────────────────────────────
+       Formulario rápido de contacto (landings)
+       Lo recibe el Apps Script "contacto": lo guarda en la hoja y avisa por
+       correo. Si su URL todavía no está publicada, o falla, el mensaje se
+       abre en WhatsApp para no perder al cliente.
+       ────────────────────────────────────────────────── */
+    function initContactForms() {
+        document.querySelectorAll('form[data-contacto]').forEach(function (form) {
+            var correo = form.elements.correo;
+            var telefono = form.elements.telefono;
+            var limpiar = function () { if (correo) correo.setCustomValidity(''); };
+            if (correo) correo.addEventListener('input', limpiar);
+            if (telefono) telefono.addEventListener('input', limpiar);
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                // Basta uno de los dos para poder contestarle
+                if (correo && telefono && !correo.value.trim() && !telefono.value.trim()) {
+                    correo.setCustomValidity(tr('Déjanos tu correo o tu WhatsApp para contestarte.',
+                        'Leave your email or your WhatsApp so we can reply.'));
+                    correo.reportValidity();
+                    return;
+                }
+                enviarContacto(form);
+            });
+        });
+    }
+
+    /* La campaña de la que llegó la visita (utm_* y gclid de la URL) */
+    function campanaDeLaVisita() {
+        var params = new URLSearchParams(location.search);
+        var partes = [];
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid'].forEach(function (k) {
+            if (params.get(k)) partes.push(k + '=' + params.get(k));
+        });
+        return partes.join(' · ').slice(0, 300);
+    }
+
+    function whatsappDeContacto(c) {
+        var texto = tr('Hola, soy ', 'Hi, I\'m ') + c.nombre + '. ' + c.mensaje +
+            (c.correo ? '\n' + tr('Correo: ', 'Email: ') + c.correo : '');
+        return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(texto);
+    }
+
+    function enviarContacto(form) {
+        var valor = function (nombre) {
+            var el = form.elements[nombre];
+            return el ? String(el.value || '').trim() : '';
+        };
+        var c = {
+            nombre: valor('nombre'), correo: valor('correo'), telefono: valor('telefono'),
+            perfil: valor('perfil'), mensaje: valor('mensaje'), sitio_web: valor('sitio_web'),
+            pagina: location.pathname.replace(/^\//, '') || 'index.html',
+            idioma: document.documentElement.lang || '', campana: campanaDeLaVisita(),
+            referente: (document.referrer || '').slice(0, 300)
+        };
+        var estado = form.querySelector('.lab-form-status');
+        var boton = form.querySelector('button[type="submit"]');
+        var mostrar = function (html, tipo) {
+            if (!estado) return;
+            estado.innerHTML = html;
+            estado.className = 'lab-form-status is-' + tipo;
+        };
+        var enlaceWhatsApp = '<a href="' + escapeHtml(whatsappDeContacto(c)) + '" target="_blank" rel="noopener">' +
+            tr('escríbenos por WhatsApp', 'message us on WhatsApp') + '</a>';
+
+        if (!APPS_SCRIPT.contacto) {
+            registrarLead('whatsapp');
+            window.open(whatsappDeContacto(c), '_blank', 'noopener');
+            mostrar(tr('Te abrimos WhatsApp con tu mensaje. Si no se abrió, ', 'We opened WhatsApp with your message. If it didn\'t open, ') +
+                enlaceWhatsApp + '.', 'ok');
+            return;
+        }
+
+        var textoBoton = boton ? boton.innerHTML : '';
+        if (boton) { boton.disabled = true; boton.innerHTML = tr('Enviando…', 'Sending…'); }
+        mostrar('', 'espera');
+        // Como texto plano: el navegador no pide permiso de CORS antes de enviarlo
+        fetch(APPS_SCRIPT.contacto, { method: 'POST', body: JSON.stringify(c) })
+            .then(function (r) { return r.json(); })
+            .then(function (r) {
+                if (!r || r.status !== 'ok') throw new Error((r && r.message) || 'error');
+                registrarLead('formulario');
+                form.reset();
+                mostrar(tr('Gracias, ' + escapeHtml(c.nombre) + '. Recibimos tu mensaje y te contactamos pronto. Si es urgente, ',
+                    'Thank you, ' + escapeHtml(c.nombre) + '. We got your message and will contact you soon. If it\'s urgent, ') + enlaceWhatsApp + '.', 'ok');
+            })
+            .catch(function () {
+                mostrar(tr('No pudimos enviar tu mensaje. Por favor ', 'We couldn\'t send your message. Please ') + enlaceWhatsApp +
+                    tr(' y te atendemos ahí mismo.', ' and we\'ll help you there.'), 'error');
+            })
+            .then(function () {
+                if (boton) { boton.disabled = false; boton.innerHTML = textoBoton; }
+            });
     }
 
     /* ──────────────────────────────────────────────────
