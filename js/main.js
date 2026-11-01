@@ -646,9 +646,10 @@
 
     /* ──────────────────────────────────────────────────
        Contactos para Google Analytics
-       Cada clic a WhatsApp, teléfono o correo, y cada formulario enviado, se
-       registra como "generate_lead": quien escribe por WhatsApp y se va en
-       segundos ya no cuenta como rebote si ese evento es "clave" en GA4.
+       Cada formulario enviado y cada clic al teléfono se registra como
+       "generate_lead" (evento clave en GA4). Los clics a WhatsApp y al correo
+       no: ya los mide Google Tag Manager (whatsapp_click, email_click) y se
+       contarían dos veces.
        ────────────────────────────────────────────────── */
     function registrarLead(metodo) {
         if (typeof window.gtag !== 'function') return;
@@ -662,11 +663,7 @@
         document.addEventListener('click', function (e) {
             var a = e.target.closest ? e.target.closest('a[href]') : null;
             if (!a) return;
-            var href = a.getAttribute('href') || '';
-            var metodo = /^https?:\/\/(wa\.me|api\.whatsapp\.com)\//.test(href) ? 'whatsapp'
-                : /^tel:/.test(href) ? 'telefono'
-                : /^mailto:/.test(href) ? 'correo' : '';
-            if (metodo) registrarLead(metodo);
+            if (/^tel:/.test(a.getAttribute('href') || '')) registrarLead('telefono');
         }, true);
     }
 
@@ -736,7 +733,7 @@
             tr('escríbenos por WhatsApp', 'message us on WhatsApp') + '</a>';
 
         if (!APPS_SCRIPT.contacto) {
-            registrarLead('whatsapp');
+            registrarLead('formulario_whatsapp');
             window.open(whatsappDeContacto(c), '_blank', 'noopener');
             mostrar(tr('Te abrimos WhatsApp con tu mensaje. Si no se abrió, ', 'We opened WhatsApp with your message. If it didn\'t open, ') +
                 enlaceWhatsApp + '.', 'ok');
