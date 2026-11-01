@@ -379,3 +379,69 @@ ul.lab-chips { list-style: none; }
     .btn-lg { white-space: normal; text-align: center; justify-content: center; }
     .lab-cta h2 { font-size: 36px !important; }
 }
+
+/* ==========================================================
+   Hero con formulario rápido (landings de disputas)
+   El texto a la izquierda y el formulario a la derecha; en
+   tableta y teléfono, el formulario va debajo de los botones.
+   ========================================================== */
+.lab-hero-grid {
+    position: relative; display: grid; gap: 56px; align-items: start;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+}
+.lab-hero-grid .lab-title { font-size: 56px; }
+.lab-trust { font-size: 14px; line-height: 1.5; color: #A6B5AB; }
+.lab-trust span, .lab-trust b { color: #CFA892; font-weight: 700; }
+
+.lab-form {
+    position: relative; display: flex; flex-direction: column; gap: 14px;
+    padding: 30px 28px; background: #1B2C27; border: 1px solid rgba(207, 168, 146, .3);
+}
+.lab-form-title { font-size: 26px; font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
+.lab-form-sub { margin-top: -4px; font-size: 14.5px; line-height: 1.55; color: #A6B5AB; }
+.lab-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.lab-field > span {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: #8FA096;
+}
+.lab-field input, .lab-field select, .lab-field textarea {
+    width: 100%; padding: 11px 12px; border-radius: 0;
+    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: 15px; color: #EDE7DD;
+    background: #131E1A; border: 1px solid rgba(237, 231, 221, .2);
+}
+.lab-field input:focus, .lab-field select:focus, .lab-field textarea:focus {
+    outline: none; border-color: #CFA892; box-shadow: 0 0 0 1px #CFA892;
+}
+.lab-field input::placeholder, .lab-field textarea::placeholder { color: #6E8077; }
+.lab-field textarea { resize: vertical; min-height: 96px; line-height: 1.5; }
+.lab-field select {
+    appearance: none; -webkit-appearance: none; padding-right: 36px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23CFA892' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center;
+}
+.lab-field-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.lab-check { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; line-height: 1.5; color: #A6B5AB; }
+.lab-check input { flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; accent-color: #CFA892; }
+.lab-check a, .lab-form-status a { text-decoration: underline; text-underline-offset: 3px; }
+.lab-form button.lab-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
+    padding: 16px 24px; font-size: 14.5px; font-weight: 700; transition: opacity .2s ease;
+}
+.lab-form button.lab-btn:hover { opacity: .86; }
+.lab-form button.lab-btn:disabled { opacity: .6; cursor: progress; }
+.lab-form button.lab-btn:focus-visible { outline: 2px solid #EDE7DD; outline-offset: 3px; }
+/* El campo trampa: invisible para las personas, los robots lo llenan */
+.lab-form-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.lab-form-status { font-size: 14px; line-height: 1.55; padding-left: 12px; }
+.lab-form-status:empty { display: none; }
+.lab-form-status.is-ok { color: #EDE7DD; border-left: 2px solid #CFA892; }
+.lab-form-status.is-error { color: #F2C2B4; border-left: 2px solid #E08A73; }
+
+@media (max-width: 1100px) {
+    .lab-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .lab-form { max-width: 640px; }
+}
+@media (max-width: 760px) {
+    .lab-form { padding: 24px 20px; }
+    .lab-field-row { grid-template-columns: minmax(0, 1fr); }
+}

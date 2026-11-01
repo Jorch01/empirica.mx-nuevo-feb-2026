@@ -264,16 +264,68 @@
   <!-- HERO -->
   <div class="lab-hero" style="position: relative; padding: 96px 64px 88px; overflow: hidden;">
     <img src="assets/images/logo/marca-rosa.png" alt="" class="lab-watermark" style="position: absolute; right: -80px; top: 40px; width: 520px; opacity: 0.07;">
+    <div class="lab-hero-grid">
     <div class="lab-stack" style="position: relative; gap: 30px;">
       <span class="lab-eyebrow">CANCÚN · QUINTANA ROO <span style="color: rgba(207, 168, 146, 0.4);">/</span> <span style="color: #8FA096;">ENGLISH AND SPANISH</span></span>
       <h1 class="lab-title">Real estate disputes and fraud in Cancún. <span>For foreigners, Mexicans and dual nationals.</span></h1>
       <p class="lab-lead">We handle any kind of real estate dispute in Cancún and across Quintana Roo: fraud in a purchase, a developer that never delivers, a tenant who stops paying or a fight in your condo. We work with you in English or Spanish, and the case evaluation is free.</p>
       <div class="lab-ctas" style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
-        <a class="lab-btn lab-btn-primary" href="https://wa.me/529982570828?text=Hi%2C%20I%20have%20a%20real%20estate%20dispute%20and%20I%27d%20like%20to%20book%20the%20free%20case%20evaluation%20with%20Emp%C3%ADrica%20Legal%20Lab." target="_blank" rel="noopener">Book a free case evaluation</a>
+        <a class="lab-btn lab-btn-primary" href="https://wa.me/529982570828?text=Hi%2C%20I%20have%20a%20real%20estate%20dispute%20and%20I%27d%20like%20to%20book%20the%20free%20case%20evaluation%20with%20Emp%C3%ADrica%20Legal%20Lab." target="_blank" rel="noopener"><i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp: book your free case evaluation</a>
         <a class="lab-btn lab-btn-ghost" href="tel:+529982570828">Call: +52 998 257 0828</a>
       </div>
+      <p class="lab-trust"><span aria-hidden="true">★</span> <b class="js-g-rating">4.9</b> on Google · Cambridge ILEC certified · English and Spanish</p>
       <p class="lab-byline"><b>Practice lead:</b> <a href="lawyer-jorge-israel-clemente-marie.html">Jorge Israel Clemente Marie</a>, managing partner. Master’s degree in Amparo (constitutional litigation), Mexican professional license (cédula profesional) 08799163 and the Cambridge International Legal English Certificate (ILEC).</p>
     </div>
+      <!-- Formulario rápido: lo recibe apps-script/contacto (hoja + aviso por correo) -->
+      <form class="lab-form" id="evaluacion" data-contacto aria-labelledby="evaluacion-titulo">
+        <span class="lab-tag">// FREE CASE EVALUATION</span>
+        <h2 class="lab-form-title" id="evaluacion-titulo">Tell us what happened</h2>
+        <p class="lab-form-sub">A lawyer reviews it and contacts you, in English or Spanish.</p>
+        <label class="lab-field"><span>Name</span><input name="nombre" autocomplete="name" maxlength="120" required></label>
+        <div class="lab-field-row">
+          <label class="lab-field"><span>Email</span><input type="email" name="correo" autocomplete="email" maxlength="160"></label>
+          <label class="lab-field"><span>WhatsApp or phone</span><input type="tel" name="telefono" autocomplete="tel" maxlength="40"></label>
+        </div>
+        <label class="lab-field"><span>You are</span><select name="perfil"><option value="">Choose one (optional)</option><option value="Extranjero">A foreigner</option><option value="Mexicano">Mexican</option><option value="Doble nacionalidad">A dual national</option></select></label>
+        <label class="lab-field"><span>What happened?</span><textarea name="mensaje" rows="4" maxlength="3000" required placeholder="E.g. I paid a deposit on a pre-sale condo and the developer stopped answering."></textarea></label>
+        <label class="lab-form-hp" aria-hidden="true">Leave this field empty <input name="sitio_web" tabindex="-1" autocomplete="off"></label>
+        <label class="lab-check"><input type="checkbox" name="acepta" required> <span>I have read the <a href="aviso-de-privacidad.html" target="_blank" rel="noopener" hreflang="es">privacy notice</a> (in Spanish).</span></label>
+        <button type="submit" class="lab-btn lab-btn-primary">Send my case →</button>
+        <p class="lab-form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- RESEÑAS: las llena js/main.js con los datos actuales de Google -->
+  <div class="lab-sec" id="opiniones" style="padding: 88px 64px;">
+    <div class="lab-head">
+      <span class="lab-tag">// WHAT OUR CLIENTS SAY</span>
+      <h2 class="lab-h2">Reviews from our clients on Google.</h2>
+      <p>They appear as our clients wrote them on Google; most are in Spanish.</p>
+    </div>
+    <div class="lab-grid2" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 20px;">
+      <div style="border: 1px solid rgba(207, 168, 146, 0.2); background: #1B2C27; padding: 34px 30px; display: flex; flex-direction: column; gap: 14px;">
+        <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.14em; color: #6E8077;">GOOGLE REVIEWS</span>
+        <div style="display: flex; align-items: baseline; gap: 12px;">
+          <span class="js-g-rating" style="font-size: 58px; font-weight: 700; letter-spacing: -0.04em; color: #CFA892; line-height: 1;">4.9</span>
+          <span style="font-size: 15px; color: #8FA096;">/ 5.0</span>
+        </div>
+        <div id="g-stars" style="display: flex; gap: 4px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="#CFA892"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#CFA892"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#CFA892"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#CFA892"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"></path></svg><svg width="15" height="15" viewBox="0 0 24 24" fill="#CFA892"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"></path></svg></div>
+        <span id="g-count" style="font-size: 14px; color: #8FA096;">Verified Google reviews</span>
+        <button type="button" class="lab-rev-all" id="g-open-all" hidden><span>READ ALL REVIEWS</span> →</button>
+      </div>
+      <div style="border: 1px solid rgba(207, 168, 146, 0.2); background: #1B2C27; padding: 34px 30px; display: flex; gap: 30px; align-items: center;">
+        <div style="flex-shrink: 0; width: 62px; height: 62px; border: 1px solid #CFA892; display: flex; align-items: center; justify-content: center;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#CFA892" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 9h18M3 15h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"></path></svg>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: 0.14em; color: #6E8077;">CERTIFICATION</span>
+          <h3 style="font-size: 24px; font-weight: 700; margin: 0; letter-spacing: -0.02em;">Cambridge ILEC — We speak English</h3>
+          <p style="font-size: 15px; line-height: 1.6; color: #8FA096; margin: 0; max-width: 560px;">Your case, explained in English: the calls, every document and each update.</p>
+        </div>
+      </div>
+    </div>
+    <div class="lab-rev-grid" id="g-featured" hidden></div>
   </div>
 
   <div class="lab-sec lab-panel" id="servicios" style="background: #1B2C27; padding: 88px 64px;">
@@ -434,12 +486,28 @@
       <h2 style="font-size: 48px; font-weight: 700; letter-spacing: -0.035em; margin: 0; line-height: 1.05;">Tell us what happened.<br>The case evaluation is free.</h2>
     </div>
     <div style="display: flex; flex-direction: column; gap: 12px; flex-shrink: 0;">
-      <a class="lab-btn lab-btn-dark" href="https://wa.me/529982570828?text=Hi%2C%20I%20have%20a%20real%20estate%20dispute%20and%20I%27d%20like%20to%20book%20the%20free%20case%20evaluation%20with%20Emp%C3%ADrica%20Legal%20Lab." target="_blank" rel="noopener">Book on WhatsApp →</a>
+      <a class="lab-btn lab-btn-dark" href="https://wa.me/529982570828?text=Hi%2C%20I%20have%20a%20real%20estate%20dispute%20and%20I%27d%20like%20to%20book%20the%20free%20case%20evaluation%20with%20Emp%C3%ADrica%20Legal%20Lab." target="_blank" rel="noopener"><i class="fab fa-whatsapp" aria-hidden="true"></i> Book on WhatsApp →</a>
       <a class="lab-btn lab-btn-line" href="tel:+529982570828">+52 998 257 0828</a>
     </div>
   </div>
 
   </main>
+
+  <!-- Todas las reseñas de Google -->
+  <div class="lab-rev-modal" id="g-modal" hidden role="dialog" aria-modal="true" aria-labelledby="g-modal-title">
+    <div class="lab-rev-modal-box">
+      <div class="lab-rev-modal-head">
+        <div>
+          <span class="lab-rev-modal-tag">GOOGLE REVIEWS</span>
+          <h3 id="g-modal-title">All reviews</h3>
+        </div>
+        <button type="button" class="lab-rev-close" id="g-modal-close" aria-label="Close">×</button>
+      </div>
+      <div class="lab-rev-filters" id="g-filters" role="group" aria-label="Filter by stars"></div>
+      <div class="lab-rev-list" id="g-list"></div>
+      <div class="lab-rev-modal-foot" id="g-modal-foot"></div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -473,6 +541,7 @@
 
 </div>
 
+    <script src="js/apps-script-urls.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
