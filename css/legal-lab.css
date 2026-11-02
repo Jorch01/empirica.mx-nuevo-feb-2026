@@ -445,3 +445,118 @@ ul.lab-chips { list-style: none; }
     .lab-form { padding: 24px 20px; }
     .lab-field-row { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ==========================================================
+   Guías en inglés (/en/guides/)
+   Artículo largo con índice lateral, y el checklist interactivo.
+   ========================================================== */
+.lab-draft {
+    padding: 12px 64px; background: #E08A73; color: #131E1A;
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px; letter-spacing: .06em; font-weight: 700;
+}
+.lab-crumbs { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .08em; color: #6E8077; }
+.lab-crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.lab-crumbs li + li::before { content: '/'; margin-right: 8px; color: rgba(207, 168, 146, .4); }
+.lab-crumbs a { color: #8FA096; }
+.lab-crumbs a:hover { color: #CFA892; }
+
+.lab-author { display: flex; align-items: center; gap: 16px; max-width: 760px; padding-top: 18px; border-top: 1px solid rgba(207, 168, 146, .16); }
+.lab-author img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; object-position: center 20%; border: 1px solid rgba(207, 168, 146, .35); flex-shrink: 0; }
+.lab-author p { font-size: 14.5px; line-height: 1.55; color: #8FA096; }
+.lab-author b, .lab-author a { color: #EDE7DD; font-weight: 600; }
+.lab-author a { text-decoration: underline; text-underline-offset: 3px; }
+
+.lab-doc { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 64px; align-items: start; }
+.lab-aside { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 20px; }
+.lab-toc { border: 1px solid rgba(207, 168, 146, .2); padding: 22px 22px 18px; }
+.lab-toc ol { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+.lab-toc a { font-size: 14px; line-height: 1.4; color: #A6B5AB; }
+.lab-toc a:hover { color: #CFA892; }
+.lab-aside-cta { background: #22352E; border: 1px solid rgba(207, 168, 146, .3); padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+.lab-aside-cta b { font-size: 18px; letter-spacing: -.01em; line-height: 1.25; }
+.lab-aside-cta p { font-size: 14px; line-height: 1.55; color: #A6B5AB; }
+.lab-aside-cta .lab-btn { justify-content: center; text-align: center; padding: 13px 16px; font-size: 13.5px; }
+
+.lab-article { max-width: 760px; color: #C9D2CC; font-size: 17px; line-height: 1.72; }
+.lab-article > * + * { margin-top: 18px; }
+.lab-article h2 {
+    margin-top: 56px; font-size: 30px; font-weight: 700; line-height: 1.15; letter-spacing: -.025em; color: #EDE7DD;
+    scroll-margin-top: 96px;
+}
+.lab-article h3 { margin-top: 30px; font-size: 20px; font-weight: 700; letter-spacing: -.015em; color: #EDE7DD; }
+.lab-article strong { color: #EDE7DD; }
+.lab-article a { text-decoration: underline; text-underline-offset: 3px; }
+.lab-article ul, .lab-article ol { padding-left: 22px; display: flex; flex-direction: column; gap: 10px; }
+.lab-article li::marker { color: #CFA892; }
+.lab-article ol > li { padding-left: 6px; }
+.lab-article em { color: #A6B5AB; }
+.lab-callout {
+    border-left: 3px solid #CFA892; background: #1B2C27; padding: 20px 24px;
+    font-size: 16.5px; line-height: 1.6;
+}
+.lab-callout b { color: #CFA892; }
+.lab-deadlines { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid rgba(207, 168, 146, .25); }
+.lab-deadlines div { padding: 18px 18px 16px; border-right: 1px solid rgba(207, 168, 146, .2); display: flex; flex-direction: column; gap: 6px; }
+.lab-deadlines div:last-child { border-right: 0; }
+.lab-deadlines b { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 26px; letter-spacing: -.02em; color: #CFA892; line-height: 1.1; }
+.lab-deadlines span { font-size: 14px; line-height: 1.45; color: #A6B5AB; }
+.lab-case { border: 1px solid rgba(207, 168, 146, .2); background: #1B2C27; padding: 18px 22px; font-size: 16px; line-height: 1.6; }
+.lab-case span { display: block; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: .12em; color: #CFA892; margin-bottom: 6px; }
+.lab-sources { font-size: 14.5px; line-height: 1.55; }
+.lab-sources li { color: #A6B5AB; }
+.lab-disclaimer { margin-top: 40px !important; padding-top: 18px; border-top: 1px solid rgba(207, 168, 146, .16); font-size: 13.5px; line-height: 1.6; color: #8FA096; font-style: italic; }
+
+/* Checklist */
+.lab-quiz { display: flex; flex-direction: column; gap: 0; max-width: 860px; border-top: 1px solid rgba(207, 168, 146, .16); }
+.lab-q { border: 0; border-bottom: 1px solid rgba(207, 168, 146, .16); padding: 22px 0; display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 12px 14px; }
+.lab-q legend { display: contents; }
+.lab-q-num { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 20px; font-weight: 700; color: rgba(207, 168, 146, .5); grid-row: span 3; }
+.lab-q-text { font-size: 17px; font-weight: 600; line-height: 1.45; color: #EDE7DD; }
+.lab-q-why { font-size: 13.5px; line-height: 1.5; color: #8FA096; }
+.lab-q-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.lab-q-opts label { position: relative; }
+.lab-q-opts input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.lab-q-opts span {
+    display: inline-block; cursor: pointer; padding: 9px 16px; border: 1px solid rgba(237, 231, 221, .22);
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .04em; color: #A6B5AB;
+}
+.lab-q-opts span:hover { border-color: rgba(207, 168, 146, .6); color: #EDE7DD; }
+.lab-q-opts input:checked + span { background: #CFA892; border-color: #CFA892; color: #131E1A; font-weight: 700; }
+.lab-q-opts input:focus-visible + span { outline: 2px solid #EDE7DD; outline-offset: 2px; }
+.lab-quiz-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 26px; max-width: 860px; }
+.lab-quiz-progress { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .08em; color: #8FA096; }
+.lab-quiz-bar .lab-btn { border: 0; cursor: pointer; }
+.lab-quiz-bar .lab-btn:disabled { opacity: .45; cursor: not-allowed; }
+.lab-result { max-width: 860px; margin-top: 30px; padding: 30px 30px 28px; border: 1px solid; display: flex; flex-direction: column; gap: 14px; }
+.lab-result[hidden] { display: none; }
+.lab-result { scroll-margin-top: 100px; }
+.lab-result-tag { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .14em; }
+.lab-result h2 { font-size: 32px; font-weight: 700; letter-spacing: -.025em; line-height: 1.1; }
+.lab-result p { font-size: 16.5px; line-height: 1.6; color: #C9D2CC; max-width: 700px; }
+.lab-result ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.5; color: #A6B5AB; }
+.lab-result .lab-ctas { margin-top: 6px; }
+.lab-result.is-low { border-color: rgba(143, 160, 150, .6); background: #1B2C27; }
+.lab-result.is-low .lab-result-tag, .lab-result.is-low h2 { color: #B9D3C2; }
+.lab-result.is-mid { border-color: #CFA892; background: #22302A; }
+.lab-result.is-mid .lab-result-tag, .lab-result.is-mid h2 { color: #CFA892; }
+.lab-result.is-high { border-color: #E08A73; background: #2A2422; }
+.lab-result.is-high .lab-result-tag, .lab-result.is-high h2 { color: #F2A48E; }
+
+@media (max-width: 1100px) {
+    .lab-doc { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+    .lab-aside { position: static; }
+    .lab-toc { display: none; }
+    .lab-draft { padding-left: 40px; padding-right: 40px; }
+}
+@media (max-width: 760px) {
+    .lab-draft { padding-left: 22px; padding-right: 22px; }
+    .lab-article { font-size: 16.5px; }
+    .lab-article h2 { font-size: 25px; margin-top: 44px; }
+    .lab-deadlines { grid-template-columns: minmax(0, 1fr); }
+    .lab-deadlines div { border-right: 0; border-bottom: 1px solid rgba(207, 168, 146, .2); }
+    .lab-deadlines div:last-child { border-bottom: 0; }
+    .lab-q { grid-template-columns: 36px minmax(0, 1fr); }
+    .lab-q-num { font-size: 16px; }
+    .lab-result { padding: 24px 20px; }
+    .lab-result h2 { font-size: 26px; }
+}
