@@ -59,6 +59,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Main Stylesheet -->
@@ -888,6 +889,11 @@
             .lp-cta-actions .btn-lp-outline { width: 100%; }
         }
     
+        /* Iconos con ancho fijo: al cargar Font Awesome (después del primer pintado) el texto no se mueve */
+        .lp-hero-check li > i, .lp-hero-card-item > i, .lp-need-list li > i, .lp-why-item > i, .lp-media-card > i,
+        .lp-strip-item > i, .lp-alert-icon i, .lp-type-icon i, .lp-hero-badge i, .lp-coverage-card h3 i { display: inline-block; width: 1.25em; min-width: 1.25em; text-align: center; }
+        .lp-hero-badge i { width: auto; min-width: 0; }
+
         /* Añadidos propios de esta página */
         .lp-nota-pie { font-size: 0.8rem; color: rgba(255,255,255,0.6); max-width: 760px; margin: var(--spacing-lg) auto 0; line-height: 1.6; }
         .lp-doble { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); }
