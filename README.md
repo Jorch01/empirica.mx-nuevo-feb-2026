@@ -8,9 +8,15 @@ Sitio web moderno para **Empírica Legal Lab** — despacho jurídico enfocado e
 ├── index.html                    # Página principal (español)
 ├── en.html                       # La misma página en inglés: un cambio en una va también en la otra
 ├── landing-*.html                # Una página por servicio (las de disputas, en español y en inglés)
+│   ├── landing-amparo-cancun.html          # Abogado de amparo en Cancún (misma plantilla que edictos)
+│   └── landing-registro-marcas-cancun.html # Registro de marcas en Cancún + Verificador de viabilidad de marca
 ├── abogado-*.html, abogada-*.html, lawyer-*.html
 │                                 # Perfiles de los socios, en español y en inglés
 ├── css/styles.css                # Estilos (responsive, animaciones)
+├── css/verificador-marca.css     # Estilos del verificador de marca
+├── js/verificador-config.js      # Clave pública de Turnstile y URL del Worker (lo único que se edita a mano)
+├── js/verificador-marca.js       # Interfaz del verificador (formulario, semáforo, desbloqueo con datos de contacto)
+├── js/verificador-marca-motor.js # GENERADO desde la app (TSJ_Filing_online): no se edita a mano
 ├── js/main.js                    # JavaScript (modales, Stripe, formularios)
 ├── assets/images/
 │   ├── logo/                     # Coloca tu logo aquí
@@ -63,3 +69,13 @@ En `index.html`, busca `contacto@empirica.mx` y reemplázalo con tu email real.
 - Google Fonts (Playfair Display + Inter)
 - Font Awesome 6 (iconos)
 - Integración con Stripe Payment Links
+
+## Verificador de viabilidad de marca
+
+`landing-registro-marcas-cancun.html` incluye un verificador que usa el Worker de Cloudflare del proyecto
+`TSJ_Filing_online` (reglas: Turnstile, 1 estudio al mes por IP, CORS limitado y caché corta).
+Cómo activarlo y desplegarlo: `docs/proxy/LEEME-verificador-sitio.md` en ese repositorio.
+Mientras `turnstileSiteKey` esté vacía en `js/verificador-config.js`, el verificador avisa que no está disponible y manda a WhatsApp.
+
+`js/verificador-marca-motor.js` se regenera desde la app con
+`node herramientas/generar-verificador-sitio.js <ruta>/js/verificador-marca-motor.js` (en `TSJ_Filing_online`).

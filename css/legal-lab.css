@@ -6,11 +6,14 @@
    ========================================================== */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+/* Respaldo con las métricas de Archivo: mientras baja la tipografía, el texto ocupa casi lo mismo y la página no se mueve al cambiarla (CLS).
+   Archivo mide 98.2 % del ancho de Arial (medido en el texto de las landings). */
+@font-face { font-family: 'Archivo Fallback'; src: local('Arial'), local('ArialMT'), local('Liberation Sans'); size-adjust: 98.2%; }
 html { scroll-behavior: smooth; }
 body {
     background: #131E1A;
     color: #EDE7DD;
-    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Archivo', 'Archivo Fallback', 'Helvetica Neue', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -406,7 +409,7 @@ ul.lab-chips { list-style: none; }
 }
 .lab-field input, .lab-field select, .lab-field textarea {
     width: 100%; padding: 11px 12px; border-radius: 0;
-    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: 15px; color: #EDE7DD;
+    font-family: 'Archivo', 'Archivo Fallback', 'Helvetica Neue', Arial, sans-serif; font-size: 15px; color: #EDE7DD;
     background: #131E1A; border: 1px solid rgba(237, 231, 221, .2);
 }
 .lab-field input:focus, .lab-field select:focus, .lab-field textarea:focus {
@@ -560,3 +563,8 @@ ul.lab-chips { list-style: none; }
     .lab-result { padding: 24px 20px; }
     .lab-result h2 { font-size: 26px; }
 }
+
+/* Contraste del pie: el texto de 11 px en #6E8077 sobre #131E1A daba 4.08:1 (mínimo AA: 4.5:1). Con #8FA096 es 6.7:1. */
+.lab-footer, .lab-footer a { color: #8FA096 !important; }
+.lab-footer a:hover { color: var(--color-gold) !important; }
+.lab-svc-links > span { color: #8FA096 !important; }
