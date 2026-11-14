@@ -62,6 +62,14 @@
     function guardar(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* modo privado */ } }
     function leer(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
     function plural(n, uno, varios) { return n === 1 ? uno : varios; }
+    function num(n) { try { return Number(n).toLocaleString('es-MX'); } catch (e) { return String(n); } }
+    // "16 de riesgo alto y 997 de riesgo medio" (solo lo que haya)
+    function desgloseRiesgo(r) {
+        var partes = [];
+        if (r.alto) partes.push(num(r.alto) + ' de riesgo alto');
+        if (r.medio) partes.push(num(r.medio) + ' de riesgo medio');
+        return partes.join(' y ');
+    }
 
     // Eventos de Google Analytics 4 (el sitio ya carga gtag y GTM). Sin datos personales ni la denominación.
     function medir(evento, params) {
@@ -85,9 +93,8 @@
 
     function pintarFormulario(mensaje) {
         var ultimo = leer(CLAVE_ULTIMO);
-        // El contenedor del widget de Turnstile se reconstruye: el anterior se quita y se empieza de cero.
-        try { if (window.turnstile && estado.turnstile !== null && estado.turnstile !== 'pendiente') window.turnstile.remove(estado.turnstile); } catch (e) { /* ya no existe */ }
-        estado.turnstile = null; estado.token = '';
+        // El contenedor del widget de Turnstile se reconstruye: el anterior se quita (si sigue ahí) y se empieza de cero.
+        quitarTurnstile();
         raiz.innerHTML =
             '<div class="vm">' +
             '<form class="vm-card" id="vm-form" novalidate>' +
@@ -181,6 +188,14 @@
         }).catch(function () { estado.turnstile = null; /* se avisa al enviar */ });
     }
 
+    // Quita el widget solo si todavía está en la página; así no hay avisos de "Cannot find Widget" en la consola.
+    function quitarTurnstile() {
+        var id = estado.turnstile;
+        estado.turnstile = null; estado.token = '';
+        if (id === null || id === 'pendiente') return;
+        try { if (window.turnstile && $('vm-turnstile')) window.turnstile.remove(id); } catch (e) { /* ya no existe */ }
+    }
+
     function reiniciarTurnstile() {
         estado.token = '';
         try { if (window.turnstile && estado.turnstile !== null && estado.turnstile !== 'pendiente') window.turnstile.reset(estado.turnstile); } catch (e) { /* ya no existe */ }
@@ -247,6 +262,7 @@
     }
 
     function pintarProgreso(entrada) {
+        quitarTurnstile();
         raiz.innerHTML = '<div class="vm"><div class="vm-card vm-progreso" role="status" aria-live="polite">' +
             '<h3>Estamos revisando «' + esc(entrada.denominacion) + '»</h3>' +
             '<div class="vm-barra" aria-hidden="true"><span></span></div>' +
@@ -340,8 +356,9 @@
     function resumen(rep) {
         var V = window.VerificadorMarca;
         var grupos = V.agruparMarcas(rep.antecedentes || []).filter(function (a) { return !a.descartado; });
-        var graves = grupos.filter(function (a) { return a.riesgo === 'alto' || a.riesgo === 'medio'; }).length;
-        return { total: grupos.length, graves: graves, grupos: grupos };
+        var alto = grupos.filter(function (a) { return a.riesgo === 'alto'; }).length;
+        var medio = grupos.filter(function (a) { return a.riesgo === 'medio'; }).length;
+        return { total: grupos.length, alto: alto, medio: medio, graves: alto + medio, grupos: grupos };
     }
 
     function pintarResultado(esNuevo) {
@@ -356,6 +373,7 @@
         var wa = whatsapp('Hola, usé el verificador de marca en su sitio. Mi denominación es «' + e.denominacion + '» (clases ' + e.clases.join(', ') +
             ') y el resultado fue: ' + s.titulo.toLowerCase() + '. Me gustaría revisarla con un abogado.');
 
+        quitarTurnstile();
         var cuerpo =
             '<div class="vm"><section class="vm-card" aria-labelledby="vm-titulo-res">' +
                 '<div class="vm-resultado">' +
@@ -364,8 +382,8 @@
                         '<p class="vm-meta">«' + esc(e.denominacion) + '» · clases ' + esc(e.clases.join(', ')) + '</p>' +
                         '<h3 class="vm-veredicto ' + s.color + '" id="vm-titulo-res" tabindex="-1">' + esc(s.titulo) + '</h3>' +
                         '<p>' + esc(s.texto) + (rep.dictamen.parcial ? ' Una de las consultas no respondió, así que el resultado es parcial.' : '') + '</p>' +
-                        (incompleta ? '' : '<div class="vm-conteo"><b>' + r.total + '</b><span>' + plural(r.total, 'antecedente parecido encontrado', 'antecedentes parecidos encontrados') +
-                            (r.graves ? ' · ' + r.graves + ' ' + plural(r.graves, 'merece', 'merecen') + ' revisión especial' : '') + '</span></div>') +
+                        (incompleta ? '' : '<div class="vm-conteo"><b>' + num(r.total) + '</b><span>' + plural(r.total, 'antecedente parecido encontrado', 'antecedentes parecidos encontrados') +
+                            (desgloseRiesgo(r) ? ' · ' + desgloseRiesgo(r) : '') + '</span></div>') +
                     '</div>' +
                 '</div>' +
                 '<p class="vm-aviso" role="note"><strong>Importante.</strong> ' + esc(AVISO) + '</p>' +
@@ -384,7 +402,7 @@
         if (estado.leadEnviado && !incompleta) pintarDetalle();
         var t = $('vm-titulo-res');
         if (t && esNuevo) { t.focus({ preventScroll: true }); raiz.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-        if (esNuevo) medir('marca_resultado_mostrado', { semaforo: s.color, antecedentes: r.total, para_revisar: r.graves, clases: e.clases.length });
+        if (esNuevo) medir('marca_resultado_mostrado', { semaforo: s.color, antecedentes: r.total, riesgo_alto: r.alto, para_revisar: r.graves, clases: e.clases.length });
     }
 
     function reintentar() {
@@ -433,7 +451,7 @@
         var lineas = ['Verificador de viabilidad de marca (sitio).',
             'Denominación: ' + e.denominacion + ' | Tipo: ' + e.tipo + ' | Clases: ' + e.clases.join(', '),
             e.productos ? 'Giro: ' + e.productos : '',
-            'Semáforo: ' + s.color + ' (' + rep.dictamen.titulo + '). Antecedentes parecidos: ' + r.total + ' (' + r.graves + ' para revisar).',
+            'Semáforo: ' + s.color + ' (' + rep.dictamen.titulo + '). Antecedentes parecidos: ' + r.total + ' (' + r.alto + ' de riesgo alto, ' + r.medio + ' de riesgo medio).',
             principales.length ? 'Principales: ' + principales.join('; ') + '.' : '',
             'Aceptó el aviso de privacidad en el formulario.'];
         return lineas.filter(Boolean).join('\n').slice(0, 2800);
@@ -483,6 +501,7 @@
         var V = window.VerificadorMarca, rep = estado.reporte, e = estado.entrada, d = rep.dictamen;
         var cont = $('vm-detalle');
         var utiles = V.agruparMarcas(rep.antecedentes || []).filter(function (a) { return !a.descartado; });
+        var resu = resumen(rep);
         var relevantes = utiles.filter(function (a) { return a.riesgo !== 'bajo' || a.similitud.puntaje >= 75; }).slice(0, 12);
         var ETIQ = { alto: 'Alto', medio: 'Medio', bajo: 'Bajo', propia: 'Propia' };
         var filas = relevantes.map(function (a) {
@@ -494,9 +513,14 @@
                 '<td data-etiqueta="Titular">' + esc(a.titulares.slice(0, 1).join('') || '—') + '</td>' +
                 '<td data-etiqueta="Parecido">' + a.similitud.puntaje + '%</td></tr>';
         }).join('');
-        var relac = (rep.relacionadas || []).map(function (n) { return n + ' (' + esc((V.CLASES_NIZA || {})[n] || NIZA[n] || '') + ')'; });
-        var pubs = (rep.publicaciones || []).slice(0, 5).map(function (p) {
-            return '<li>«' + esc(p.denominacion) + '» · clase ' + esc(p.clases.join(', ') || '—') + ' · ' + esc(p.gaceta) + (p.ejemplar ? ', ' + esc(p.ejemplar) : '') + '</li>';
+        var relac = (rep.relacionadas || []).map(function (n) { return n + ' (' + esc(NIZA[n] || (V.CLASES_NIZA || {})[n] || '') + ')'; });
+        // Las más recientes primero (la Gaceta trae también publicaciones muy antiguas).
+        var pubsOrdenadas = (rep.publicaciones || []).slice().sort(function (a, b) {
+            var fa = V.fechaIMPI ? V.fechaIMPI(a.fecha) : null, fb = V.fechaIMPI ? V.fechaIMPI(b.fecha) : null;
+            return (fb == null ? -1 : fb) - (fa == null ? -1 : fa) || b.similitud.puntaje - a.similitud.puntaje;
+        });
+        var pubs = pubsOrdenadas.slice(0, 5).map(function (p) {
+            return '<li>«' + esc(p.denominacion) + '» · clase ' + esc(p.clases.join(', ') || 'sin dato') + ' · ' + esc(p.gaceta) + (p.ejemplar ? ', ' + esc(p.ejemplar) : '') + '</li>';
         }).join('');
         var wa = whatsapp('Hola, ya vi el dictamen del verificador de marca para «' + e.denominacion + '» (clases ' + e.clases.join(', ') + '). Quiero revisarlo con un abogado.');
         cont.innerHTML =
@@ -504,13 +528,15 @@
                 '<div class="vm-ok" role="status">Gracias, ' + 'recibimos tus datos. Aquí está tu dictamen detallado; un abogado podrá comentarlo contigo.</div>' +
                 '<h3 id="vm-titulo-detalle" tabindex="-1">Dictamen detallado: «' + esc(e.denominacion) + '»</h3>' +
                 '<p>' + esc(d.resumen) + '</p>' +
+                (resu.total ? '<p class="vm-ayuda">Se encontraron ' + num(resu.total) + ' antecedentes parecidos' + (desgloseRiesgo(resu) ? ' (' + desgloseRiesgo(resu) + ')' : '') +
+                    '. Aquí van los ' + num(relevantes.length) + ' principales, de mayor a menor riesgo.</p>' : '') +
                 (rep.observaciones && rep.observaciones.length ? '<div class="vm-seccion"><h4>Sobre la denominación</h4><ul class="vm-obs">' +
                     rep.observaciones.map(function (o) { return '<li class="' + esc(o.nivel) + '">' + esc(o.texto) + '</li>'; }).join('') + '</ul></div>' : '') +
                 '<div class="vm-seccion"><h4>Antecedentes a considerar</h4>' + (filas
                     ? '<div class="vm-tabla-marco"><table class="vm-tabla"><thead><tr><th>Riesgo</th><th>Marca</th><th>Clase</th><th>Estatus</th><th>Titular</th><th>Parecido</th></tr></thead><tbody>' + filas + '</tbody></table></div>'
                     : '<p>Ningún antecedente se parece lo suficiente para considerarse.</p>') + '</div>' +
-                (relac.length ? '<div class="vm-seccion"><h4>Clases relacionadas</h4><p>Además de las que elegiste, conviene revisar: ' + relac.join('; ') + '.</p></div>' : '') +
-                (pubs ? '<div class="vm-seccion"><h4>Publicaciones recientes en Gaceta</h4><ul class="vm-recs">' + pubs + '</ul></div>' : '') +
+                (relac.length ? '<div class="vm-seccion"><h4>Clases relacionadas</h4><p>Estas clases suelen considerarse relacionadas con las que elegiste (orientativo; no todas aplican a tu negocio y las revisamos contigo según lo que ofreces): ' + relac.join('; ') + '.</p></div>' : '') +
+                (pubs ? '<div class="vm-seccion"><h4>Publicaciones en Gaceta relacionadas</h4><ul class="vm-recs">' + pubs + '</ul></div>' : '') +
                 '<div class="vm-seccion"><h4>Recomendaciones</h4><ul class="vm-recs">' + (rep.recomendaciones || []).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>' +
                 '<p class="vm-aviso" role="note"><strong>Importante.</strong> ' + esc(AVISO) + '</p>' +
                 '<div class="vm-acciones"><a class="vm-btn vm-btn-wa" href="' + esc(wa) + '" target="_blank" rel="noopener">Revisar mi dictamen con un abogado</a></div>' +
