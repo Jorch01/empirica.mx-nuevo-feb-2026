@@ -525,9 +525,16 @@
             var fa = V.fechaIMPI ? V.fechaIMPI(a.fecha) : null, fb = V.fechaIMPI ? V.fechaIMPI(b.fecha) : null;
             return (fb == null ? -1 : fb) - (fa == null ? -1 : fa) || b.similitud.puntaje - a.similitud.puntaje;
         });
-        var pubs = pubsOrdenadas.slice(0, 5).map(function (p) {
-            return '<li>«' + esc(p.denominacion) + '» · clase ' + esc(p.clases.join(', ') || 'sin dato') + ' · ' + esc(p.gaceta) + (p.ejemplar ? ', ' + esc(p.ejemplar) : '') + '</li>';
-        }).join('');
+        // Cada publicación con su número de registro o expediente (si no, varias fichas distintas se ven como una repetida);
+        // las que aun así quedan idénticas se agrupan con "(×N)".
+        var pubsUnicas = [], pubsVistas = {};
+        pubsOrdenadas.forEach(function (p) {
+            var num = p.registro ? 'reg. ' + p.registro : p.expediente ? 'exp. ' + p.expediente : '';
+            var linea = '«' + esc(p.denominacion) + '»' + (num ? ' (' + esc(num) + ')' : '') + ' · clase ' + esc(p.clases.join(', ') || 'sin dato') + ' · ' + esc(p.gaceta) + (p.ejemplar ? ', ' + esc(p.ejemplar) : '');
+            if (pubsVistas[linea]) pubsVistas[linea].n++;
+            else { pubsVistas[linea] = { linea: linea, n: 1 }; pubsUnicas.push(pubsVistas[linea]); }
+        });
+        var pubs = pubsUnicas.slice(0, 5).map(function (x) { return '<li>' + x.linea + (x.n > 1 ? ' (×' + x.n + ')' : '') + '</li>'; }).join('');
         var wa = whatsapp('Hola, ya vi el dictamen del verificador de marca para «' + e.denominacion + '» (clases ' + e.clases.join(', ') + '). Quiero revisarlo con un abogado.');
         cont.innerHTML =
             '<section class="vm-card" aria-labelledby="vm-titulo-detalle">' +
