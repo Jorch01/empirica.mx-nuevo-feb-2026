@@ -8,7 +8,11 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 /* Respaldo con las métricas de Archivo: mientras baja la tipografía, el texto ocupa casi lo mismo y la página no se mueve al cambiarla (CLS).
    Archivo mide 98.2 % del ancho de Arial (medido en el texto de las landings). */
-@font-face { font-family: 'Archivo Fallback'; src: local('Arial'), local('ArialMT'), local('Liberation Sans'); size-adjust: 98.2%; }
+/* Respaldo con las métricas de Archivo, un ajuste por peso (medido contra Archivo), para que el cambio de fuente no mueva el texto. */
+@font-face { font-family: 'Archivo Fallback'; font-weight: 400; src: local('Arial'), local('ArialMT'), local('Liberation Sans'); size-adjust: 98.2%; }
+@font-face { font-family: 'Archivo Fallback'; font-weight: 500; src: local('Arial'), local('ArialMT'), local('Liberation Sans'); size-adjust: 99.9%; }
+@font-face { font-family: 'Archivo Fallback'; font-weight: 600; src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'); size-adjust: 95%; }
+@font-face { font-family: 'Archivo Fallback'; font-weight: 700; src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'); size-adjust: 98.3%; }
 html { scroll-behavior: smooth; }
 body {
     background: #131E1A;
@@ -190,11 +194,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .lab-rev-stars { display: flex; gap: 2px; }
 .lab-rev-date {
     margin-left: auto; flex-shrink: 0;
-    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: .08em; color: #6E8077;
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: .08em; color: #8FA096;
 }
 .lab-rev-text { font-size: 14.5px; line-height: 1.6; color: #A6B5AB; }
 .lab-rev-text.is-clamped { display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
-.lab-rev-text.is-empty { font-style: italic; color: #6E8077; }
+.lab-rev-text.is-empty { font-style: italic; color: #8FA096; }
 
 .lab-rev-modal {
     position: fixed; inset: 0; z-index: 1000;
@@ -210,7 +214,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
     padding: 26px 28px 18px; border-bottom: 1px solid rgba(207, 168, 146, .16);
 }
-.lab-rev-modal-tag { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: .14em; color: #6E8077; }
+.lab-rev-modal-tag { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10.5px; letter-spacing: .14em; color: #8FA096; }
 .lab-rev-modal-head h3 { font-size: 24px; font-weight: 700; letter-spacing: -.02em; margin-top: 6px; }
 .lab-rev-close { font-size: 30px; line-height: 1; color: #8FA096; width: 40px; height: 40px; }
 .lab-rev-close:hover { color: #CFA892; }
@@ -219,7 +223,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     border: 1px solid rgba(237, 231, 221, .2); padding: 7px 12px;
     font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: #A6B5AB;
 }
-.lab-rev-filters button span { color: #6E8077; margin-left: 4px; }
+.lab-rev-filters button span { color: #8FA096; margin-left: 4px; }
 .lab-rev-filters button.active { border-color: #CFA892; color: #CFA892; }
 .lab-rev-list { overflow-y: auto; padding: 8px 28px; }
 .lab-rev-item { display: flex; flex-direction: column; gap: 12px; padding: 20px 0; border-bottom: 1px solid rgba(207, 168, 146, .12); }
@@ -235,7 +239,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .lab-svc-links {
     max-width: 1440px; margin: 0 auto; padding: 26px 64px 0;
     display: flex; flex-wrap: wrap; align-items: center; gap: 10px 26px;
-    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .08em; color: #6E8077;
+    font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .08em; color: #8FA096;
     background: #131E1A; border-top: 1px solid rgba(207, 168, 146, .16);
 }
 .lab-svc-links a { color: #8FA096; }
@@ -415,7 +419,7 @@ ul.lab-chips { list-style: none; }
 .lab-field input:focus, .lab-field select:focus, .lab-field textarea:focus {
     outline: none; border-color: #CFA892; box-shadow: 0 0 0 1px #CFA892;
 }
-.lab-field input::placeholder, .lab-field textarea::placeholder { color: #6E8077; }
+.lab-field input::placeholder, .lab-field textarea::placeholder { color: #8FA096; }
 .lab-field textarea { resize: vertical; min-height: 96px; line-height: 1.5; }
 .lab-field select {
     appearance: none; -webkit-appearance: none; padding-right: 36px;
@@ -457,7 +461,7 @@ ul.lab-chips { list-style: none; }
     padding: 12px 64px; background: #E08A73; color: #131E1A;
     font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11.5px; letter-spacing: .06em; font-weight: 700;
 }
-.lab-crumbs { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .08em; color: #6E8077; }
+.lab-crumbs { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .08em; color: #8FA096; }
 .lab-crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
 .lab-crumbs li + li::before { content: '/'; margin-right: 8px; color: rgba(207, 168, 146, .4); }
 .lab-crumbs a { color: #8FA096; }
