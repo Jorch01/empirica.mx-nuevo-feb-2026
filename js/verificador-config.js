@@ -4,7 +4,7 @@
    Worker (secreto TURNSTILE_SECRET). Mientras `turnstileSiteKey` esté vacía, el verificador
    avisa que no está disponible y manda a WhatsApp; no llama a nada. */
 window.VERIFICADOR_MARCA_CONFIG = {
-    turnstileSiteKey: '',
+    turnstileSiteKey: '0x4AAAAAAGAWp-hV3kitA6r4',
     proxy: 'https://throbbing-scene-1c2b.enlilh.workers.dev',
     whatsapp: '529982570828'
 };
