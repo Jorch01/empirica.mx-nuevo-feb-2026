@@ -72,9 +72,12 @@
     }
 
     // Eventos de Google Analytics 4 (el sitio ya carga gtag y GTM). Sin datos personales ni la denominación.
+    // send_to: la página carga el Google tag dos veces (en línea y desde el contenedor de GTM); sin destino explícito,
+    // cuando gana la instancia de GTM el evento se pierde (medido: 0 de 6; con send_to, 6 de 6).
+    var GA_ID = 'G-YHSKT7WH3Q';
     function medir(evento, params) {
         try {
-            if (typeof window.gtag === 'function') window.gtag('event', evento, params || {});
+            if (typeof window.gtag === 'function') window.gtag('event', evento, Object.assign({ send_to: GA_ID }, params || {}));
             else if (window.dataLayer) window.dataLayer.push(Object.assign({ event: evento }, params || {}));
         } catch (e) { /* medir nunca rompe el verificador */ }
     }
@@ -446,12 +449,15 @@
     function mensajeLead() {
         var rep = estado.reporte, e = estado.entrada, r = resumen(rep), s = SEMAFORO[rep.dictamen.nivel] || SEMAFORO.incompleta;
         var principales = r.grupos.filter(function (a) { return a.riesgo === 'alto' || a.riesgo === 'medio'; }).slice(0, 5).map(function (a) {
-            return '«' + a.titulo + '» (clase ' + (a.clases.join(', ') || '?') + (a.estado ? ', ' + a.estado : '') + ', riesgo ' + a.riesgo + ')';
+            var num = a.registro ? 'reg. ' + a.registro : a.expediente ? 'exp. ' + a.expediente : '';
+            var titular = (a.titulares && a.titulares[0]) ? ', titular ' + String(a.titulares[0]).slice(0, 40) : '';
+            return '«' + a.titulo + '» (' + (num ? num + ', ' : '') + 'clase ' + (a.clases.join(', ') || '?') + (a.estado ? ', ' + a.estado : '') + ', riesgo ' + a.riesgo + titular +
+                (a.miembros && a.miembros.length > 1 ? ', y ' + (a.miembros.length - 1) + ' expediente' + (a.miembros.length === 2 ? '' : 's') + ' más' : '') + ')';
         });
         var lineas = ['Verificador de viabilidad de marca (sitio).',
             'Denominación: ' + e.denominacion + ' | Tipo: ' + e.tipo + ' | Clases: ' + e.clases.join(', '),
             e.productos ? 'Giro: ' + e.productos : '',
-            'Semáforo: ' + s.color + ' (' + rep.dictamen.titulo + '). Antecedentes parecidos: ' + r.total + ' (' + r.alto + ' de riesgo alto, ' + r.medio + ' de riesgo medio).',
+            'Semáforo: ' + s.color + ' (' + s.titulo + '). Antecedentes parecidos: ' + r.total + ' (' + r.alto + ' de riesgo alto, ' + r.medio + ' de riesgo medio).',
             principales.length ? 'Principales: ' + principales.join('; ') + '.' : '',
             'Aceptó el aviso de privacidad en el formulario.'];
         return lineas.filter(Boolean).join('\n').slice(0, 2800);
@@ -471,7 +477,7 @@
         var datos = {
             nombre: $('vm-nombre').value.trim(), correo: $('vm-correo').value.trim(), telefono: $('vm-whats').value.trim(),
             perfil: 'verificador-marca', mensaje: mensajeLead(), sitio_web: $('vm-trampa').value,
-            pagina: location.pathname.replace(/^\//, '') || 'index.html', idioma: document.documentElement.lang || '', campana: campana(), referente: (document.referrer || '').slice(0, 300)
+            pagina: location.pathname.replace(/^\//, '') || 'index.html', idioma: 'es', campana: campana(), referente: (document.referrer || '').slice(0, 300)
         };
         var wa = whatsapp('Hola, soy ' + datos.nombre + '. Usé el verificador de marca para «' + estado.entrada.denominacion + '» y quiero revisar el resultado con un abogado.');
         var falla = function () {

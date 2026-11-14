@@ -653,7 +653,10 @@
        ────────────────────────────────────────────────── */
     function registrarLead(metodo) {
         if (typeof window.gtag !== 'function') return;
+        // send_to: la página carga el Google tag dos veces (en línea y desde el contenedor de GTM); sin destino explícito,
+        // cuando gana la instancia de GTM el evento se pierde (medido: 0 de 6; con send_to, 6 de 6).
         window.gtag('event', 'generate_lead', {
+            send_to: 'G-YHSKT7WH3Q',
             method: metodo,
             lead_source: location.pathname.replace(/^\//, '') || 'index.html'
         });

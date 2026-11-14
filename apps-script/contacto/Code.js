@@ -104,14 +104,24 @@ function hoja() {
   return h;
 }
 
+/* Número para wa.me: WhatsApp pide el código de país. Un número de México a 10 dígitos (998 139 9930) lleva 52 delante;
+   uno que ya trae 52 o el 521 antiguo se normaliza; otro con más de 10 dígitos se respeta tal cual (otro país). Sin número válido, ''. */
+function numeroWhatsApp(telefono) {
+  var d = String(telefono || '').replace(/\D/g, '');
+  if (d.length === 10) return '52' + d;
+  if (d.length === 12 && d.indexOf('52') === 0) return d;
+  if (d.length === 13 && d.indexOf('521') === 0) return '52' + d.slice(3);
+  return d.length > 10 ? d : '';
+}
+
 function avisar(c) {
-  var digitos = c.telefono.replace(/\D/g, '');
+  var whatsapp = numeroWhatsApp(c.telefono);
   var cuerpo = [
     'Nuevo contacto desde el sitio.',
     '',
     'Nombre: ' + c.nombre,
     'Correo: ' + (c.correo || '—'),
-    'WhatsApp / teléfono: ' + (c.telefono || '—') + (digitos.length >= 10 ? '  →  https://wa.me/' + digitos : ''),
+    'WhatsApp / teléfono: ' + (c.telefono || '—') + (whatsapp ? '  →  https://wa.me/' + whatsapp : ''),
     'Perfil: ' + (c.perfil || '—'),
     'Página: ' + (c.pagina || '—') + (c.idioma ? ' (' + c.idioma + ')' : ''),
     c.campana ? 'Campaña: ' + c.campana : '',
