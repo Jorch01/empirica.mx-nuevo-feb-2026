@@ -812,20 +812,111 @@
 
     function reviewText(r) { return (r.text || '').replace(/\s+/g, ' ').trim(); }
 
-    /* Las destacadas combinan estrellas, extensión del comentario y antigüedad.
-       Nunca entran las de menos de 4 estrellas ni las que no traen comentario. */
-    function reviewScore(r) {
-        var len = reviewText(r).length;
-        var ageDays = r.time ? (Date.now() / 1000 - r.time) / 86400 : 9999;
-        var recency = ageDays < 365 ? 10 * (1 - ageDays / 365) : 0;
-        return (r.rating || 0) * 20 + Math.min(len, 500) / 10 + recency;
+    /* ── Reseñas destacadas ──────────────────────────────────────────────
+       Reglas (las usan todas las páginas y landings que muestran reseñas):
+       1. Solo reseñas de 5 estrellas y con comentario (mínimo MIN_FEATURED_CHARS).
+       2. Quien lee en inglés ve primero las reseñas en inglés; si no alcanzan,
+          se completa con las de español.
+       3. Quien lee en español ve al menos una reseña en inglés (si existe) y el
+          resto en español.
+       4. Cada visita rota: se prefieren las reseñas que ese visitante no ha visto
+          (o vio hace más), y entre iguales se elige al azar. Así no salen siempre
+          las mismas, sin romper las reglas anteriores. */
+    var FEATURED_COUNT = 3;
+    var MIN_FEATURED_CHARS = 25;
+    var SEEN_KEY = 'empirica_rev_seen';
+
+    /* Idioma en que el visitante lee la página: el del documento, que el botón
+       ES/EN actualiza al cambiar (en.html y /en/guides ya nacen en inglés). */
+    function readerLang() {
+        return (document.documentElement.lang || '').slice(0, 2).toLowerCase() === 'en' ? 'en' : 'es';
     }
 
-    function pickFeatured(reviews, max) {
-        return reviews
-            .filter(function (r) { return (r.rating || 0) >= 4 && reviewText(r).length >= 25; })
-            .sort(function (a, b) { return reviewScore(b) - reviewScore(a); })
-            .slice(0, max);
+    /* Idioma de una reseña: el que informa Google ('en', 'es'…). Si falta (reseñas
+       guardadas antes de que se registrara), se deduce del texto; ante la duda, 'es'. */
+    var EN_HINTS = /\b(the|and|was|were|is|are|very|great|excellent|good|service|services|recommend|recommended|highly|professional|professionals|lawyer|lawyers|attorney|attorneys|team|helped|help|thank|thanks|you|for|with|my|our|they|their|best|amazing|case|process|fast|quick|friendly|knowledgeable|would|definitely)\b/g;
+    var ES_HINTS = /\b(el|la|los|las|un|una|de|del|que|y|en|con|muy|por|para|excelente|atención|atencion|servicio|servicios|recomiendo|recomendado|profesional|profesionales|abogado|abogados|abogada|gracias|mi|nos|me|su|sus|es|fue|todo|equipo|asesoría|asesoria|caso|proceso|rápido|rapido|bueno|buena|mejor|siempre|sin)\b/g;
+
+    function reviewLang(r) {
+        var code = String(r.lang || '').toLowerCase().split('-')[0];
+        if (code) return code;
+        var text = reviewText(r).toLowerCase();
+        var en = (text.match(EN_HINTS) || []).length;
+        var es = (text.match(ES_HINTS) || []).length + (/[áéíóúñ¿¡]/.test(text) ? 2 : 0);
+        return en > es ? 'en' : 'es';
+    }
+
+    function reviewId(r) { return (r.author || '') + '|' + (r.time || ''); }
+
+    function readSeen() {
+        try {
+            var s = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]');
+            return Array.isArray(s) ? s : [];
+        } catch (e) { return []; }
+    }
+
+    function writeSeen(list) {
+        try { localStorage.setItem(SEEN_KEY, JSON.stringify(list.slice(-100))); } catch (e) { /* modo privado */ }
+    }
+
+    /* Orden de rotación: primero las que este visitante no ha visto, luego las que
+       vio hace más tiempo; entre iguales, al azar. */
+    function rotate(list, seen) {
+        return list
+            .map(function (r) { return { r: r, seen: seen.lastIndexOf(reviewId(r)), rnd: Math.random() }; })
+            .sort(function (a, b) { return a.seen - b.seen || a.rnd - b.rnd; })
+            .map(function (o) { return o.r; });
+    }
+
+    function pickFeatured(reviews, max, lang) {
+        var seen = readSeen();
+        var eligible = reviews.filter(function (r) {
+            return Number(r.rating) === 5 && reviewText(r).length >= MIN_FEATURED_CHARS;
+        });
+        var english = rotate(eligible.filter(function (r) { return reviewLang(r) === 'en'; }), seen);
+        var spanish = rotate(eligible.filter(function (r) { return reviewLang(r) === 'es'; }), seen);
+        var picked;
+
+        if (lang === 'en') {
+            // Primero todo el inglés que haya; el español solo completa lo que falte
+            picked = english.slice(0, max);
+            picked = picked.concat(spanish.slice(0, max - picked.length));
+        } else {
+            // Una en inglés (si existe) y el resto en español; si el español no alcanza, más inglés
+            var oneEnglish = english.slice(0, 1);
+            var rest = spanish.slice(0, max - oneEnglish.length);
+            rest = rest.concat(english.slice(1, 1 + max - oneEnglish.length - rest.length));
+            // La de inglés no siempre en la misma posición
+            picked = rest;
+            if (oneEnglish.length) picked.splice(Math.floor(Math.random() * (rest.length + 1)), 0, oneEnglish[0]);
+        }
+
+        // Lo que se muestra pasa al final de la fila de "vistas" para rotar la próxima vez
+        var shownIds = picked.map(reviewId);
+        writeSeen(seen.filter(function (id) { return shownIds.indexOf(id) === -1; }).concat(shownIds));
+        return picked;
+    }
+
+    /* "Hace 3 meses" / "3 months ago" calculado con la fecha de la reseña, para que
+       coincida con el idioma de la página (Google lo entrega siempre en español). */
+    function relativeDate(r) {
+        if (!r.time) return r.date || '';
+        var en = readerLang() === 'en';
+        var days = Math.max(0, Math.floor((Date.now() / 1000 - r.time) / 86400));
+        var units = [[365, 'año', 'años', 'year'], [30, 'mes', 'meses', 'month'], [7, 'semana', 'semanas', 'week'], [1, 'día', 'días', 'day']];
+        for (var i = 0; i < units.length; i++) {
+            var n = Math.floor(days / units[i][0]);
+            if (n >= 1) {
+                return en ? n + ' ' + units[i][3] + (n === 1 ? '' : 's') + ' ago'
+                          : 'Hace ' + n + ' ' + (n === 1 ? units[i][1] : units[i][2]);
+            }
+        }
+        return en ? 'Today' : 'Hoy';
+    }
+
+    function clip(text, max) {
+        if (text.length <= max) return text;
+        return text.slice(0, max).replace(/\s+\S*$/, '') + '…';
     }
 
     var STAR_PATH = 'M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z';
@@ -864,10 +955,10 @@
                     '<span class="lab-rev-author">' + escapeHtml(name) + '</span>' +
                     '<span class="lab-rev-stars" aria-label="' + (r.rating || 0) + ' / 5">' + starsSvg(r.rating || 0, 12) + '</span>' +
                 '</span>' +
-                '<span class="lab-rev-date">' + escapeHtml(r.date || '') + '</span>' +
+                '<span class="lab-rev-date">' + escapeHtml(relativeDate(r)) + '</span>' +
             '</div>' +
             (text
-                ? '<p class="lab-rev-text' + (clamp ? ' is-clamped' : '') + '">' + escapeHtml(text) + '</p>'
+                ? '<p class="lab-rev-text' + (clamp ? ' is-clamped' : '') + '" lang="' + reviewLang(r) + '">' + escapeHtml(text) + '</p>'
                 : '<p class="lab-rev-text is-empty">' + tr('Calificó sin dejar comentario.', 'Rated without a comment.') + '</p>');
     }
 
@@ -889,10 +980,29 @@
             countEl.textContent = total + tr(' opiniones en Google', ' reviews on Google');
         }
 
-        // Destacadas
+        // Destacadas (se eligen una sola vez por pintada, para todos los bloques de la página)
         var grid = document.getElementById('g-featured');
+        var landingGrids = document.querySelectorAll('[data-g-reviews]');
+        var featured = (grid || landingGrids.length) ? pickFeatured(reviews, FEATURED_COUNT, readerLang()) : [];
+
+        // Landings con la sección "Opiniones en Google": el HTML trae opiniones de respaldo
+        // y aquí se reemplazan por las elegidas. data-g-reviews = prefijo de las clases CSS.
+        landingGrids.forEach(function (box) {
+            if (!featured.length) return; // sin datos, se quedan las del HTML
+            var p = box.getAttribute('data-g-reviews');
+            var en = readerLang() === 'en';
+            var label = en ? 'Google Review' : 'Opinión en Google';
+            box.innerHTML = featured.map(function (r) {
+                return '<div class="' + p + '-card">' +
+                    '<div class="' + p + '-stars">' + new Array(6).join('<i class="fas fa-star"></i>') + '</div>' +
+                    '<blockquote lang="' + reviewLang(r) + '">"' + escapeHtml(clip(reviewText(r), 280)) + '"</blockquote>' +
+                    '<div class="' + p + '-author">' + escapeHtml(r.author || (en ? 'Google user' : 'Usuario de Google')) +
+                    '<span><i class="fab fa-google"></i> ' + label + '</span></div>' +
+                '</div>';
+            }).join('');
+        });
+
         if (grid) {
-            var featured = pickFeatured(reviews, 3);
             grid.innerHTML = '';
             featured.forEach(function (r) {
                 var card = document.createElement('button');
