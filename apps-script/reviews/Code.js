@@ -34,7 +34,9 @@ var PLACE_ID = PROPS.getProperty('PLACE_ID') || '__PLACE_ID__';
 /* Minutos que una consulta a Google se reutiliza antes de volver a pedirla.
    Cada actualización hace 2 consultas a Places API; súbelo si quieres gastar menos. */
 var CACHE_MINUTES = 60;
-var CACHE_KEY = 'reviews_v2';
+/* Súbele el número cuando cambie la forma de los datos: así nadie recibe una
+   respuesta vieja guardada en caché. (v3: cada reseña trae su idioma original) */
+var CACHE_KEY = 'reviews_v3';
 var MAX_STORED_REVIEWS = 200;
 
 function doGet(e) {
@@ -76,7 +78,9 @@ function fetchPlace(sort) {
     + '?place_id=' + encodeURIComponent(PLACE_ID)
     + '&fields=name,rating,user_ratings_total,reviews,url'
     + '&language=es'
-    + '&reviews_no_translations=false'
+    /* Texto ORIGINAL de cada reseña. Con traducción activada, Google convertía al
+       español las reseñas en inglés y el sitio no podía mostrarlas en su idioma. */
+    + '&reviews_no_translations=true'
     + '&reviews_sort=' + sort
     + '&key=' + GOOGLE_API_KEY;
 
@@ -92,6 +96,12 @@ function fetchPlace(sort) {
 
 function reviewKey(r) {
   return (r.author || '') + '|' + (r.time || '');
+}
+
+/* Google da el idioma como código IETF ('en', 'es-419'…); nos quedamos con el principal. */
+function reviewLang(r) {
+  var code = r.original_language || r.language || '';
+  return String(code).toLowerCase().split('-')[0];
 }
 
 function fetchAndCacheReviews() {
@@ -119,6 +129,10 @@ function fetchAndCacheReviews() {
         photo: r.profile_photo_url || '',
         rating: r.rating,
         text: r.text || '',
+        /* Idioma en que está escrita ('en', 'es'…). El sitio lo usa para mostrar
+           reseñas en inglés a quien lee en inglés. Vacío si Google no lo informa:
+           en ese caso el sitio lo deduce del texto. */
+        lang: reviewLang(r),
         date: r.relative_time_description,
         time: r.time
       };
