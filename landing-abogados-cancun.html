@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Analítica solo en el sitio publicado: las pruebas locales no cuentan como visitas. -->
+    <script>if (!/^(www\.)?empirica\.mx$/.test(location.hostname)) window['ga-disable-G-YHSKT7WH3Q'] = true;</script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -107,7 +109,7 @@
                 "@type": "Service",
                 "@id": "https://empirica.mx/landing-abogados-cancun.html#service",
                 "name": "Abogados en Cancún: litigio civil, mercantil y laboral",
-                "description": "Representación y defensa legal en Cancún y Quintana Roo: litigio civil, mercantil y laboral, disputas inmobiliarias, derecho familiar y juicio de amparo.",
+                "description": "Representación y defensa legal en Cancún y Quintana Roo: litigio civil, mercantil, familiar, penal y laboral, disputas inmobiliarias y juicio de amparo.",
                 "serviceType": "Litigio y defensa legal en Cancún",
                 "url": "https://empirica.mx/landing-abogados-cancun.html",
                 "provider": {
@@ -186,6 +188,60 @@
                 "publisher": {
                     "@id": "https://empirica.mx/#organization"
                 }
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "https://empirica.mx/landing-abogados-cancun.html#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "¿En qué materias atienden en Cancún?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Llevamos asuntos civiles, mercantiles, familiares, penales y laborales, juicios de amparo y disputas inmobiliarias. Si tu asunto es fuera de Quintana Roo, lo atendemos mediante corresponsalías."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cuánto cuesta la primera consulta?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "La primera conferencia, en la que evaluamos tu asunto, es sin costo. Después te presentamos la propuesta de trabajo y el presupuesto, y decides si seguimos."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Pueden revisar un juicio que ya está en curso?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sí. Revisamos el expediente, los acuerdos y los plazos que están corriendo, y te decimos con claridad qué se puede hacer. Si solo quieres una segunda opinión sobre tu caso, también te la damos."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Qué debo llevar a la primera consulta?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Tu identificación y todo lo que tengas del asunto: contratos, recibos, mensajes, escrituras, notificaciones o la demanda que te entregaron. Si te notificaron algo, búscanos cuanto antes: los plazos para responder suelen ser cortos."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Atienden en inglés?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sí. Atendemos en español y en inglés, también a extranjeros con asuntos o propiedades en Cancún y la Riviera Maya."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Atienden fuera de Cancún?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sí. Llevamos asuntos en el resto de Quintana Roo, como Playa del Carmen, Tulum, Cozumel y Chetumal, y en Yucatán. En otros estados trabajamos mediante corresponsalías."
+                        }
+                    }
+                ]
             }
         ]
     }
@@ -458,6 +514,23 @@
             margin-top: 2px;
         }
 
+        /* Secciones alternas (dónde litigamos, preguntas frecuentes) */
+        .landing-alt { background: var(--color-green-dark); }
+        #donde-litigamos .landing-services-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+        .landing-faq { padding: var(--spacing-4xl) 0; }
+        .landing-faq .section-header { text-align: center; margin-bottom: var(--spacing-2xl); }
+        .landing-faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--spacing-md); }
+        .landing-faq-item { background: var(--color-green-mid); border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); }
+        .landing-faq-item summary {
+            cursor: pointer; list-style: none; padding: var(--spacing-lg) var(--spacing-xl);
+            font-family: var(--font-serif); font-size: 1.02rem; font-weight: 600; color: var(--color-text-dark);
+            display: flex; justify-content: space-between; gap: var(--spacing-md); align-items: center;
+        }
+        .landing-faq-item summary::-webkit-details-marker { display: none; }
+        .landing-faq-item summary::after { content: '+'; color: var(--color-gold); font-size: 1.3rem; line-height: 1; flex-shrink: 0; }
+        .landing-faq-item[open] summary::after { content: '−'; }
+        .landing-faq-item p { padding: 0 var(--spacing-xl) var(--spacing-lg); margin: 0; font-size: 0.95rem; color: var(--color-text-mid); line-height: 1.7; }
+
         @media (max-width: 768px) {
             .landing-hero-inner { flex-direction: column; text-align: center; }
             .landing-hero-content { text-align: center; }
@@ -607,10 +680,49 @@
                 </div>
                 <div class="landing-service-card">
                     <div class="landing-service-card-icon">
+                        <i class="fas fa-scale-unbalanced"></i>
+                    </div>
+                    <h3>Derecho Penal</h3>
+                    <p>Defensa de personas imputadas y asesoría a víctimas, desde la carpeta de investigación hasta el juicio.</p>
+                </div>
+                <div class="landing-service-card">
+                    <div class="landing-service-card-icon">
                         <i class="fas fa-handshake"></i>
                     </div>
                     <h3>Corresponsalías</h3>
                     <p>Representación legal en otros estados de la República Mexicana.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== DÓNDE LITIGAMOS ===================== -->
+    <section class="landing-services landing-alt" id="donde-litigamos">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Dónde litigamos</span>
+                <h2>Abogados en Cancún, Quintana Roo y Yucatán</h2>
+            </div>
+            <div class="landing-services-grid">
+                <div class="landing-service-card">
+                    <div class="landing-service-card-icon"><i class="fas fa-landmark"></i></div>
+                    <h3>Juzgados de Cancún</h3>
+                    <p>Juzgados civiles, familiares, mercantiles y penales del Poder Judicial de Quintana Roo en Cancún, y las salas del Tribunal Superior de Justicia del Estado.</p>
+                </div>
+                <div class="landing-service-card">
+                    <div class="landing-service-card-icon"><i class="fas fa-briefcase"></i></div>
+                    <h3>Tribunales laborales</h3>
+                    <p>Juicios de trabajadores y de empresas ante los tribunales laborales de Quintana Roo, y la conciliación prejudicial.</p>
+                </div>
+                <a class="landing-service-card" href="landing-amparo-cancun.html">
+                    <div class="landing-service-card-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h3>Tribunales federales</h3>
+                    <p>Juicio de amparo ante los Juzgados de Distrito y los Tribunales Colegiados del Poder Judicial de la Federación en Quintana Roo.</p>
+                </a>
+                <div class="landing-service-card">
+                    <div class="landing-service-card-icon"><i class="fas fa-location-dot"></i></div>
+                    <h3>Riviera Maya y Yucatán</h3>
+                    <p>Playa del Carmen, Tulum, Cozumel, Chetumal y el estado de Yucatán. En otros estados, mediante corresponsalías.</p>
                 </div>
             </div>
         </div>
@@ -654,6 +766,42 @@
                         <span><i class="fab fa-google"></i> Opinión en Google</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PREGUNTAS FRECUENTES ===================== -->
+    <section class="landing-faq landing-alt" id="preguntas-frecuentes">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Preguntas frecuentes</span>
+                <h2>Antes de tu consulta</h2>
+            </div>
+            <div class="landing-faq-list">
+                <details class="landing-faq-item">
+                    <summary>¿En qué materias atienden en Cancún?</summary>
+                    <p>Llevamos asuntos civiles, mercantiles, familiares, penales y laborales, juicios de amparo y disputas inmobiliarias. Si tu asunto es fuera de Quintana Roo, lo atendemos mediante corresponsalías.</p>
+                </details>
+                <details class="landing-faq-item">
+                    <summary>¿Cuánto cuesta la primera consulta?</summary>
+                    <p>La primera conferencia, en la que evaluamos tu asunto, es sin costo. Después te presentamos la propuesta de trabajo y el presupuesto, y decides si seguimos.</p>
+                </details>
+                <details class="landing-faq-item">
+                    <summary>¿Pueden revisar un juicio que ya está en curso?</summary>
+                    <p>Sí. Revisamos el expediente, los acuerdos y los plazos que están corriendo, y te decimos con claridad qué se puede hacer. Si solo quieres una segunda opinión sobre tu caso, también te la damos.</p>
+                </details>
+                <details class="landing-faq-item">
+                    <summary>¿Qué debo llevar a la primera consulta?</summary>
+                    <p>Tu identificación y todo lo que tengas del asunto: contratos, recibos, mensajes, escrituras, notificaciones o la demanda que te entregaron. Si te notificaron algo, búscanos cuanto antes: los plazos para responder suelen ser cortos.</p>
+                </details>
+                <details class="landing-faq-item">
+                    <summary>¿Atienden en inglés?</summary>
+                    <p>Sí. Atendemos en español y en inglés, también a extranjeros con asuntos o propiedades en Cancún y la Riviera Maya.</p>
+                </details>
+                <details class="landing-faq-item">
+                    <summary>¿Atienden fuera de Cancún?</summary>
+                    <p>Sí. Llevamos asuntos en el resto de Quintana Roo, como Playa del Carmen, Tulum, Cozumel y Chetumal, y en Yucatán. En otros estados trabajamos mediante corresponsalías.</p>
+                </details>
             </div>
         </div>
     </section>
